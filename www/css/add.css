@@ -1,0 +1,31 @@
+ol.linenums {
+    list-style: none;
+    font-size: 0.9em;
+    text-align: right;
+    padding-left: 0.5em;
+    float: left;
+}
+
+form dl dd
+{
+    padding-bottom: 1em;
+}
+
+form dl dd textarea
+{
+	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+form dl dd textarea.code
+{
+    float: right;
+    width: 95%;
+}
+
+select.lang
+{
+    width: 30%;
+    font-size: 1em;
+}

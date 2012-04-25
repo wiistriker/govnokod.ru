@@ -1,0 +1,139 @@
+/* Fixing header and menus */
+div#header h1
+{
+	left: 0;
+}
+
+ol#language li, ul#navigation li
+{
+	display: inline;
+}
+
+/* Fixing userpane */
+div#userpane
+{
+	margin-right: 0;
+}
+
+div#userpane.expanded ul.menu2
+{
+    margin-left: 6.7em;
+    padding: 0;
+}
+
+.pane-content p {
+    padding-bottom: 0.1em;
+}
+
+/* Fixing posts container */
+.posts
+{
+	margin: 4em 0 0 0;
+	width: 100%;
+}
+
+.posts .hentry
+{
+	margin: 0 0 2em 0;
+}
+
+.posts .hentry .vote
+{
+	right: 20px;
+	top: 30px;
+
+	font-family: "Arial";
+	font-size: 0.9em;
+}
+
+.posts .hentry .vote a
+{
+	margin: 0;
+	padding: 0;
+
+	display: inline;
+}
+
+.posts .hentry .entry-content ol
+{
+    margin: 0;
+}
+
+.posts .hentry .entry-content a.trigger
+{
+	top: 0;
+	right: 15px;
+}
+
+/* Fixing comments */
+
+div.entry-comments ul .hcomment
+{
+    margin: 0;
+}
+
+div.entry-comments ul .hcomment p
+{
+	font-size: 0.9em;
+}
+
+
+div.entry-comments ul .hcomment a.answer
+{
+	margin-left: 2.9em;
+	padding: 0.2em 0 0 0;
+
+	font-size: 0.9em;
+}
+
+div.entry-comments ul .hcomment .entry-comment
+{
+	margin: -0.5em 0 0 2.9em;
+
+	font-size: 0.9em;
+}
+
+/* Fixing form */
+
+form
+{
+	font-size: 0.9em;
+}
+
+form p input.send
+{
+	vertical-align: middle;
+
+	margin-right: 0.5em;
+}
+
+form p input#remember
+{
+	font-size: 1.1em;
+
+	vertical-align: middle;
+	line-height: 120%;
+
+	margin: 0;
+}
+
+/* Page foooooooooter fixing */
+
+div#footer
+{
+	bottom: 0;
+	background: #92602d;
+}
+
+div#footer address
+{
+	margin: 0;
+	padding: 0 1.3em 0 1.3em;
+}
+
+/* Fix one-line code */
+
+.posts .hentry .entry-content pre
+{
+    padding-bottom: expression(this.scrollWidth > this.offsetWidth ? '18px' : '0');
+}

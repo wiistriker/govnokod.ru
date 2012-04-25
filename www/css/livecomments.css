@@ -1,0 +1,15 @@
+.hentry .show-code
+{
+    padding-top: 25px;
+}
+
+.hentry .show-code a.show-code-trigger
+{
+    text-decoration: none;
+	border-bottom: dotted 1px #0060b6;
+}
+
+.hentry .code-holder
+{
+    display: none;
+}

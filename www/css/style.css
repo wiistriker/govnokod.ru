@@ -1,0 +1,945 @@
+/*
+Stylesheet for govnokod.ru
+*/
+
+body, html
+{
+	background: #f2f0e3;
+	color: #222;
+
+	font-family: "Calibri", "Arial", "Verdana", "Serif";
+	font-size: 16px;
+
+	min-height: 100%;
+	height: 100%;
+
+	margin: 0;
+	padding: 0;
+}
+
+a
+{
+	color: #0060b6;
+}
+
+a:hover
+{
+	color: #174c7e;
+}
+
+dl dd {
+    margin: 0;
+    padding-bottom: 1em;
+}
+
+/* Page wrapper */
+
+div#page
+{
+	margin: 0 4em 0 3em;
+
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+
+	position: relative;
+}
+
+div#content
+{
+	padding: 0 0 70px 0;
+}
+
+/* Page header: navigation and logo */
+
+div#header
+{
+	margin: 0 0 0 0;
+
+	min-width: 800px;
+}
+
+div#header h1
+{
+	margin: 0.4em 0 0 0;
+	padding: 0;
+
+	position: absolute;
+
+	/* Removing text from page but keeping it in markup */
+	text-indent: -600px;
+}
+
+div#header h1 a
+{
+	display: block;
+
+	background: #f2f0e3 url(../images/brand.gif) no-repeat;
+
+	width: 286px;
+	height: 174px;
+}
+
+/* User panel */
+
+div#userpane
+{
+	position: absolute;
+
+	top: 0;
+	right: 0;
+
+	margin: 0.3em 2.3em 0 0;
+
+	font-size: 0.9em;
+}
+
+div#userpane ul
+{
+    list-style: none;
+    padding: 0.5em 0.5em 0;
+}
+
+div#userpane ul.menu
+{
+	margin: 0;
+	padding: 0 0.65em 0 23px;
+
+	color: #888;
+
+	background: url(../images/user.png) no-repeat;
+	text-align: right;
+}
+
+div#userpane ul.menu li
+{
+	display: inline;
+}
+
+div#userpane ul.menu li a
+{
+	text-decoration: none;
+
+	margin: 0 0.1em;
+
+	border-bottom: dotted 1px #0060b6;
+}
+
+div#userpane .pane-content
+{
+    display: none;
+}
+
+div#userpane.expanded
+{
+    background: #fff;
+
+	border: solid 2px #ddd;
+	-webkit-border-bottom-right-radius: 1em;
+	-webkit-border-bottom-left-radius: 1em;
+	-moz-border-radius-bottomright: 1em;
+	-moz-border-radius-bottomleft: 1em;
+
+	border-bottom-right-radius: 1em;
+	border-bottom-left-radius: 1em;
+
+	margin-top: -0.1em;
+    padding: 0.23em 0.5em 0 0.5em;
+}
+
+div#userpane.expanded ul.menu
+{
+    margin-left: 3.5em;
+    padding: 0 0 0 23px;
+}
+
+div#userpane.expanded .pane-content
+{
+    display: block;
+}
+
+div#userpane .submit-holder {
+    text-align: right;
+    padding-top: 0.3em;
+    margin-right: 0;
+}
+
+.pane-content p {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+/* Languages selector and menu navigation */
+
+ol#language, ul#navigation
+{
+	margin: 0 0 0 18em;
+	padding: 0.3em 10em 0 0;
+	list-style: none;
+	font-size: 1.1em;
+	clear: both;
+}
+
+ul#navigation
+{
+	padding: 2em 10em 0 0;
+	white-space: nowrap;
+}
+
+ol#language li, ul#navigation li
+{
+	display: -moz-inline-stack;
+	display: inline-block;
+	margin: 0 1em 0.4em 0;
+}
+
+ul#navigation li
+{
+	margin: 0 0.9em 0.4em 0;
+	min-width: 0;
+}
+
+ol#language li a, ul#navigation li a
+{
+	padding: 0.3em;
+	color: #0060b6;
+}
+
+ul#navigation li.add a
+{
+	margin-left: 0.2em;
+
+	color: #a8606b;
+}
+
+ol#language li a:hover, ol#language li .active, ul#navigation li a:hover, ul#navigation li .active
+{
+	background: #cedbdc;
+}
+
+ul#navigation li.add a:hover, ul#navigation li.add .active
+{
+	background: #eacbd0;
+}
+
+ol#language li span
+{
+	text-decoration: none;
+	font-size: 0.7em;
+
+	margin-left: -0.1em;
+
+	color: #888;
+}
+
+/* Entrance text */
+
+p#entrance
+{
+	margin: 0 10em 1em 20em;
+	padding: 0.9em 0 0 0;
+
+	clear: both;
+	display: block;
+
+	font-size: 1.0em;
+	color: #222;
+}
+
+/* Posts markup (hAtom microformat) */
+
+.posts
+{
+	width: 100%;
+
+	margin: 4em 0 0 1em;
+	padding: 0;
+
+	list-style: none;
+}
+
+.posts .hentry
+{
+	margin: 0 3em 1.4em 0;
+	padding: 1em 1.3em 1em 1.3em;
+
+	background: #fff;
+
+	border: solid 2px #ddd;
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+
+	min-width: 400px;
+
+	position: relative;
+}
+
+.posts .hentry h2
+{
+	margin: 0 0 0.6em 0;
+	padding: 0;
+
+	font-size: 1.7em;
+	font-weight: 100;
+
+	color: #bbb;
+}
+
+.posts .hentry .vote
+{
+	position: absolute;
+	right: 0;
+	top: 22px;
+
+	margin: 0;
+	padding: 0.4em;
+
+	color: #bbb;
+
+	font-size: 1.1em;
+}
+
+.posts .hentry .vote a
+{
+	margin: 0 0.3em;
+	padding: 0 0.3em;
+
+	color: #aaa;
+
+	text-decoration: none;
+	font-size: 1em;
+	font-family: "Arial";
+}
+
+.posts .hentry .vote a:hover
+{
+	color: #777;
+}
+
+.posts .hentry .vote strong
+{
+	color: green;
+}
+
+.posts .hentry .vote strong.bad
+{
+	color: red;
+}
+
+.posts .hentry .vote strong.just-rating
+{
+    padding-right: 1em;
+}
+
+.posts .hentry .vote img.preloader
+{
+	padding-right: 1.2em;
+}
+
+.posts .hentry .vote span
+{
+    margin: 0 0.3em;
+	padding: 0 0.3em;
+
+	color: #DFDFDF;
+
+	text-decoration: none;
+	font-size: 1em;
+	font-family: "Arial";
+}
+
+.posts .hentry .vote span.my-vote
+{
+	color: #6F6F6F;
+	font-size: 1.2em;
+}
+
+.posts .hentry .entry-content
+{
+    margin: 0;
+	padding: 0;
+	border: solid 1px #ddd;
+	position: relative;
+
+	overflow: none;
+}
+
+.posts .hentry .entry-content ol
+{
+    background: #EFEFEF;
+	color: #BFA7A7;
+	float: left;
+
+	padding-right: 0.3em;
+	margin-right: 0.1em;
+	padding-left: 2.3em;
+	list-style: none;
+	text-align: right;
+
+	font-family: monospace;
+	width: 30px;
+	line-height: 18px;
+}
+
+.posts .hentry .entry-content pre
+{
+    padding: 0;
+    margin: 0;
+
+    overflow: auto;
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	font-family: monospace;
+	line-height: 18px;
+}
+
+.posts .hentry .entry-content a.trigger
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	padding: 0;
+
+	width: 18px;
+	height: 18px;
+
+	background: url(../images/expand.gif) no-repeat;
+	color: #aaa;
+
+	font-size: 0.9em;
+	text-decoration: none;
+	text-indent: -600px;
+}
+
+.posts .hentry .entry-content a.trigger:hover
+{
+	color: #888;
+}
+
+.posts .hentry .entry-content img.preloader
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	padding: 0;
+	background: url(../images/codeload.gif) no-repeat;
+}
+
+.posts .hentry .author abbr
+{
+    margin-left: 0.5em;
+    font-size: 12px;
+}
+
+div.entry-comments
+{
+	margin: 0.8em 0 0 0;
+	padding: 0;
+
+	color: #999;
+}
+
+div.entry-comments a
+{
+	text-decoration: none;
+	border-bottom: dotted 1px #0060b6;
+}
+
+div.entry-comments a.selected {
+    border-bottom: 0;
+    color: #000;
+}
+
+div.entry-comments h3
+{
+	margin: 1em 0 0 0;
+	padding: 0;
+
+	font-weight: 100;
+	font-size: 1.5em;
+}
+
+div.entry-comments ul
+{
+	margin: 0.1em 0 0 0;
+	padding: 0;
+
+	border: none;
+
+	list-style: none;
+}
+
+div.entry-comments ul .hcomment
+{
+	margin: 1em 0 0 0;
+
+
+	border: none;
+}
+
+div.entry-comments ul .hcomment .entry-comment-wrapper
+{
+    padding: 0.3em;
+}
+
+div.entry-comments ul .hcomment .entry-comment-wrapper.new
+{
+    background-color: #FFF9DF;
+}
+
+div.entry-comments ul .hcomment .entry-comment-wrapper:hover
+{
+    background-color: #F6F6F6;
+}
+
+div.entry-comments ul .hcomment ul
+{
+	margin-left: 2.5em;
+}
+
+div.entry-comments ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul .hcomment ul
+{
+	margin-left: 0;
+}
+
+div.entry-comments ul .hcomment a.answer
+{
+	margin-left: 3.2em;
+	padding: 0.2em 0 0 0;
+	display: -moz-inline-stack;
+	display: inline-block;
+    border-bottom: 1px dotted #0060B6;
+	font-size: 0.8em;
+}
+
+div.entry-comments ul .hcomment a.selected
+{
+    border-bottom: 0;
+    color: #000;
+}
+
+div.entry-comments ul .hcomment a.edit-comment-link
+{
+	margin: 0.2em 0 0 1em;
+	display: -moz-inline-stack;
+	display: inline-block;
+    border-bottom: 1px dotted #0060B6;
+	font-size: 0.8em;
+
+	padding-left: 1em;
+	background: url(../images/new.png) no-repeat scroll 0% 50%;
+}
+
+div.entry-comments ul .hcomment p.entry-info
+{
+	margin: 0;
+	padding: 0;
+
+	font-size: 0.9em;
+}
+
+div.entry-comments ul .hcomment p .comment-vote
+{
+	right: 1.5em;
+	position: absolute;
+}
+
+div.entry-comments ul .hcomment p .comment-vote a, div.entry-comments ul .hcomment p .comment-vote strong, div.entry-comments ul .hcomment p .comment-vote span
+{
+	display: -moz-inline-stack;
+	display: inline-block;
+
+	vertical-align: middle;
+	text-decoration: none;
+
+	border: none;
+}
+
+div.entry-comments ul .hcomment p .comment-vote .comment-vote-on
+{
+	background: url(../images/vote.png) no-repeat 0 0;
+	width: 18px;
+	height: 17px;
+}
+
+div.entry-comments ul .hcomment p .comment-vote .comment-vote-against
+{
+	background: url(../images/vote.png) no-repeat -18px 0;
+	width: 15px;
+	height: 17px;
+	margin-left: 0.7em;
+}
+
+div.entry-comments ul .hcomment p .comment-vote span.comment-vote-on
+{
+    background-position: 0 -15px;
+}
+
+div.entry-comments ul .hcomment p .comment-vote span.comment-vote-against
+{
+	background-position: -18px -15px;
+}
+
+div.entry-comments ul .hcomment p .comment-vote span.my-vote.comment-vote-on
+{
+    background-position: 0 0
+}
+
+div.entry-comments ul .hcomment p .comment-vote span.my-vote.comment-vote-against
+{
+	background-position: -18px 0;
+}
+
+div.entry-comments ul .hcomment p .comment-vote .just-rating
+{
+    padding-right: 1em;
+}
+
+div.entry-comments span.comments-icon
+{
+    background: url(../images/comments/icons.gif) no-repeat 0px 0px;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    padding-right: 0.2em;
+}
+
+div.entry-comments span.comments-icon.comments-new
+{
+    background-position: 0px -15px;
+}
+
+div.entry-comments span.entry-comments-new
+{
+    color: green;
+}
+
+img.avatar
+{
+	vertical-align: top;
+	border: solid 1px #ddd;
+}
+
+div.entry-comments img.avatar
+{
+    width: 28px;
+	height: 28px;
+}
+
+div.entry-comments ul .hcomment p strong
+{
+	color: #000;
+	margin-left: 0.6em;
+}
+
+div.entry-comments ul .hcomment p strong.bad
+{
+	color: red;
+}
+
+div.entry-comments ul .hcomment p strong.good
+{
+	color: green;
+}
+
+div.entry-comments ul .hcomment p .published
+{
+	margin-left: 0.5em;
+
+	text-decoration: none;
+	border: none;
+
+	padding-right: 0.5em;
+
+	color: #aaa;
+}
+
+div.entry-comments ul .hcomment .entry-comment
+{
+	margin: -0.7em 0 0 2.6em;
+	padding: 0;
+
+	color: #333;
+
+	border: none;
+
+	font-size: 1em;
+}
+
+/**
+ * code in comments fix
+ * @thanks to greevex
+ */
+div.entry-comments ul .hcomment .entry-comment pre
+{
+    overflow: auto;
+}
+
+div.entry-comments span.rss
+{
+    font-size: 0.6em;
+}
+
+div.entry-comments span.rss a
+{
+    background: #fff url(../images/comments-rss.png) no-repeat scroll 0 50%;
+	padding-left: 1.4em;
+	text-decoration: underline;
+    border-bottom: none;
+}
+
+div.entry-comments .entry-author a
+{
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+div.entry-comments a.comment-link
+{
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+div.entry-comment .hidden-text
+{
+    display: none;
+}
+
+div.entry-comment-hidden .hidden-text
+{
+    display: inline;
+}
+
+div.entry-comment-hidden .comment-text
+{
+    display: none;
+}
+
+/* Form styles */
+
+form
+{
+	margin: 1em 0 0 0;
+}
+
+form dl, form dl dt, form dl dd
+{
+	margin: 0;
+	padding: 0;
+
+	color: #777;
+	font-size: 1.1em;
+}
+
+form dl dt
+{
+	margin: 0.5em 0 0.2em 0;
+}
+
+form dl dd {
+    padding-bottom: 0.3em;
+}
+
+form dl dd input
+{
+	font-family: "Calibri", "Arial", "Verdana", "Serif";
+	font-size: 1.4em;
+
+	width: 60%;
+
+	border: 1px solid #C9CBCC;
+	border-top-color: #6D6F70;
+}
+
+input[type=radio], input[type=checkbox]
+{
+    border: none;
+}
+
+form dl dd textarea
+{
+	width: 60%;
+
+	font-family: "Calibri", "Arial", "Verdana", "Serif";
+	font-size: 0.9em;
+
+	border: 1px solid #C9CBCC;
+	border-top-color: #6D6F70;
+	max-width: 60%;
+	max-height: 600px;
+}
+
+
+form dl dd select
+{
+	font-family: "Calibri", "Arial", "Verdana", "Serif";
+	font-size: 1em;
+
+	width: 60%;
+
+	border: 1px solid #C9CBCC;
+	border-top-color: #6D6F70;
+}
+
+form p input.send
+{
+	font-size: 1.2em;
+
+	padding: 0.2em 0.4em;
+}
+
+form p input#remember
+{
+	margin: 0 0 0 0.7em;
+}
+
+form dl.errors
+{
+    padding-top: 0;
+    padding-bottom: 0.5em;
+}
+
+form dl.errors dd ol
+{
+	color: red;
+}
+
+form img.captcha
+{
+	width: 120px;
+	height: 40px;
+}
+
+form input.captcha
+{
+	font-size: 30px;
+	width: 120px;
+	vertical-align: top;
+}
+
+input#formElm_openid_identifier
+{
+    background: #fff url(../images/openid_big.png) 3px 50% no-repeat;
+    padding-left: 1.6em;
+    border: 1px solid #C9CBCC;
+	border-top-color: #6D6F70;
+}
+
+input#openid_identifier_small
+{
+    background: #fff url(../images/openid.png) 3px 50% no-repeat;
+    padding-left: 1.6em;
+    border: 1px solid #C9CBCC;
+	border-top-color: #6D6F70;
+}
+
+form div.field-info
+{
+    font-size: 12px;
+}
+
+
+form div.field-info div.bbcodes
+{
+    display: none;
+}
+
+form div.field-info div.bbcodes a
+{
+    border: 0;
+    text-decoration: underline;
+}
+
+/* Pagination classes */
+
+ul.pagination
+{
+	margin: 0.8em 0 0 1em;
+	padding: 0;
+
+	list-style: none;
+
+	font-size: 1.7em;
+	font-weight: 100;
+
+	color: #888;
+}
+
+ul.numbered
+{
+	margin: 0 0 1em 1em;
+}
+
+ul.pagination li
+{
+	display: inline;
+
+	margin-right: 0.4em;
+
+	font-family: "Arial";
+}
+
+/* Page foooooooooter */
+
+div#footer
+{
+	margin: 0;
+	padding: 0;
+
+	position: absolute;
+
+	bottom: 0 !important;
+	bottom: -1px;
+
+	height: 70px;
+	width: 100%;
+
+	-moz-border-top-left-radius: 1em;
+	-moz-border-top-right-radius: 1em;
+
+}
+
+div#footer address
+{
+	margin: 0 2em 0 1em;
+	padding: 0 1em 0 1em;
+
+	-webkit-border-top-left-radius: 1em;
+	-webkit-border-top-right-radius: 1em;
+    -moz-border-radius-topleft:1em;
+    -moz-border-radius-topright:1em;
+	border-top-left-radius: 1em;
+	border-top-right-radius: 1em;
+
+	background: #92602d;
+	color: #fff;
+
+	font-style: normal;
+
+	height: 100%;
+}
+
+div#footer address span
+{
+	display: block;
+
+	margin: 0;
+	padding: 0.8em 0 0 0.5em;
+}
+
+div#footer address span a
+{
+	color: #fff;
+	text-decoration: underline;
+}
+
+/* Geshi bold line-height hack */
+.kw1, .kw2, .kw3, .kw4, .kw5, .kw6, .kw7, .kw8, .li2, .es_h, .es0, .es1, .es2, .es3, .es4, .es5, .es6, .sy0, .imp, .nu0 {
+    line-height: 16px;
+}

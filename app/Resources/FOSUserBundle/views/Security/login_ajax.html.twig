@@ -1,0 +1,28 @@
+        <form method="post" action="{{ path("fos_user_security_check") }}" id="form_login_ajax">
+            <fieldset>
+                <legend>Вход</legend>
+                
+{% if error %}
+    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+                
+                <ol>
+                    <li>
+                        <label for="username_ajax">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                        <input type="text" id="username_ajax" name="_username" value="{{ last_username }}" />
+                    </li>
+                    <li>      
+                        <label for="password_ajax">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                        <input type="password" id="password_ajax" name="_password" />
+                    </li>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" name="_remember_me" value="on" />
+                            {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                        </label>
+                    </li>
+                <ol>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <button type="submit" name="_submit" class="button submit"><span>{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</span></button>
+            </fieldset>
+        </form>
