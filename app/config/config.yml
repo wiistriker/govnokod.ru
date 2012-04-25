@@ -65,3 +65,8 @@ jms_security_extra:
 sensio_framework_extra:
     view:    { annotations: false }
     router:  { annotations: true }
+    
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Wiistriker\UserBundle\Entity\User
