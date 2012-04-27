@@ -1,6 +1,4 @@
-
 /app/cache
 /vendor
 /app/bootstrap.php.cache
-/app/logs/prod.log
-/app/logs/dev.log
+/app/logs/*
