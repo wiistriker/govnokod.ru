@@ -19,6 +19,20 @@ class GovnokodController extends Controller
         ));
     }
 
+    public function viewAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('WiistrikerGovnokodBundle:Code');
+        $code = $repository->find($id);
+
+        if (!$code) {
+            throw $this->createNotFoundException('No code found for id '. $id);
+        }
+
+        return $this->render('WiistrikerGovnokodBundle:Code:view.html.twig', array(
+            'code' => $code
+        ));
+    }
+
     public function addAction(Request $request)
     {
         $code = new Code();
