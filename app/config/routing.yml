@@ -9,6 +9,10 @@ WiistrikerUserBundle:
 
 _index:
     pattern:  /
+    defaults: { _controller: WiistrikerGovnokodBundle:Govnokod:list }
+    
+add_code:
+    pattern: add
     defaults: { _controller: WiistrikerGovnokodBundle:Govnokod:add }
     
 fos_user_security:
