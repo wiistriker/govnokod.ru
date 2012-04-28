@@ -111,7 +111,7 @@ fos_user:
 
 services:
     sonata.admin.govnokod:
-            class: Wiistriker\GovnokodBundle\Admin\GovnokodAdmin
+            class: Wiistriker\GovnokodBundle\Admin\CodeCategoryAdmin
             arguments: [null, 'Wiistriker\GovnokodBundle\Entity\CodeCategory', 'SonataAdminBundle:CRUD']
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Категории кода }

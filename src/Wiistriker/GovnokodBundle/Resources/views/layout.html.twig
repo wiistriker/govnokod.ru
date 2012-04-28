@@ -25,6 +25,21 @@
     <div id="header">
         <h1><a rel="homepage" href="{{ path('_index') }}">Говнокод: по колено в коде.</a></h1>
         
+        <div id="userpane">
+		    <ul class="menu">
+		        <li><a id="expand-trigger" href="#>">Войти в говнокод</a></li>
+		    </ul>
+		
+		    <form class="pane-content">
+		        <ul>
+		            <li></li>
+		            <li class="submit-holder"></li>
+		        </ul>
+		
+		        <p><a href="#">Что это?</a> | <a href="#">Обычная форма входа</a></p>
+		    </form>
+		</div>
+        
         <ul id="navigation">
             <li><a href="<?php echo htmlspecialchars($toolkit->getRequest()->getUrl()); ?>/">Все</a></li>
             <li><a href="<?php echo htmlspecialchars($toolkit->getRequest()->getUrl()); ?>/paper/">Газетка</a></li>
