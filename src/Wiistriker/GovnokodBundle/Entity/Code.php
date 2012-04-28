@@ -45,6 +45,21 @@ class Code
     protected $category;
 
     /**
+     * @var integer $user_id
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    protected $user_id;
+
+    /**
+     * @var Symfony\Component\Security\Core\User\UserInterface
+     *
+     * @ORM\OneToOne(targetEntity="Wiistriker\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
      * @var text $text
      *
      * @ORM\Column(name="text", type="text")
@@ -113,6 +128,28 @@ class Code
     }
 
     /**
+     * Set user_id
+     *
+     * @param integer $userId
+     * @return Code
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+        return $this;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
      * Set text
      *
      * @param text $text
@@ -176,6 +213,28 @@ class Code
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Wiistriker\UserBundle\Entity\User $user
+     * @return Code
+     */
+    public function setUser(\Wiistriker\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Wiistriker\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**

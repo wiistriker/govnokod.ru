@@ -50,6 +50,10 @@ class GovnokodController extends Controller
                 $category = $categoryRepository->find(1);
                 $code->setCategory($category);
 
+                $userRepository = $this->getDoctrine()->getRepository('WiistrikerUserBundle:User');
+                $user = $userRepository->find(1);
+                $code->setUser($user);
+
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($code);
                 $em->flush();
