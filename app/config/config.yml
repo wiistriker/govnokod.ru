@@ -4,17 +4,18 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
+    translator:      { fallback: ru }
     secret:          %secret%
-    charset:         UTF-8
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    session:
-        default_locale: %locale%
-        auto_start:     true
+    default_locale:  %locale%
+    trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    session: ~
 
 # Twig Configuration
 twig:
@@ -58,51 +59,38 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
 
-jms_security_extra:
-    secure_controllers:  true
-    secure_all_services: false
-
 sensio_framework_extra:
     view:    { annotations: false }
     router:  { annotations: true }
-    
+   
+sonata_admin:
+    title:      Говнокод.ru
+    title_logo: /bundles/sonataadmin/logo_title.png
+    dashboard:
+        blocks:
+            # display a dashboard block
+            - { position: left, type: sonata.admin.block.admin_list }
+            
+        groups:
+            default:
+                label: Функции
+                items: ~
+            products:
+                label: Товары
+                items: ~
+            stores:
+                label: Магазины
+                items: ~
+
 sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
 
-        #sonata.admin_doctrine_orm.block.audit:
-        #    contexts:   [admin]
-
         sonata.block.service.text:
         sonata.block.service.action:
         sonata.block.service.rss:
-
-        # Some specific block from the SonataMediaBundle
-        #sonata.media.block.media:
-        #sonata.media.block.gallery:
-        #sonata.media.block.feature_media:
-    
-sonata_admin:
-    title:      Говнокод.ru
-    title_logo: /bundles/sonataadmin/logo_title.png
-    templates:
-        # default global templates
-        layout:  SonataAdminBundle::standard_layout.html.twig
-        ajax:    SonataAdminBundle::ajax_layout.html.twig
-
-        # default actions templates, should extend a global templates
-        list:    SonataAdminBundle:CRUD:list.html.twig
-        show:    SonataAdminBundle:CRUD:show.html.twig
-        edit:    SonataAdminBundle:CRUD:edit.html.twig
-    dashboard:
-        blocks:
-            # display a dashboard block
-            - { position: left, type: sonata.admin.block.admin_list }
-
-        groups:
-            default: ~
 
 fos_user:
     db_driver: orm

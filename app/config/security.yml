@@ -1,10 +1,20 @@
-security:
-    providers:
-        fos_userbundle:
-            id: fos_user.user_manager
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
 
+security:
     encoders:
-        "FOS\UserBundle\Model\UserInterface": md5
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    providers:
+        #in_memory:
+        #    memory:
+        #        users:
+        #            user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+        #            admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
