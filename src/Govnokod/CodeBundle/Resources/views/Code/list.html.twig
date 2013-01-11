@@ -1,0 +1,31 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <ol class="posts hatom">
+{% for code in codes %}
+        <li class="hentry">
+            <h2><a rel="chapter" href="#">{{ code.category.title }}</a> / <a rel="bookmark" class="entry-title" href="{{ path('view_code', { 'id': code.id }) }}">Говнокод #{{ code.id }}</a></h2>
+            <p class="vote">
+                
+            </p>
+            <div class="entry-content">
+                {{ code.body|nl2br }}
+            </div>
+            <p class="description">
+                {{ code.description|nl2br }}
+            </p>
+{#
+            <p class="author">
+                Запостил: <a href=""><img src="" alt="" class="avatar" /></a> <a href="">{{ code.user.username }}</a>,
+                <abbr title="{{ code.created|date('c') }}">{{ code.created|date('d F Y') }}</abbr>
+            </p>
+#}
+{#
+            <div class="entry-comments">
+                <span class="comments-icon<?php if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { echo ' comments-new" title="Есть новые комментарии!'; } ?>">&nbsp;</span><a href="<?php echo htmlspecialchars($url . '/' . $quote->getId()); ?>" class="entry-comments-load">Комментарии</a> <span class="entry-comments-count">(<?php echo $quote->getCommentsCount(); if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { ?>, <span title="Новые комментарии" class="entry-comments-new">+<?php echo $quote->getNewCommentsCount(); ?></span><?php } ?>)</span>
+            </div>
+#}            
+        </li>
+{% endfor %}
+    </ol>
+{% endblock %}

@@ -9,17 +9,15 @@ WiistrikerUserBundle:
 
 _index:
     pattern:  /
-    defaults: { _controller: WiistrikerGovnokodBundle:Govnokod:list }
+    defaults: { _controller: GovnokodCodeBundle:Code:list }
     
-add_code:
-    pattern: add
-    defaults: { _controller: WiistrikerGovnokodBundle:Govnokod:add }
+govnokod_code:
+    resource: "@GovnokodCodeBundle/Resources/config/routing.yml"
+    prefix:   /
     
-view_code:
-    pattern: /{id}
-    defaults: { _controller: WiistrikerGovnokodBundle:Govnokod:view }
-    requirements:
-        id: \d+
+#add_code:
+#    pattern: add
+#    defaults: { _controller: WiistrikerGovnokodBundle:Govnokod:add }
     
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

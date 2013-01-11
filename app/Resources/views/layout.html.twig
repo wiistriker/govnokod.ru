@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block page_title %}Говнокод.ру{% endblock %}</title>
+{% block stylesheets %}
+{% stylesheets
+    'css/style.css'
+    filter='cssrewrite'
+    output='css/compiled/main.css'
+%}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+{% block body_tag %}
+    <body>
+        <div id="page">
+            <div id="header">
+                <h1><a rel="homepage" href="{{ path('_index') }}">Говнокод: по колено в коде.</a></h1>
+        
+		        <div id="userpane">
+		            <ul class="menu">
+		                <li><a id="expand-trigger" href="#>">Войти в говнокод</a></li>
+		            </ul>
+		        
+		            <form class="pane-content">
+		                <ul>
+		                    <li></li>
+		                    <li class="submit-holder"></li>
+		                </ul>
+		        
+		                <p><a href="#">Что это?</a> | <a href="#">Обычная форма входа</a></p>
+		            </form>
+		        </div>
+        
+		        <ul id="navigation">
+		            <li><a href="#">Все</a></li>
+		            <li><a href="#">Газетка</a></li>
+		            <li><a href="#">Лучший</a></li>
+		            <li><a href="#">Глупый поиск</a></li>
+		            <li class="add"><a href="#">Наговнокодить!</a></li>
+		        </ul>
+
+		        <p id="entrance">
+		            Нашли или выдавили из себя код, который нельзя назвать нормальным,
+		            на который без улыбки не взглянешь?
+		            Не торопитесь его удалять или рефакторить, &mdash; запостите его на
+		            говнокод.ру, посмеёмся вместе!
+		        </p>
+            </div>
+    
+		    <div id="content">
+		        {% block content %}{% endblock %}
+		    </div>
+
+		    <div id="footer">
+		        <address>
+		            <span>&copy; 2008-2012 &laquo;Говнокод.ру&raquo;</span>
+		            <span><a href="#">Обратная связь</a></span>
+		        </address>
+		    </div>
+        </div>
+{% block javascripts %}
+    {% javascripts
+        'jquery-1.8.3.min.js'
+        'js/govnokod.js'
+        output='js/compiled/main.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+    </body>
+{% endblock %}
+</html>

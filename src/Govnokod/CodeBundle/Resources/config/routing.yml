@@ -1,0 +1,5 @@
+view_code:
+    pattern: /{id}
+    defaults: { _controller: GovnokodCodeBundle:Code:view }
+    requirements:
+        id: \d+

@@ -12,7 +12,7 @@ class GovnokodController extends Controller
     public function listAction()
     {
         $repository = $this->getDoctrine()->getRepository('WiistrikerGovnokodBundle:Code');
-        $codes = $repository->findBy(array(), array('created' => 'DESC'));
+        $codes = $repository->findBy(array(), array('created_at' => 'DESC'));
 
         return $this->render('WiistrikerGovnokodBundle:Code:list.html.twig', array(
             'codes' => $codes
