@@ -39,7 +39,7 @@ class Code
     /**
      * @var Govnokod\CodeBundle\Entity\Category $category
      *
-     * @ORM\manyToOne(targetEntity="Govnokod\CodeBundle\Entity\Category", inversedBy="codes")
+     * @ORM\ManyToOne(targetEntity="Govnokod\CodeBundle\Entity\Category", inversedBy="codes")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
