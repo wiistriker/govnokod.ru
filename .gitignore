@@ -10,3 +10,8 @@ www/bundles/*
 
 # Configuration files
 app/config/parameters.yml
+
+# other
+app/SymfonyRequirements.php
+app/check.php
+www/config.php
