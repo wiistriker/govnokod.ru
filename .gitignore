@@ -14,4 +14,3 @@ app/config/parameters.yml
 # other
 app/SymfonyRequirements.php
 app/check.php
-www/config.php
