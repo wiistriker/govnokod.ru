@@ -12,5 +12,6 @@ www/bundles/*
 app/config/parameters.yml
 
 # other
+composer.phar
 app/SymfonyRequirements.php
 app/check.php

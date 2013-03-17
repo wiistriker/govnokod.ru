@@ -6,12 +6,12 @@
 
 ## Установка и настройка
 
-Скачайте репозиторий и создайте файл `app/config/parameters.yml`. Заполните его конфигурационными параметрам. За основу нужно взять файл `app/config/parameters.yml.dist`
+Скачайте репозиторий и создайте файл `app/config/parameters.yml`. Заполните его конфигурационными параметрами. За основу нужно взять файл `app/config/parameters.yml.dist`
 
 Установите зависимости
 
 ``` bash
-$ php composer.phar update
+$ php composer.phar install
 ```
 
 Обновите схему базы данных
