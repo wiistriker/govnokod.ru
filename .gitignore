@@ -14,3 +14,6 @@ app/config/parameters.yml
 # other
 app/SymfonyRequirements.php
 app/check.php
+
+#composer
+composer.phar
