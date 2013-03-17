@@ -13,7 +13,7 @@
 Установите зависимости
 
 ``` bash
-$ php composer.phar update
+$ php composer.phar install
 ```
 
 Обновите схему базы данных

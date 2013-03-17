@@ -9,7 +9,7 @@ composer ?= composer.phar
 
 .PHONY: boostrap
 boostrap: $(CONFIG) $(composer)
-	$(PHP) $(composer) update
+	$(PHP) $(composer) install
 	$(PHP) app/console doctrine:schema:update --force
 	$(PHP) app/console doctrine:fixtures:load
 
