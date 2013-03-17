@@ -1,3 +1,0 @@
-WiistrikerGovnokodBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: WiistrikerGovnokodBundle:Default:index }

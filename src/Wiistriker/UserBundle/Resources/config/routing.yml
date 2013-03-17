@@ -1,3 +1,0 @@
-WiistrikerUserBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: WiistrikerUserBundle:Default:index }

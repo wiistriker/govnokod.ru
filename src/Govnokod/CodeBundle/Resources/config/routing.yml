@@ -1,4 +1,10 @@
 view_code:
+    pattern: /{category}/{id}/
+    defaults: { _controller: GovnokodCodeBundle:Code:view }
+    requirements:
+        id: \d+
+
+view_code_legacy:
     pattern: /{id}
     defaults: { _controller: GovnokodCodeBundle:Code:view }
     requirements:

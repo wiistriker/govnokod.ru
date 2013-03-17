@@ -1,7 +1,0 @@
-parameters:
-#    wiistriker_govnokod.example.class: Wiistriker\GovnokodBundle\Example
-
-services:
-#    wiistriker_govnokod.example:
-#        class: %wiistriker_govnokod.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
