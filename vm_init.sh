@@ -83,3 +83,5 @@ CONFIGURATION
 
 a2enmod rewrite
 service apache2 start
+
+mysqladmin -uroot -proot create govnokod
