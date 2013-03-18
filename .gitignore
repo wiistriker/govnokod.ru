@@ -12,6 +12,7 @@ www/bundles/*
 app/config/parameters.yml
 
 # Vagrant
+Vagrantfile
 .vagrant
 
 # other
