@@ -54,7 +54,7 @@ class Code
     /**
      * @var Symfony\Component\Security\Core\User\UserInterface
      *
-     * @ORM\manyToOne(targetEntity="Wiistriker\UserBundle\Entity\User")
+     * @ORM\manyToOne(targetEntity="Govnokod\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

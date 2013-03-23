@@ -24,10 +24,10 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             //new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-            new Wiistriker\UserBundle\WiistrikerUserBundle(),
-            //new Wiistriker\GovnokodBundle\WiistrikerGovnokodBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Govnokod\UserBundle\GovnokodUserBundle(),
+
             new Govnokod\CodeBundle\GovnokodCodeBundle(),
         );
 

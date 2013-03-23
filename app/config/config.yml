@@ -73,13 +73,7 @@ sonata_admin:
             
         groups:
             default:
-                label: Функции
-                items: ~
-            products:
-                label: Товары
-                items: ~
-            stores:
-                label: Магазины
+                label: Базовые
                 items: ~
 
 sonata_block:
@@ -95,11 +89,4 @@ sonata_block:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Wiistriker\UserBundle\Entity\User
-
-services:
-    sonata.admin.govnokod:
-            class: Wiistriker\GovnokodBundle\Admin\CodeCategoryAdmin
-            arguments: [null, 'Wiistriker\GovnokodBundle\Entity\CodeCategory', 'SonataAdminBundle:CRUD']
-            tags:
-                - { name: sonata.admin, manager_type: orm, label: Категории кода }
+    user_class: Govnokod\UserBundle\Entity\User
