@@ -22,17 +22,4 @@ class CategoryController extends Controller
 			'categories' => $categories
 		));
 	}
-
-	public function viewAction($category) {
-		$categoryRepository = $this->getDoctrine()->getRepository("GovnokodCodeBundle:Category");
-		$categoryEntity = $categoryRepository->findBy(array("name" => $category));
-		if (!$categoryEntity) {
-			throw $this->createNotFoundException("Category «{$category}» doesn't exists");
-		}
-		$codeRepository = $this->getDoctrine()->getRepository('GovnokodCodeBundle:Code');
-		$codes = $codeRepository->findBy(array("category" => $categoryEntity), array("created_at" => "DESC"));
-		return $this->render('GovnokodCodeBundle:Code:list.html.twig', array(
-			'codes' => $codes
-		));
-	}
 }
