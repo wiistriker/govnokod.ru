@@ -1,3 +1,7 @@
+view_category:
+    pattern: /{category}/
+    defaults: { _controller: GovnokodCodeBundle:Code:list }
+
 view_code:
     pattern: /{category}/{id}/
     defaults: { _controller: GovnokodCodeBundle:Code:view }
