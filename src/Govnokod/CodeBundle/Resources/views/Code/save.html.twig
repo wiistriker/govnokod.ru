@@ -3,7 +3,7 @@
 {% block javascripts %}
 {{ parent() }}
 {% javascripts
-        'CodeMirror-2.24/lib/codemirror.js'
+        'codemirror-3.11/lib/codemirror.js'
         'js/code/save.js'
         output='js/compiled/save.js'
     %}
@@ -13,7 +13,7 @@
 
 {% block stylesheets %}
 {{ parent() }}
-        <link rel="stylesheet" type="text/css" href="{{ asset('CodeMirror-2.24/lib/codemirror.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('codemirror-3.11/lib/codemirror.css') }}" />
 {% endblock %}
 
 {% block content %}
