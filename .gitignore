@@ -19,3 +19,5 @@ Vagrantfile
 composer.phar
 app/SymfonyRequirements.php
 app/check.php
+/nbproject/private/
+.idea
