@@ -19,28 +19,28 @@
         <div id="page">
             <div id="header">
                 <h1><a rel="homepage" href="{{ path('_index') }}">Говнокод: по колено в коде.</a></h1>
-        
+
 		        <div id="userpane">
 		            <ul class="menu">
-		                <li><a id="expand-trigger" href="#>">Войти в говнокод</a></li>
+		                <li><a id="expand-trigger" href="#">Войти в говнокод</a></li>
 		            </ul>
-		        
+
 		            <form class="pane-content">
 		                <ul>
 		                    <li></li>
 		                    <li class="submit-holder"></li>
 		                </ul>
-		        
+
 		                <p><a href="#">Что это?</a> | <a href="#">Обычная форма входа</a></p>
 		            </form>
 		        </div>
-        
+
 		        <ul id="navigation">
-		            <li><a href="#">Все</a></li>
+		            <li><a href="{{ path('_index') }}">Все</a></li>
 		            <li><a href="#">Газетка</a></li>
 		            <li><a href="#">Лучший</a></li>
 		            <li><a href="#">Глупый поиск</a></li>
-		            <li class="add"><a href="#">Наговнокодить!</a></li>
+		            <li class="add"><a href="{{ path('code_add') }}">Наговнокодить!</a></li>
 		        </ul>
 
 		        <p id="entrance">
@@ -49,8 +49,9 @@
 		            Не торопитесь его удалять или рефакторить, &mdash; запостите его на
 		            говнокод.ру, посмеёмся вместе!
 		        </p>
+				{% render controller("GovnokodCodeBundle:Category:list") %}
             </div>
-    
+
 		    <div id="content">
 		        {% block content %}{% endblock %}
 		    </div>
@@ -64,7 +65,7 @@
         </div>
 {% block javascripts %}
     {% javascripts
-        'jquery-1.8.3.min.js'
+        'js/jquery-1.8.3.min.js'
         'js/govnokod.js'
         output='js/compiled/main.js'
     %}

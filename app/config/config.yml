@@ -47,6 +47,8 @@ doctrine:
         charset:  UTF8
         mapping_types:
             enum: string
+        options:
+            1002: SET NAMES utf8
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -90,4 +92,3 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Govnokod\UserBundle\Entity\User
-

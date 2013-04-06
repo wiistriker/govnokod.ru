@@ -71,7 +71,7 @@ class Code
      *
      * @ORM\Column(name="description", type="text")
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @ORM\PrePersist
@@ -168,7 +168,7 @@ class Code
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description = (string)$description;
 
         return $this;
     }
