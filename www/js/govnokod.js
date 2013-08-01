@@ -212,6 +212,36 @@ var code;
     }
 
     $(function() {
+        $('div.entry-comments').on('click', 'a.post-comment', function(e) {
+            var commentsHolder = $(this).closest('div.entry-comments');
+            var newFormHolder;
+            
+            var reply_id = $(this).data('reply-to');
+            if (reply_id) {
+                newFormHolder = $('#reply_form_holder_' + reply_id);
+            } else {
+                newFormHolder = commentsHolder.find('div.new-form-holder');
+            }
+            
+            if (newFormHolder) {
+                var formNode = commentsHolder.find('form');
+                
+                if (!$(this).hasClass('selected')) {
+                    commentsHolder.find('a.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    
+                    formNode.find('dl.errors').remove();
+                    
+                    newFormHolder.append(formNode);
+                }
+
+                formNode.attr('action', $(this).attr('href')).find('textarea').focus();
+                $.scrollTo(formNode, 500, { offset: -200 });
+            }
+            
+            e.preventDefault();
+        })
+        
         $('a.entry-comments-load').click(function() {
             comments.load($(this));
             return false;

@@ -1,0 +1,40 @@
+            <ul class="messages messages-salon"{% if can_answer %} data-answer-form="product-{{ product.id }}-answer"{% endif %}>
+                {% include 'JCCommentBundle:Thread:form.html.twig' %}
+                
+                {% for comment in comments %}
+                <li id="comment-{{ comment.id }}">
+                    {% if comment.sender %}
+                    <a href="{{ path('fos_user_profile_view', { 'id': comment.sender.id }) }}"><img src="{{ user_avatar_url(comment.sender, 40) }}" width="40" height="40" alt=""> <strong>{{ comment.sender }}</strong></a>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
+                    {% else %}
+                    <img src="{{ user_avatar_url(null, 40) }}" width="40" height="40" alt=""> <strong>Гость</strong>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
+                    {% endif %}
+                    <p>{{ comment.body|nl2br }}</p>
+                    {% if comment.answer %}
+                    <div class="message-answer">
+                        <p>{{ comment.answer|nl2br }}</p>
+                        {% if can_answer %}<a href="{{ path('product_comment_answer', { 'product_id': product.id, 'id': comment.id }) }}" class="ajaxlink"><small>Изменить ответ</small></a>{% endif %}
+                    </div>
+                    {% else %}
+                    {% if can_answer %}<a href="{{ path('product_comment_answer', { 'product_id': product.id, 'id': comment.id }) }}" class="comment-answer ajaxlink redlink"><small>Добавить ответ</small></a>{% endif %}
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% if answerForm is defined and answerForm %}
+            <form id="product-{{ product.id }}-answer" action="" method="post" class="form-submit" style="display:none;">
+                <div class="message-answer">
+                    <div class="control-group">
+                        <div class="controls">
+                            {{ form_widget(answerForm.answer, { 'attr': { 'class': 'span9 ctrlenter', 'rows': 4 } }) }}
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <div class="controls">
+                            {{ form_widget(answerForm._token) }}
+                            <button class="btn">Ответить</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% endif %}

@@ -1,0 +1,69 @@
+
+<div class="entry-comments">
+    <h3 id="comments">Комментарии <span class="enrty-comments-count">({{ thread.commentsCount }})</span>{# <span class="rss"><a href="#" rel="alternative">RSS</a></span>#}</h3>
+    <ul id="comments_">
+{% for comment in comments %}
+{% if loop.index > 1 %}{{ ul_tree(comment.level, last_tree_level) }}{% endif %}
+        <li class="hcomment">
+            <p class="entry-info">
+                <img class="avatar" src="{{ user_avatar_url(comment.sender, 28) }}" alt="ava" title="Аватар" />
+                <strong class="entry-author"><a href="#">{{ comment.sender.username }}</a></strong>
+                <abbr class="published" title="{{ comment.createdAt|date('c') }}">{{ comment.createdAt|date('r') }}{#<?php echo htmlspecialchars(i18n::date($comment->getCreated(), 'relative_hour')); ?>#}</abbr>
+                <a href="#comment{{ comment.id }}" id="comment{{ comment.id }}" title="Ссылка на комментарий" class="comment-link">#</a>
+                {#
+                <span class="comment-vote">
+                    <?php //echo $this->render('comments/rating.tpl', array('comment' => $comment)); ?>
+                </span>
+                #}
+            </p>
+            <div class="entry-comment">
+                <span class="comment-text">{{ comment.body }}</span>
+            </div>
+            
+            <a href="{{ path('code_comments_list', { 'code_id': code.id, reply: comment.id }) }}" class="post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
+            <ul><li id="reply_form_holder_{{ comment.id }}"></li></ul>
+            
+{% set last_tree_level = comment.level %}
+{% if loop.last %}{{ ul_tree(1, last_tree_level) }}{% endif %}
+{% endfor %}
+    </ul>
+    
+    <h3><a href="{{ path('code_comments_list', { 'code_id': code.id }) }}" class="post-comment selected">Добавить комментарий</a></h3>
+    <div class="new-form-holder">
+        <form action="{{ path('code_comments_list', { 'code_id': code.id }) }}" method="POST" class="form-submit">
+{{ form_errors(form) }}
+
+            <dl>
+                <dt><img class="avatar" src="{{ user_avatar_url(app.user) }}" alt="ava" title="Аватар" /> YOOOO</dt>
+                <dd>
+                    {{ form_widget(form.body, { 'attr': { 'class': 'ctrlenter span9', 'cols': 5, 'rows': 5} }) }}
+                    <div class="field-info">
+                        А не использовать ли нам <a href="#">bbcode</a>?
+                        <div class="bbcodes">
+                            <ul style="margin-left: 0;">
+                                <li>[b]жирный[/b] — <b>жирный</b></li>
+                                <li>[i]курсив[/i] — <i>курсив</i></li>
+                                <li>[u]подчеркнутый[/u] — <span style="text-decoration:underline;">подчеркнутый</span></li>
+                                <li>[s]перечеркнутый[/s] — <span style="text-decoration:line-through;">перечеркнутый</span></li>
+                                <li>[blink]мигающий[/blink] — <span style="text-decoration:blink;">мигающий</span></li>
+                                <li>[color=red]цвет[/color] — <span style="color:red;">цвет</span> (<a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'bbcode'))); ?>#color">подробнее</a>)</li>
+                                <li>[size=20]размер[/size] — <span style="font-size:20px">размер</span> (<a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'bbcode'))); ?>#size">подробнее</a>)</li>
+                                <li>[code=&lt;language&gt;]some code[/code] (<a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'bbcode'))); ?>#code">подробнее</a>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </dd>
+                {#
+        <?php if ($showCaptcha): ?>
+                <dt><?php echo $__form->caption(array('name' => 'captcha', 'value' => 'Проверочный код:', 'onError' => '')); ?></dt>
+                <dd><?php echo $__form->captcha(array('name' => 'captcha', 'value' => 'Проверочный код:', 'onError' => '')); ?></dd>
+        <?php endif; ?>
+                  #}
+            </dl>
+        
+            <p>
+                <input type="submit" name="commentSubmit" value="Отправить комментарий [Ctrl+Enter]" class="send" />
+            </p>
+        </form>
+    </div>
+</div>

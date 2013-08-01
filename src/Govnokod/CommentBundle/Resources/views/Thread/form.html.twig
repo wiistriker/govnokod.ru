@@ -1,0 +1,64 @@
+                <li class="message-new-wrap">
+                    <div class="message-new">
+                        <form action="{{ path(route_name, route_params) }}" method="post" class="form-horizontal form-submit form-comments">
+                            <div class="control-group">
+                            {#
+                            {% if sender %}
+                                <label class="control-label"><img src="{{ user_avatar_url(sender, 40) }}" width="40" height="40" alt="ava" /></label>
+                                <div class="controls">
+                                    <input type="text" value="{{ sender }}" disabled="disabled" class="span4 disabled"/>
+                                </div>
+                            {% else %}
+                                <label class="control-label"><img src="{{ user_avatar_url(null, 40) }}" width="40" height="40" alt="ava" /></label>
+                                <div class="controls">
+                                    <input type="text" value="Новый пользователь" disabled="disabled" class="span4 disabled"/>
+                                    <p class="help-inline"><a href="{{ path('fos_user_security_login', { '_back': app.request.getUri() }) }}" class="user-auth-trigger ajaxlink text-gray">Авторизоваться</a></p>
+                                </div>
+                            {% endif %}
+                            #}
+                            </div>
+                            
+                            {{ form_widget(form.sender) }}
+                            
+                            {#
+                            {% if form.fix_user.email is defined %}
+                            <div class="control-group">
+                                {{ form_label(form.fix_user.email, 'Ваш Email:', { 'label_attr': { 'class': 'control-label' } }) }}
+                                <div class="controls">
+                                    {{ form_widget(form.fix_user.email, { 'attr': { 'placeholder': 'username@mail.ru', 'class': 'span4' } }) }}
+                                    {{ form_errors(form.fix_user.email) }}
+                                    <p class="help-inline">Для уведомлений.</p>
+                                    
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if form.fix_user.username is defined %}
+                            <div class="control-group">
+                                {{ form_label(form.fix_user.username, 'Логин:', { 'label_attr': { 'class': 'control-label' } }) }}
+                                <div class="controls">
+                                    {{ form_widget(form.fix_user.username, { 'attr': { 'class': 'span4' } }) }}
+                                    {{ form_errors(form.fix_user.username) }}
+                                    <p class="help-inline">Например: <b>Константин</b> или <b>user1963</b></p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            #}
+                            
+                            <div class="control-group">
+                                {{ form_label(form.body, 'Текст комментария:', { 'label_attr': { 'class': 'control-label' } }) }}
+                                <div class="controls">
+                                    {{ form_errors(form.body) }}
+                                    {{ form_widget(form.body, { 'attr': { 'class': 'ctrlenter span9', 'cols': 30, 'rows': 5} }) }}
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    {{ form_widget(form._token) }}
+                                    <button class="btn">Отправить</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>

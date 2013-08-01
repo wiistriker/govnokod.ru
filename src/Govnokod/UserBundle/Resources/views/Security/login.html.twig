@@ -1,0 +1,42 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+<ol class="posts">
+    <li class="hentry">
+        <h2>Вход в говнокод тут</h2>
+        <form action="{{ path('fos_user_security_check') }}" method="POST" class="form-submit">
+{% if error %}
+            <dl class="errors">
+                <dt>Ошибка авторизации:</dt>
+                <dd>
+                    <ol>
+                        <li>{{ error|trans({}, 'FOSUserBundle') }}</li>
+                    </ol>
+                </dd>
+            </dl>
+{% endif %}
+            <dl>
+                <dt><label for="username" class="control-label required">Email / Логин:</label></dt>
+                <dd><input type="text" id="username" name="_username" value="{{ last_username|default }}" required="required" /></dd>
+            </dl>
+            <dl>
+                <dt><label for="password" class="control-label required">Пароль:</label></dt>
+                <dd><input type="password" id="password" name="_password" required="required" /></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" checked="checked" />
+                    {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                </dt>
+            </dl>
+            <p>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {#{% if target_path %}<input type="hidden" name="_target_path" value="{{ target_path }}" />{% endif %}#}
+                <input type="submit" class="send" name="_submit" value="Вхожу!" />
+            </p>
+        </form>
+        <p>&nbsp;</p>
+        <p><a href="{{ path('fos_user_registration_register') }}">Регистрация</a> | <a href="{{ path('fos_user_resetting_request') }}">Забыли пароль?</a>{# | <a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'injustice'))); ?>">Не пришло письмо подтверждения регистрации?</a> | <a href="<?php echo htmlspecialchars($this->url('openIDLogin')); ?>">Вход через OpenID</a>#}</p>
+    </li>
+</ol>
+{% endblock fos_user_content %}

@@ -1,0 +1,6 @@
+services:
+    govnokod_comment.twig.extension:
+        class: Govnokod\CommentBundle\Twig\CommentExtension
+        arguments: [ @security.context, @doctrine.orm.entity_manager ]
+        tags:
+            - { name: twig.extension }

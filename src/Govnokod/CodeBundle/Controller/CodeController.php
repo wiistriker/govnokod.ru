@@ -4,6 +4,7 @@ namespace Govnokod\CodeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Govnokod\CodeBundle\Entity\Code;
+use Govnokod\CommentBundle\Entity\Thread;
 
 class CodeController extends Controller
 {
@@ -32,7 +33,9 @@ class CodeController extends Controller
     public function viewAction($id)
     {
         $request = $this->getRequest();
-        $codeRepository = $this->getDoctrine()->getRepository('GovnokodCodeBundle:Code');
+        $em = $this->getDoctrine()->getManager();
+
+        $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
 
         $code = $codeRepository->find($id);
 
@@ -44,6 +47,17 @@ class CodeController extends Controller
             return $this->redirect($this->generateUrl('code_view', array('category' => $code->getCategory()->getName(), 'id' => $code->getId())), 301);
         }
 
+        $commentThreadRepository = $em->getRepository('GovnokodCommentBundle:Thread');
+        $thread = $commentThreadRepository->findOneBy(array(
+            'target_type' => 'code',
+            'target_id'   => $code->getId()
+        ));
+
+        if (!$thread) {
+            $thread = new Thread();
+            $thread->setTargetType('code');
+            $thread->setTargetId($code->getId());
+        }
         return $this->render('GovnokodCodeBundle:Code:view.html.twig', array(
             'code' => $code
         ));

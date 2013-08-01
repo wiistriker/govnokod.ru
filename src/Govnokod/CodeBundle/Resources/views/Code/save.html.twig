@@ -21,25 +21,6 @@
 <ol class="posts hatom">
     <li class="hentry">
         <form action="{% if code.id %}{{ path('code_edit', { 'id': code.id }) }}{% else %}{{ path('code_add') }}{% endif %}" method="POST" class="form-submit">
-        {#
-            <dl>
-                <dt>{form->caption name="category_id" value="Язык:"}</dt>
-                {if $isEdit}{assign var="categoryValue" value=$quote->getCategory()->getId()}{else}{assign var="categoryValue" value=0}{/if}
-                <dd>{form->select class="lang" name="category_id" options=$categoriesSelect emptyFirst=true value=$categoryValue}</dd>
-
-                <dt>{form->caption name="text" value="Код (максимум 100 строк):"}</dt>
-                <dd>
-                    {if $quote->getText()}{assign var="text" value=$quote->getText()}{else}{assign var="text" value="\n\n\n\n\n\n\n\n\n\n"}{/if}
-                    {form->textarea class="code" name="text" value=$text rows="10" cols="50"}
-                </dd>
-
-                <dt>{form->caption name="description" value="Описание:"}</dt>
-                <dd>{form->textarea name="description" value=$quote->getDescription() rows="6" cols="50"}</dd>
-
-                {if !$isEdit}<dt>{form->caption name="captcha" value="Проверочный код:"}</dt>
-                <dd>{form->captcha name="captcha"}</dd>{/if}
-            </dl>
-        #}
             <dl>
                 <dt>{{ form_label(form.category, 'Раздел:') }}</dt>
                 <dd>

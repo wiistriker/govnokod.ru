@@ -2,9 +2,11 @@ code_add:
     pattern: /add/
     defaults: { _controller: GovnokodCodeBundle:Code:save }
     
-code_list:
-    pattern: /{category}/
-    defaults: { _controller: GovnokodCodeBundle:Code:list }
+code_edit:
+    pattern: /code/{id}/edit/
+    defaults: { _controller: GovnokodCodeBundle:Code:save }
+    requirements:
+        id: \d+
 
 code_view:
     pattern: /{category}/{id}/
@@ -17,3 +19,7 @@ code_view_legacy:
     defaults: { _controller: GovnokodCodeBundle:Code:view }
     requirements:
         id: \d+
+
+code_list:
+    pattern: /{category}/
+    defaults: { _controller: GovnokodCodeBundle:Code:list }

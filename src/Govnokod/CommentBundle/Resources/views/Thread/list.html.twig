@@ -1,0 +1,108 @@
+            <ul class="messages messages-salon">
+                <li class="message-new-wrap">
+                    <div class="message-new">
+                        <form action="{{ path('product_comments_list', { 'product_id': product_id }) }}" method="post" class="form-horizontal form-submit">
+                            <div class="control-group">
+                            {% if newComment.sender %}
+                                <label class="control-label"><img src="{{ user_avatar_url(newComment.sender, 40) }}" width="40" height="40" alt="ava" /></label>
+                                <div class="controls">
+                                    <input type="text" value="{{ newComment.sender }}" disabled="disabled" class="span4 disabled"/>
+                                </div>
+                            {% else %}
+                                <label class="control-label"><img src="{{ user_avatar_url(null, 40) }}" width="40" height="40" alt="ava" /></label>
+                                <div class="controls">
+                                    <input type="text" value="Новый пользователь" disabled="disabled" class="span4 disabled"/>
+                                    <p class="help-inline text-gray"><a href="{{ path('fos_user_security_login', { '_back': app.request.getUri() }) }}" class="user-auth-trigger ajaxlink">Авторизоваться</a></p>
+                                </div>
+                            {% endif %}
+                            </div>
+                            
+                            {% if form.fix_user.email is defined %}
+                            <div class="control-group">
+                                {{ form_label(form.fix_user.email, 'Ваш Email:', { 'label_attr': { 'class': 'control-label' } }) }}
+                                <div class="controls">
+                                    {{ form_widget(form.fix_user.email, { 'attr': { 'placeholder': 'username@mail.ru', 'class': 'span4' } }) }}
+                                    {{ form_errors(form.fix_user.email) }}
+                                    <p class="help-inline">Для уведомлений.</p>
+                                    {#<p class="help-block">{{ 'forms.fixUser.emailHelpBlock'|trans({}, 'JCUserBundle')|raw }}</p>#}
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if form.fix_user.username is defined %}
+                            <div class="control-group">
+                                {{ form_label(form.fix_user.username, 'Логин:', { 'label_attr': { 'class': 'control-label' } }) }}
+                                <div class="controls">
+                                    {{ form_widget(form.fix_user.username, { 'attr': { 'class': 'span4' } }) }}
+                                    {{ form_errors(form.fix_user.username) }}
+                                    <p class="help-inline">Например: <b>Константин</b> или <b>user1963</b></p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="control-group">
+                                {{ form_label(form.body, 'Текст комментария:', { 'label_attr': { 'class': 'control-label' } }) }}
+                                <div class="controls">
+                                    {{ form_errors(form.body) }}
+                                    {{ form_widget(form.body, { 'attr': { 'class': 'ctrlenter span9', 'cols': 30, 'rows': 5} }) }}
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    {{ form_widget(form._token) }}
+                                    <button class="btn">Отправить</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                
+                {% for comment in comments %}
+                <li>
+                    {% if comment.sender %}
+                    <a href="{{ path('fos_user_profile_view', { 'id': comment.sender.id }) }}"><img src="{{ user_avatar_url(comment.sender, 40) }}" width="40" height="40" alt=""> <strong>{{ comment.sender }}</strong></a>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
+                    {% else %}
+                    <img src="{{ user_avatar_url(null, 40) }}" width="40" height="40" alt=""> <strong>Гость</strong>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
+                    {% endif %}
+                    <p>{{ comment.body|nl2br }}</p>
+                    {#
+                    {% if comment.answer %}
+                        <div class="message-answer">
+	                        <p>{{ comment.answer|nl2br }}</p>
+	                        <a href="#" class="ajaxlink"><small>Удалить ответ</small></a>
+	                    </div>
+	                {% else %}
+	                   <a href="#" class="ajaxlink redlink" style="text-decoration:none;"><small>Добавить ответ</small></a>
+                    {% endif %}
+                    #}
+                </li>
+                {% endfor %}
+                
+                {#
+                <li>
+                    <a href="#"><img src="/images/noava.gif" width="40" height="40" alt=""> <strong>Worka</strong></a>, <small class="muted">вчера</small>
+                    <p>Здравствуйте, меня интересует объявление #80013547. Хочу больше подробностей, фотографий</p>
+                </li>
+                
+                <li class="unread">
+                    <a href="#"><img src="/sample/ava_2.png" width="40" height="40" alt=""><strong>John Doe</strong></a>, <small class="muted">вчера</small>
+                    <p>Здравствуйте, меня интересует объявление #80013547. Хочу больше подробностей, фотографий</p>
+                    <p>+7 (964) 438-06-88; <a href="#" class="iconlink">johndoe@mail.com</a></p>
+                    
+                    <div class="message-answer">
+                        <textarea name="" rows="4" class="span9"></textarea>
+                        <button class="btn">Добавить ответ</button>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><img src="/sample/ava_2.png" width="40" height="40" alt=""><strong>John Doe</strong></a>, <small class="muted">вчера</small>
+                    <p>Машину с таким передним обвесом стыдно называть внедорожником! И откуда у эскудика спереди мост?</p>
+                    
+                    <div class="message-answer">
+                        <p>Да с документами все полном порядке...<br>Ну уж точно не распил, не разьел и не трансформер, привезли тогда когда еще не было всех этих замутов...</p>
+                        <a href="#" class="redlink"><small>Удалить ответ</small></a>
+                    </div>
+                </li>
+                #}
+            </ul>

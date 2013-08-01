@@ -1,7 +1,6 @@
-parameters:
-#    govnokod_user.example.class: Govnokod\UserBundle\Example
-
 services:
-#    govnokod_user.example:
-#        class: %govnokod_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    form.type.user:
+        class: Govnokod\UserBundle\Form\Type\UserType
+        arguments: [ @validator ]
+        tags:
+            - { name: form.type, alias: user }

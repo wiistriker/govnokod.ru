@@ -1,0 +1,4 @@
+Govnokod\CodeBundle\Entity\Code:
+    properties:
+        body:
+            - NotBlank: ~

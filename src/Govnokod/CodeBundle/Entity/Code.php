@@ -60,6 +60,13 @@ class Code
     protected $description = '';
 
     /**
+     * @var integer $comments_count
+     *
+     * @ORM\Column(name="comments_count", type="integer", columnDefinition="INT(11) UNSIGNED NOT NULL DEFAULT 0")
+     */
+    protected $comments_count = 0;
+
+    /**
      * @ORM\PrePersist
      */
     public function PrePersist()
@@ -192,5 +199,28 @@ class Code
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set comments_count
+     *
+     * @param integer $commentsCount
+     * @return Code
+     */
+    public function setCommentsCount($commentsCount)
+    {
+        $this->comments_count = (int)$commentsCount;
+
+        return $this;
+    }
+
+    /**
+     * Get comments_count
+     *
+     * @return integer
+     */
+    public function getCommentsCount()
+    {
+        return $this->comments_count;
     }
 }
