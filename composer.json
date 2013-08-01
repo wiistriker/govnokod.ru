@@ -6,25 +6,31 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.2.*",
-        "doctrine/orm": "~2.2,>=2.2.3",
+        "symfony/symfony": "2.3.*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.2.*",
-        "symfony/monolog-bundle": "2.2.*",
-        "sensio/distribution-bundle": "2.2.*",
-        "sensio/framework-extra-bundle": "2.2.*",
-        "sensio/generator-bundle": "2.2.*",
-        "jms/security-extra-bundle": "1.4.*",
-        "jms/di-extra-bundle": "1.3.*",
-        "doctrine/doctrine-fixtures-bundle": "*",
-        "sonata-project/admin-bundle": "*",
-        "sonata-project/doctrine-orm-admin-bundle": "*",
-        "stof/doctrine-extensions-bundle": "*",
-        "white-october/pagerfanta-bundle": "*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/data-fixtures": "dev-master",
+        "stof/doctrine-extensions-bundle": "*@dev",
+        "pagerfanta/pagerfanta": "*@dev",
+        "white-october/pagerfanta-bundle": "*@dev",
+        "knplabs/knp-menu": "1.*@dev",
+        "knplabs/knp-menu-bundle": "1.*@dev",
+        "sonata-project/block-bundle": "dev-master",
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "*",
-        "hwi/oauth-bundle": "*"
+        "friendsofsymfony/rest-bundle": "*",
+        "jms/serializer-bundle": "0.12.x-dev",
+        "hwi/oauth-bundle": "*@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -40,9 +46,12 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "www"
+        "symfony-web-dir": "www",
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
     }
 }

@@ -30,26 +30,12 @@ class Code
     protected $created_at;
 
     /**
-     * @var integer $category_id
-     *
-     * @ORM\Column(name="category_id", type="integer")
-     */
-    //protected $category_id;
-
-    /**
      * @var Govnokod\CodeBundle\Entity\Category $category
      *
      * @ORM\ManyToOne(targetEntity="Govnokod\CodeBundle\Entity\Category", inversedBy="codes")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;
-
-    /**
-     * @var integer $user_id
-     *
-     * @ORM\Column(name="user_id", type="integer", nullable=true)
-     */
-    protected $user_id;
 
     /**
      * @var Symfony\Component\Security\Core\User\UserInterface
@@ -64,7 +50,7 @@ class Code
      *
      * @ORM\Column(name="body", type="text")
      */
-    protected $body;
+    protected $body = '';
 
     /**
      * @var text $description
@@ -78,7 +64,9 @@ class Code
      */
     public function PrePersist()
     {
-        $this->created_at = new \DateTime();
+        if (!$this->created_at) {
+            $this->created_at = new \DateTime();
+        }
     }
 
     /**
@@ -115,29 +103,6 @@ class Code
     }
 
     /**
-     * Set user_id
-     *
-     * @param integer $userId
-     * @return Code
-     */
-    public function setUserId($userId)
-    {
-        $this->user_id = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get user_id
-     *
-     * @return integer
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
      * Set body
      *
      * @param string $body
@@ -145,7 +110,7 @@ class Code
      */
     public function setBody($body)
     {
-        $this->body = $body;
+        $this->body = (string)$body;
 
         return $this;
     }

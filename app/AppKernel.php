@@ -16,9 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\AopBundle\JMSAopBundle(),
-            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
@@ -27,7 +24,6 @@ class AppKernel extends Kernel
             //new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Govnokod\UserBundle\GovnokodUserBundle(),
-
             new Govnokod\CodeBundle\GovnokodCodeBundle(),
         );
 
