@@ -1,7 +1,4 @@
 Govnokod\CommentBundle\Entity\Comment:
     properties:
-        sender:
-            - NotNull: ~
-            
         body:
             - NotBlank: ~

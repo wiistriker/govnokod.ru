@@ -1914,12 +1914,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "7bf161d71ee2297b8a79ced547e8985b54fbedab"
+                "reference": "89d7f04a1d41af3b677cb54a11081a8fb346d98e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/7bf161d71ee2297b8a79ced547e8985b54fbedab",
-                "reference": "7bf161d71ee2297b8a79ced547e8985b54fbedab",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/89d7f04a1d41af3b677cb54a11081a8fb346d98e",
+                "reference": "89d7f04a1d41af3b677cb54a11081a8fb346d98e",
                 "shasum": ""
             },
             "require": {
@@ -1980,7 +1980,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2013-07-31 09:32:04"
+            "time": "2013-08-02 17:41:53"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -2381,21 +2381,20 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.0",
+            "version": "v1.0.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "v1.2.0"
+                "reference": "v1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/v1.2.0",
-                "reference": "v1.2.0",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/v1.0.0",
+                "reference": "v1.0.0",
                 "shasum": ""
             },
             "require": {
-                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": ">=2.3,<3.0"
             },
@@ -2425,7 +2424,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-06-03 18:32:58"
+            "time": "2013-06-03 18:32:07"
         },
         {
             "name": "symfony/monolog-bundle",

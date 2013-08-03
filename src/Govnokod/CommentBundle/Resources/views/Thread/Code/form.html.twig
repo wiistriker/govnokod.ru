@@ -1,0 +1,35 @@
+        <form action="{{ path('code_comments_list', { 'code_id': code.id }) }}" method="POST" class="form-submit">
+            {{ form_errors(form) }}
+            <dl>
+                <dt><img class="avatar" src="{{ user_avatar_url(app.user) }}" alt="ava" title="Аватар" /> YOOOO</dt>
+                <dd>
+                    {{ form_widget(form.body, { 'attr': { 'class': 'ctrlenter span9', 'cols': 5, 'rows': 5} }) }}
+                    <div class="field-info">
+                        А не использовать ли нам <a href="#">bbcode</a>?
+                        <div class="bbcodes">
+                            <ul style="margin-left: 0;">
+                                <li>[b]жирный[/b] — <b>жирный</b></li>
+                                <li>[i]курсив[/i] — <i>курсив</i></li>
+                                <li>[u]подчеркнутый[/u] — <span style="text-decoration:underline;">подчеркнутый</span></li>
+                                <li>[s]перечеркнутый[/s] — <span style="text-decoration:line-through;">перечеркнутый</span></li>
+                                <li>[blink]мигающий[/blink] — <span style="text-decoration:blink;">мигающий</span></li>
+                                <li>[color=red]цвет[/color] — <span style="color:red;">цвет</span> (<a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'bbcode'))); ?>#color">подробнее</a>)</li>
+                                <li>[size=20]размер[/size] — <span style="font-size:20px">размер</span> (<a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'bbcode'))); ?>#size">подробнее</a>)</li>
+                                <li>[code=&lt;language&gt;]some code[/code] (<a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'bbcode'))); ?>#code">подробнее</a>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </dd>
+                {#
+        <?php if ($showCaptcha): ?>
+                <dt><?php echo $__form->caption(array('name' => 'captcha', 'value' => 'Проверочный код:', 'onError' => '')); ?></dt>
+                <dd><?php echo $__form->captcha(array('name' => 'captcha', 'value' => 'Проверочный код:', 'onError' => '')); ?></dd>
+        <?php endif; ?>
+                  #}
+            </dl>
+        
+            <p>
+                {{ form_widget(form._token) }}
+                <input type="submit" name="commentSubmit" value="Отправить комментарий [Ctrl+Enter]" class="send" />
+            </p>
+        </form>

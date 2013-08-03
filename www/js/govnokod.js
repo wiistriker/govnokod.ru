@@ -212,6 +212,8 @@ var code;
     }
 
     $(function() {
+        $('time.timeago').timeago();
+        
         $('div.entry-comments').on('click', 'a.post-comment', function(e) {
             var commentsHolder = $(this).closest('div.entry-comments');
             var newFormHolder;
@@ -220,27 +222,75 @@ var code;
             if (reply_id) {
                 newFormHolder = $('#reply_form_holder_' + reply_id);
             } else {
-                newFormHolder = commentsHolder.find('div.new-form-holder');
+                newFormHolder = commentsHolder.find('div.root-comment-form-holder');
             }
             
             if (newFormHolder) {
                 var formNode = commentsHolder.find('form');
                 
                 if (!$(this).hasClass('selected')) {
+                    formNode.show();
+                    
                     commentsHolder.find('a.selected').removeClass('selected');
                     $(this).addClass('selected');
                     
                     formNode.find('dl.errors').remove();
+                    formNode.attr('action', $(this).attr('href'));
                     
                     newFormHolder.append(formNode);
+                    
+                    formNode.find('textarea').focus();
+                    $.scrollTo(formNode, 500, { offset: -200 });
+                } else {
+                    $(this).removeClass('selected');
+                    formNode.hide();
                 }
-
-                formNode.attr('action', $(this).attr('href')).find('textarea').focus();
-                $.scrollTo(formNode, 500, { offset: -200 });
             }
             
             e.preventDefault();
-        })
+        });
+        
+        $('div.entry-comments').on('submit', 'form', function(e) {
+            var form = $(this);
+            var form_data = form.serialize();
+            
+            var formParent = form.parent();
+            
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form_data,
+                success: function(response) {
+                    var newNode = $(response);
+                    
+                    if (newNode.is('form')) {
+                        formParent.html(newForm);
+                    } else if (newNode.is('li.hcomment')) {
+                        if (formParent.is('div.root-comment-form-holder')) {
+                            formParent.html(newNode);
+                        } else {
+                            formParent.empty();
+                            var parentCommentNode = formParent.closest('li.hcomment');
+                            parentCommentNode.append($('<ul />').append(newNode));
+                        }
+                        
+                        $.scrollTo(newNode, 500, { offset: -100 });
+                        
+                        var commentsCountHolder = formParent.closest('div.entry-comments').find('span.entry-comments-count');
+                        if (commentsCountHolder.length) {
+                            var comments_count = parseInt(commentsCountHolder.text());
+                            if (comments_count != NaN) {
+                                commentsCountHolder.text(comments_count + 1);
+                            }
+                        }
+                    }
+                },
+                error: function() {
+                    alert('Ошибка при добавлении комментария. Пожалуйста, перезагрузите страницу и повторите попытку');
+                }
+            });
+            e.preventDefault();
+        });
         
         $('a.entry-comments-load').click(function() {
             comments.load($(this));

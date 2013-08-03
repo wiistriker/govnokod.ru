@@ -2,6 +2,8 @@
 
 namespace Govnokod\CommentBundle\Controller;
 
+use Symfony\Component\Form\FormError;
+
 use Govnokod\CommentBundle\Entity\Comment;
 use Govnokod\CommentBundle\Entity\Thread;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -55,9 +57,18 @@ class ThreadController extends Controller
                 ));
 
                 if ($thread) {
+                    /*
                     $comments = $commentRepository->findBy(array(
                         'thread' => $thread->getId()
+                    ), array(
+                        'created_at' => 'ASC'
                     ));
+                    */
+
+                    $commentsQB = $commentRepository->getChildrenQueryBuilder(null, false, 'created_at');
+                    $commentsQB->andWhere('materialized_path_entity.thread = :thread')->setParameter('thread', $thread->getId());
+
+                    $comments = $commentsQB->getQuery()->getResult();
 
                     /*
                     $commentsQuery = $commentRepository->createQueryBuilder('c')
@@ -79,11 +90,9 @@ class ThreadController extends Controller
                             ));
                         }
                     ));
-                    */
 
                     //$template_params['html_tree'] = $html_tree;
 
-                    /*
                     $html_tree = $commentRepository->childrenHierarchy(
                         null,
                         false,
@@ -97,8 +106,9 @@ class ThreadController extends Controller
                         )
                     );
 
-                    print_r($htmlTree);
-                    */
+                    print_r($html_tree);
+                    //exit;
+                   */
 
                     $comments_count = sizeof($comments);
 
@@ -138,9 +148,11 @@ class ThreadController extends Controller
             ->add('body', 'textarea', array(
                 'label' => 'Текст сообщения:'
             ))
+            /*
             ->add('sender', 'user', array(
                 //'property_path' => 'sender'
             ))
+            */
             ->getForm()
         ;
 
@@ -150,6 +162,26 @@ class ThreadController extends Controller
 
         if ($request->isMethod('POST')) {
             $form->bind($request);
+
+            if ($thread && $request->query->has('reply')) {
+                $parentComent = null;
+
+                $reply_id = $request->query->get('reply');
+                if ($reply_id > 0) {
+                    $parentComent = $commentRepository->find($reply_id);
+                }
+
+                //@todo: move to model validation?
+                if ($parentComent) {
+                    if ($parentComent->getThread() == $thread) {
+                        $comment->setParent($parentComent);
+                    } else {
+                        $form->addError(new FormError('Wrong thread for target comment'));
+                    }
+                } else {
+                    $form->addError(new FormError('No such parent'));
+                }
+            }
 
             if ($form->isValid()) {
                 /*
@@ -169,6 +201,7 @@ class ThreadController extends Controller
                 }
                 */
 
+                /*
                 $sender = $comment->getSender();
                 $new_user_password = null;
                 if (!$sender->getId()) {
@@ -180,10 +213,9 @@ class ThreadController extends Controller
 
                 $userManager = $this->container->get('fos_user.user_manager');
                 $userManager->updateUser($sender);
+                */
 
                 $thread->addComment($comment);
-
-
 
                 switch ($route_name) {
                     case 'code_comments_list':
@@ -199,26 +231,36 @@ class ThreadController extends Controller
                 if ($request->isXmlHttpRequest()) {
                     $template_params['form'] = $form->createView();
                     $template_params['comment'] = $comment;
-                    $successResponse = $this->render('GovnokodCommentBundle:Thread:new_success.ajax.html.twig', array(
-                        'comment' => $comment
-                    ));
+
+                    $successResponse = $this->render('GovnokodCommentBundle:Thread:Code/new_success.ajax.html.twig', $template_params);
                 } else {
                     $successResponse = $this->redirect($this->generateUrl($route_name, $route_params));
                 }
 
+                /*
                 if ($new_user_password) {
                     $this->get('jc_message.mailer')->sendQuickRegisterNotification($sender, $new_user_password);
 
                     $loginManager = $this->get('fos_user.security.login_manager');
                     $loginManager->loginUser($this->container->getParameter('fos_user.firewall_name'), $sender, $successResponse);
                 }
+                */
 
                 return $successResponse;
             }
 
             if ($request->isXmlHttpRequest()) {
-                $template_params['form'] = $form->createView();
-                return $this->render('GovnokodCommentBundle:Thread:form.html.twig', $template_params);
+                switch ($route_name) {
+                    case 'code_comments_list':
+                        $template_params['form'] = $form->createView();
+                        return $this->render('GovnokodCommentBundle:Thread:Code/form.html.twig', $template_params);
+                        break;
+
+                    default:
+                        $template_params['form'] = $form->createView();
+                        return $this->render('GovnokodCommentBundle:Thread:form.html.twig', $template_params);
+                        break;
+                }
             }
         }
 
