@@ -17,6 +17,16 @@ security:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
                 
+            oauth:
+                resource_owners:
+                    facebook:           "/login/check-facebook"
+                    
+                login_path:        /login
+                failure_path:      /login
+
+                oauth_user_provider:
+                    service: govnokod.oauth.user_provider
+                
             logout:       true
             anonymous:    true
 

@@ -106,3 +106,11 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Govnokod\UserBundle\Entity\User
+    
+hwi_oauth:
+    firewall_name: main
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           %facebook_app_id%
+            client_secret:       %facebook_app_secret%

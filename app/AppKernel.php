@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            //new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Govnokod\UserBundle\GovnokodUserBundle(),
             new Govnokod\CodeBundle\GovnokodCodeBundle(),

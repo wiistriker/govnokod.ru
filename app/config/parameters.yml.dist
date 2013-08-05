@@ -1,17 +1,20 @@
 parameters:
-    database_driver:    pdo_mysql
-    database_host:      localhost
-    database_port:      ~
-    database_name:      govnokod
-    database_user:      root
-    database_password:  ~
+    database_driver:        pdo_mysql
+    database_host:          localhost
+    database_port:          ~
+    database_name:          govnokod
+    database_user:          root
+    database_password:      ~
     
-    mailer_transport:   smtp
-    mailer_host:        localhost
-    mailer_user:        ~
-    mailer_password:    ~
-    mailer_from:        govnokod@govnokod.local
-    mailer_from_name:   Говнокод.ру
+    mailer_transport:       smtp
+    mailer_host:            localhost
+    mailer_user:            ~
+    mailer_password:        ~
+    mailer_from:            govnokod@govnokod.local
+    mailer_from_name:       Говнокод.ру
     
-    locale:             ru
-    secret:             ThisTokenIsNotSoSecretChangeIt
+    locale:                 ru
+    secret:                 ThisTokenIsNotSoSecretChangeIt
+    
+    facebook_app_id:        ~
+    facebook_app_secret:    ~

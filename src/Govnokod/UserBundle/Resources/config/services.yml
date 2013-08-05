@@ -1,4 +1,8 @@
 services:
+    govnokod.oauth.user_provider:
+        class: Govnokod\UserBundle\Security\Core\User\OAuthUserProvider
+        arguments: [ @fos_user.user_manager, @doctrine.orm.entity_manager ]
+
     form.type.user:
         class: Govnokod\UserBundle\Form\Type\UserType
         arguments: [ @validator ]

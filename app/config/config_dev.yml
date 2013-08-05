@@ -21,3 +21,7 @@ monolog:
 
 assetic:
     use_controller: true
+
+hwi_oauth:
+    http_client:
+        verify_peer:   false # Setting allowing you to turn off SSL verification, by default: true
