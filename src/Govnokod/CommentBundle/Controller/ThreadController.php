@@ -57,18 +57,19 @@ class ThreadController extends Controller
                 ));
 
                 if ($thread) {
-                    /*
                     $comments = $commentRepository->findBy(array(
                         'thread' => $thread->getId()
                     ), array(
+                        'path' => 'ASC',
                         'created_at' => 'ASC'
                     ));
-                    */
 
+                    /*
                     $commentsQB = $commentRepository->getChildrenQueryBuilder(null, false, 'created_at');
                     $commentsQB->andWhere('materialized_path_entity.thread = :thread')->setParameter('thread', $thread->getId());
 
                     $comments = $commentsQB->getQuery()->getResult();
+                    */
 
                     /*
                     $commentsQuery = $commentRepository->createQueryBuilder('c')
