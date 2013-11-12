@@ -9,7 +9,7 @@
 				<a rel="bookmark" class="entry-title" href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}">Говнокод #{{ code.id }}</a>
 			</h2>
             <p class="vote">
-
+                <strong class="just-rating{% if code.rating < 0 %} bad{% endif %}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
             </p>
             <div class="entry-content">
                 <pre><code>{{ code.body }}</code></pre>

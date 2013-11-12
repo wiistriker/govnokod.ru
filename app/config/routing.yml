@@ -15,7 +15,10 @@ govnokod_comments:
     
 govnokod_code:
     resource: "@GovnokodCodeBundle/Resources/config/routing.yml"
-    
+
+govnokod_ratings:
+    resource: "@GovnokodRatingsBundle/Resources/config/routing.yml"
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

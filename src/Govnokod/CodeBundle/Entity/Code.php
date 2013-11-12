@@ -30,6 +30,13 @@ class Code
     protected $created_at;
 
     /**
+     * @var string $updated_at
+     *
+     * @ORM\Column(name="dateupd", type="datetime", columnDefinition="TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
+     */
+    private $updated_at;
+
+    /**
      * @var Govnokod\CodeBundle\Entity\Category $category
      *
      * @ORM\ManyToOne(targetEntity="Govnokod\CodeBundle\Entity\Category", inversedBy="codes")
@@ -65,6 +72,27 @@ class Code
      * @ORM\Column(name="comments_count", type="integer", columnDefinition="INT(11) UNSIGNED NOT NULL DEFAULT 0")
      */
     protected $comments_count = 0;
+
+    /**
+     * @var float $rating
+     *
+     * @ORM\Column(name="rating", type="float", columnDefinition="FLOAT NOT NULL DEFAULT 0")
+     */
+    protected $rating = 0;
+
+    /**
+     * @var integer $votes_on
+     *
+     * @ORM\Column(name="votes_on", type="integer", columnDefinition="INT(11) UNSIGNED NOT NULL DEFAULT 0")
+     */
+    protected $votes_on = 0;
+
+    /**
+     * @var integer $votes_against
+     *
+     * @ORM\Column(name="votes_against", type="integer", columnDefinition="INT(11) UNSIGNED NOT NULL DEFAULT 0")
+     */
+    protected $votes_against = 0;
 
     /**
      * @ORM\PrePersist
@@ -222,5 +250,97 @@ class Code
     public function getCommentsCount()
     {
         return $this->comments_count;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param \DateTime $updatedAt
+     * @return Code
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param float $rating
+     * @return Code
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return float 
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set votes_on
+     *
+     * @param integer $votesOn
+     * @return Code
+     */
+    public function setVotesOn($votesOn)
+    {
+        $this->votes_on = $votesOn;
+    
+        return $this;
+    }
+
+    /**
+     * Get votes_on
+     *
+     * @return integer 
+     */
+    public function getVotesOn()
+    {
+        return $this->votes_on;
+    }
+
+    /**
+     * Set votes_against
+     *
+     * @param integer $votesAgainst
+     * @return Code
+     */
+    public function setVotesAgainst($votesAgainst)
+    {
+        $this->votes_against = $votesAgainst;
+    
+        return $this;
+    }
+
+    /**
+     * Get votes_against
+     *
+     * @return integer 
+     */
+    public function getVotesAgainst()
+    {
+        return $this->votes_against;
     }
 }

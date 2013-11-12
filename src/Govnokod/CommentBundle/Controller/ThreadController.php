@@ -135,11 +135,11 @@ class ThreadController extends Controller
                     $thread->setTargetId($code->getId());
                 }
 
-                if ($request->isXmlHttpRequest()) {
-                    $template = 'GovnokodCommentBundle:Thread:Code/list.ajax.html.twig';
-                } else {
+                //if ($request->isXmlHttpRequest()) {
+                    //$template = 'GovnokodCommentBundle:Thread:Code/list.ajax.html.twig';
+                //} else {
                     $template = 'GovnokodCommentBundle:Thread:Code/list.html.twig';
-                }
+                //}
                 break;
         }
 
@@ -272,104 +272,6 @@ class ThreadController extends Controller
         $template_params['form'] = $form->createView();
         $template_params['thread'] = $thread;
         $template_params['comments'] = $comments;
-
-        return $this->render($template, $template_params);
-    }
-
-    public function answerAction($id)
-    {
-        $request = $this->getRequest();
-        $user = $this->getUser();
-
-        $em = $this->getDoctrine()->getManager();
-        $commentRepository = $em->getRepository('GovnokodCommentBundle:Comment');
-        $commentThreadRepository = $em->getRepository('GovnokodCommentBundle:Thread');
-
-        $comment = $commentRepository->find($id);
-
-        if (!$comment) {
-            throw $this->createNotFoundException('Comment not found');
-        }
-
-        $route_name = $request->get('_route');
-        $route_params = $request->get('_route_params');
-
-        $template = null;
-        $template_params = array();
-
-        switch ($route_name) {
-            case 'product_comment_answer':
-                /**
-                 * @var \JC\GoodsBundle\Entity\Product
-                 */
-                $product = null;
-                $product_id = $request->attributes->getInt('product_id');
-                if ($product_id > 0) {
-                    $productRepository = $em->getRepository('JCGoodsBundle:Product');
-                    $product = $productRepository->find($product_id);
-                }
-
-                if (!$product) {
-                    throw $this->createNotFoundException('Product not found for id ' . $product_id);
-                }
-
-                if (!$this->get('jc_service.authorizer')->canAnswerToProductComment($product)) {
-                    throw new AccessDeniedException();
-                }
-
-                $template_params['product_id'] = $product_id;
-                $template_params['product'] = $product;
-
-                $thread = $commentThreadRepository->findOneBy(array(
-                    'target_type' => 'product',
-                    'target_id' => $product->getId()
-                ));
-
-                if ($request->isXmlHttpRequest()) {
-                    $template = 'GovnokodCommentBundle:Thread:Product/answer.ajax.html.twig';
-                } else {
-                    $template = 'GovnokodCommentBundle:Thread:Product/answer.html.twig';
-                }
-                break;
-        }
-
-        $form = $this->createFormBuilder($comment)
-            ->add('answer', 'textarea', array(
-                'required' => false
-            ))
-            ->getForm()
-        ;
-
-        if ($request->isMethod('POST')) {
-            $form->bind($request);
-
-            if ($form->isValid()) {
-                $em->persist($comment);
-                $em->flush();
-
-                switch ($route_name) {
-                    case 'product_comment_answer':
-                        $this->get('jc_message.mailer')->sendProductCommentAnswerNotification($comment, $product);
-
-                        if ($request->isXmlHttpRequest()) {
-                            $successResponse = $this->render('GovnokodCommentBundle:Thread:answer_success.ajax.html.twig', array(
-                                'comment' => $comment
-                            ));
-                        } else {
-                            $successResponse = $this->redirect($this->generateUrl('product_comments_list', array('product_id' => $product_id)) . '#comment-' . $id);
-                        }
-
-                        return $successResponse;
-                        break;
-                }
-            }
-        }
-
-        $template_params['form'] = $form->createView();
-        $template_params['thread'] = $thread;
-        $template_params['comment'] = $comment;
-        $template_params['route_name'] = $route_name;
-        $template_params['route_params'] = $route_params;
 
         return $this->render($template, $template_params);
     }

@@ -1,0 +1,7 @@
+parameters:
+#    govnokod_ratings.example.class: Govnokod\RatingsBundle\Example
+
+services:
+#    govnokod_ratings.example:
+#        class: %govnokod_ratings.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

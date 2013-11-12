@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Govnokod\UserBundle\GovnokodUserBundle(),
             new Govnokod\CodeBundle\GovnokodCodeBundle(),
             new Govnokod\CommentBundle\GovnokodCommentBundle(),
+            new Govnokod\RatingsBundle\GovnokodRatingsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
