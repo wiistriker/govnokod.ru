@@ -4,32 +4,45 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/wiistriker/serializer"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.2.*",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/swiftmailer-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.3.*",
-        "sensio/distribution-bundle": "2.3.*",
-        "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/data-fixtures": "dev-master",
+        "symfony/symfony": "~2.4",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~2.3",
+        "sensio/framework-extra-bundle": "~2.3",
+        "sensio/generator-bundle": "~2.3",
+        "doctrine/doctrine-fixtures-bundle": "*@dev",
+        "doctrine/data-fixtures": "*@dev",
         "stof/doctrine-extensions-bundle": "*@dev",
         "pagerfanta/pagerfanta": "*@dev",
         "white-october/pagerfanta-bundle": "*@dev",
         "knplabs/knp-menu": "1.*@dev",
         "knplabs/knp-menu-bundle": "1.*@dev",
-        "sonata-project/block-bundle": "dev-master",
-        "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/block-bundle": "*",
+        "sonata-project/admin-bundle": "*",
+        "sonata-project/doctrine-orm-admin-bundle": "*@dev",
+        "sonata-project/intl-bundle": "*",
         "friendsofsymfony/user-bundle": "*",
         "friendsofsymfony/rest-bundle": "*",
-        "jms/serializer-bundle": "0.12.x-dev",
-        "hwi/oauth-bundle": "*@dev"
+        "jms/serializer": "0.13.0",
+        "jms/serializer-bundle": "*",
+        "hwi/oauth-bundle": "*@dev",
+        "nelmio/solarium-bundle": "1.*",
+        "liip/doctrine-cache-bundle": "*",
+        "exercise/htmlpurifier-bundle": "*@dev",
+        "escapestudios/wsse-authentication-bundle": "*@dev",
+        "nelmio/api-doc-bundle" : "*@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -50,7 +63,7 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "www",
         "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "2.4-dev"
         }
     }
 }
