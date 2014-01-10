@@ -60,12 +60,20 @@ new Image().src = '/images/commentvote.gif';
                         formParent.html(newForm);
                     } else if (newNode.is('li.hcomment')) {
                         if (formParent.is('div.root-comment-form-holder')) {
-                            formParent.html(newNode);
+                            var commentsRootNode = formParent.closest('div.entry-comments').find('ul.comments-list');
+                            commentsRootNode.append(newNode);
                         } else {
-                            formParent.empty();
                             var parentCommentNode = formParent.closest('li.hcomment');
-                            parentCommentNode.append($('<ul />').append(newNode));
+                            var parentCommentAnswersList = parentCommentNode.find('ul.answers-list');
+                            if (parentCommentAnswersList.count == 0) {
+                                parentCommentAnswersList = $('<ul />').addClass('answers-list');
+                                parentCommentNode.append(parentCommentAnswersList);
+                            }
+
+                            parentCommentAnswersList.append(newNode);
                         }
+
+                        formParent.empty();
                         
                         $.scrollTo(newNode, 500, { offset: -100 });
                         

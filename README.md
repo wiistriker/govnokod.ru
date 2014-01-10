@@ -43,7 +43,7 @@ $ make bootstrap
 Встроенный веб-сервер можно запустить через symfony-консоль:
 
 ``` bash
-$ php app/console server:start
+$ php app/console server:run
 ```
 
 По умолчанию сервер будет запущен на порту 8000.

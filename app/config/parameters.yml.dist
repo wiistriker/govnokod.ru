@@ -16,5 +16,5 @@ parameters:
     locale:                 ru
     secret:                 ThisTokenIsNotSoSecretChangeIt
     
-    facebook_app_id:        ~
-    facebook_app_secret:    ~
+    facebook_app_id:        1
+    facebook_app_secret:    1
