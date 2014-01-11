@@ -36,7 +36,22 @@ class Category
     protected $title;
 
     /**
-     * @var Doctrine\Common\Collections\Collection
+     * @var string $cmHighlighter
+     *
+     * @ORM\Column(name="cm_highlighter", type="string", length=255)
+     */
+    
+    protected $cmHighlighter;
+    /**
+     * @var string $cmMime
+     *
+     * @ORM\Column(name="cm_mime", type="string", length=255)
+     */
+    protected $cmMime;
+
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="Govnokod\CodeBundle\Entity\Code", mappedBy="category")
      */
@@ -137,5 +152,33 @@ class Category
     public function getCodes()
     {
         return $this->codes;
+    }
+
+    /**
+     * @param string $cmHighlighter
+     */
+    public function setCmHighlighter($cmHighlighter) {
+        $this->cmHighlighter = $cmHighlighter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCmHighlighter() {
+        return $this->cmHighlighter;
+    }
+
+    /**
+     * @param string $cmMime
+     */
+    public function setCmMime($cmMime) {
+        $this->cmMime = $cmMime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCmMime() {
+        return $this->cmMime;
     }
 }

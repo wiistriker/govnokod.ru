@@ -79,9 +79,18 @@ class CodeController extends Controller
             }
         }
 
+        $categoryRepository = $em->getRepository('GovnokodCodeBundle:Category');
+
+        /* @var $categories \Govnokod\CodeBundle\Entity\Category[] */
+        $categories = $categoryRepository->createQueryBuilder('c')
+            ->orderBy('c.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+
         $form = $this->createFormBuilder($code)
             ->add('category', 'entity', array(
                 'class' => 'GovnokodCodeBundle:Category',
+                'choices' => $categories,
                 'property' => 'title'
             ))
             ->add('body', 'textarea', array(
@@ -107,8 +116,18 @@ class CodeController extends Controller
             }
         }
 
+        $highlighters = array();
+
+        foreach ($categories as $category) {
+            $highlighters[$category->getId()] = array(
+                'mode' => $category->getCmHighlighter(),
+                'mime' => $category->getCmMime()
+            );
+        }
+
         return $this->render('GovnokodCodeBundle:Code:save.html.twig', array(
             'code' => $code,
+            'highlighters' => $highlighters,
             'form' => $form->createView()
         ));
     }
