@@ -4,11 +4,13 @@
 {{ parent() }}
 {% javascripts
         'codemirror-3.11/lib/codemirror.js'
+        'codemirror-3.11/addon/edit/matchbrackets.js'
+        'codemirror-3.11/addon/mode/loadmode.js'
         'js/code/save.js'
         output='js/compiled/save.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+{% endjavascripts %}
 {% endblock %}
 
 {% block stylesheets %}
@@ -48,4 +50,9 @@
         </form>
     </li>
 </ol>
+
+<script type="text/javascript">
+    var govnokod = govnokod || {};
+    govnokod.highlighters = {{ highlighters | json_encode() | raw }};
+</script>
 {% endblock %}
