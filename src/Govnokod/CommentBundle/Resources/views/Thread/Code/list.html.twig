@@ -24,7 +24,7 @@
 	            <div class="entry-comment">
 	                <span class="comment-text">{{ comment.body }}</span>
 	            </div>
-	            
+
 	            <a href="{{ path('code_comments_list', { 'code_id': code.id, reply: comment.id }) }}" class="post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
             </div>
             <ul><li id="reply_form_holder_{{ comment.id }}"></li></ul>
@@ -32,7 +32,7 @@
 {% if loop.last %}{{ ul_tree(1, last_tree_level) }}{% endif %}
 {% endfor %}
     </ul>
-    
+
     <h3><a href="{{ path('code_comments_list', { 'code_id': code.id }) }}" class="post-comment selected">Добавить комментарий</a></h3>
     <div class="root-comment-form-holder">
         {% include 'GovnokodCommentBundle:Thread:Code/form.html.twig' %}

@@ -2,8 +2,6 @@
 
 namespace Govnokod\UserBundle\Security\Core\User;
 
-use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotConnectedException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Doctrine\ORM\EntityManager;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;

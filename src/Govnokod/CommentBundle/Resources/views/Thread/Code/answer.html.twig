@@ -10,9 +10,9 @@
                 <div class="bread-crumbs">
                     <a href="{{ path('product_view_slug', { 'slug': product.slug, 'id': product.id }) }}"><i class="g-sprite arrow-lt"></i> вернуться на страницу товара</a>
                 </div>
-                
+
                 <p class="lead">Ответ на комментарий по товару: <a href="{{ path('product_view_slug', { 'slug': product.slug, 'id': product.id }) }}" class="text-gray">«{{ product.title }}»</a></p>
-                
+
                 <ul class="messages messages-salon">
                     <li>
                         {% if comment.sender %}
@@ -21,7 +21,7 @@
                         <img src="{{ user_avatar_url(null, 40) }}" width="40" height="40" alt=""> <strong>Гость</strong>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
                         {% endif %}
                         <p>{{ comment.body|nl2br }}</p>
-                        
+
                         <form action="{{ path(route_name, route_params) }}" method="post" class="form-submit">
                             <div class="message-answer">
                                 {{ form_errors(form) }}
@@ -31,7 +31,7 @@
                                         {{ form_errors(form.answer) }}
                                     </div>
                                 </div>
-                                
+
                                 <div class="control-group">
                                     <div class="controls">
                                         {{ form_widget(form._token) }}

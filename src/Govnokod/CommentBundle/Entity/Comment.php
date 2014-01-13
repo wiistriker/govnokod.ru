@@ -132,7 +132,7 @@ class Comment
     /**
      * Set created_at
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Comment
      */
     public function setCreatedAt($createdAt)
@@ -155,7 +155,7 @@ class Comment
     /**
      * Set ip
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return Comment
      */
     public function setIp($ip)
@@ -178,7 +178,7 @@ class Comment
     /**
      * Set hash
      *
-     * @param string $hash
+     * @param  string  $hash
      * @return Comment
      */
     public function setHash($hash)
@@ -201,12 +201,12 @@ class Comment
     /**
      * Set body
      *
-     * @param string $body
+     * @param  string  $body
      * @return Comment
      */
     public function setBody($body)
     {
-        $this->body = (string)$body;
+        $this->body = (string) $body;
 
         return $this;
     }
@@ -224,7 +224,7 @@ class Comment
     /**
      * Set thread
      *
-     * @param \Govnokod\CommentBundle\Entity\Thread $thread
+     * @param  \Govnokod\CommentBundle\Entity\Thread $thread
      * @return Comment
      */
     public function setThread(\Govnokod\CommentBundle\Entity\Thread $thread = null)
@@ -247,7 +247,7 @@ class Comment
     /**
      * Set sender
      *
-     * @param \Govnokod\UserBundle\Entity\User $sender
+     * @param  \Govnokod\UserBundle\Entity\User $sender
      * @return Comment
      */
     public function setSender(\Govnokod\UserBundle\Entity\User $sender = null)

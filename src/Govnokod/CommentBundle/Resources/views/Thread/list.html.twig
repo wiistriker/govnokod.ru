@@ -16,7 +16,7 @@
                                 </div>
                             {% endif %}
                             </div>
-                            
+
                             {% if form.fix_user.email is defined %}
                             <div class="control-group">
                                 {{ form_label(form.fix_user.email, 'Ваш Email:', { 'label_attr': { 'class': 'control-label' } }) }}
@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             {% endif %}
-                            
+
                             {% if form.fix_user.username is defined %}
                             <div class="control-group">
                                 {{ form_label(form.fix_user.username, 'Логин:', { 'label_attr': { 'class': 'control-label' } }) }}
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             {% endif %}
-                            
+
                             <div class="control-group">
                                 {{ form_label(form.body, 'Текст комментария:', { 'label_attr': { 'class': 'control-label' } }) }}
                                 <div class="controls">
@@ -57,7 +57,7 @@
                         </form>
                     </div>
                 </li>
-                
+
                 {% for comment in comments %}
                 <li>
                     {% if comment.sender %}
@@ -78,18 +78,18 @@
                     #}
                 </li>
                 {% endfor %}
-                
+
                 {#
                 <li>
                     <a href="#"><img src="/images/noava.gif" width="40" height="40" alt=""> <strong>Worka</strong></a>, <small class="muted">вчера</small>
                     <p>Здравствуйте, меня интересует объявление #80013547. Хочу больше подробностей, фотографий</p>
                 </li>
-                
+
                 <li class="unread">
                     <a href="#"><img src="/sample/ava_2.png" width="40" height="40" alt=""><strong>John Doe</strong></a>, <small class="muted">вчера</small>
                     <p>Здравствуйте, меня интересует объявление #80013547. Хочу больше подробностей, фотографий</p>
                     <p>+7 (964) 438-06-88; <a href="#" class="iconlink">johndoe@mail.com</a></p>
-                    
+
                     <div class="message-answer">
                         <textarea name="" rows="4" class="span9"></textarea>
                         <button class="btn">Добавить ответ</button>
@@ -98,7 +98,7 @@
                 <li>
                     <a href="#"><img src="/sample/ava_2.png" width="40" height="40" alt=""><strong>John Doe</strong></a>, <small class="muted">вчера</small>
                     <p>Машину с таким передним обвесом стыдно называть внедорожником! И откуда у эскудика спереди мост?</p>
-                    
+
                     <div class="message-answer">
                         <p>Да с документами все полном порядке...<br>Ну уж точно не распил, не разьел и не трансформер, привезли тогда когда еще не было всех этих замутов...</p>
                         <a href="#" class="redlink"><small>Удалить ответ</small></a>

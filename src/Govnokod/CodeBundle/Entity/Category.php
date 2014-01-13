@@ -78,7 +78,7 @@ class Category
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return Category
      */
     public function setName($name)
@@ -101,7 +101,7 @@ class Category
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string   $title
      * @return Category
      */
     public function setTitle($title)
@@ -124,7 +124,7 @@ class Category
     /**
      * Add codes
      *
-     * @param \Govnokod\CodeBundle\Entity\Code $codes
+     * @param  \Govnokod\CodeBundle\Entity\Code $codes
      * @return Category
      */
     public function addCode(\Govnokod\CodeBundle\Entity\Code $codes)

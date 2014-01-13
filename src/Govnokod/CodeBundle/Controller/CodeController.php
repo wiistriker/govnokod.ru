@@ -58,6 +58,7 @@ class CodeController extends Controller
             $thread->setTargetType('code');
             $thread->setTargetId($code->getId());
         }
+
         return $this->render('GovnokodCodeBundle:Code:view.html.twig', array(
             'code' => $code
         ));

@@ -26,7 +26,7 @@ class UserType extends AbstractType
     {
         $validator = $this->validator;
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($validator, $options) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($validator, $options) {
             $data = $event->getData();
             $form = $event->getForm();
 

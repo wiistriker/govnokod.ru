@@ -14,7 +14,7 @@
 	            <div class="entry-comment">
 	                <span class="comment-text">{{ comment.body }}</span>
 	            </div>
-	            
+
 	            <a href="{{ path('code_comments_list', { 'code_id': code.id, reply: comment.id }) }}" class="post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
             </div>
             <ul><li id="reply_form_holder_{{ comment.id }}" style="display:none;">{% include 'GovnokodCommentBundle:Thread:Code/form.html.twig' %}</li></ul>

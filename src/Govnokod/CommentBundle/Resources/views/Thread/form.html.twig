@@ -17,9 +17,9 @@
                             {% endif %}
                             #}
                             </div>
-                            
+
                             {{ form_widget(form.sender) }}
-                            
+
                             {#
                             {% if form.fix_user.email is defined %}
                             <div class="control-group">
@@ -28,11 +28,11 @@
                                     {{ form_widget(form.fix_user.email, { 'attr': { 'placeholder': 'username@mail.ru', 'class': 'span4' } }) }}
                                     {{ form_errors(form.fix_user.email) }}
                                     <p class="help-inline">Для уведомлений.</p>
-                                    
+
                                 </div>
                             </div>
                             {% endif %}
-                            
+
                             {% if form.fix_user.username is defined %}
                             <div class="control-group">
                                 {{ form_label(form.fix_user.username, 'Логин:', { 'label_attr': { 'class': 'control-label' } }) }}
@@ -44,7 +44,7 @@
                             </div>
                             {% endif %}
                             #}
-                            
+
                             <div class="control-group">
                                 {{ form_label(form.body, 'Текст комментария:', { 'label_attr': { 'class': 'control-label' } }) }}
                                 <div class="controls">

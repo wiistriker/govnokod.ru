@@ -5,10 +5,10 @@
 {% block content %}
         <div class="container">
             <h1>Отзывы</h1>
-            
+
             <ul class="messages messages-salon">
                 {% include 'JCCommentBundle:Thread:form.html.twig' %}
-                
+
                 {% for comment in comments %}
                 <li id="comment-{{ comment.id }}">
                     {% if comment.sender %}

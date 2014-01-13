@@ -7,7 +7,6 @@ use Govnokod\CommentBundle\Entity\Comment;
 use Govnokod\CommentBundle\Entity\Thread;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ThreadController extends Controller
 {
@@ -84,7 +83,7 @@ class ThreadController extends Controller
                     $html_tree = $commentRepository->buildTree($commentsQuery->getArrayResult(), array(
                         'decorate' => true,
                         'childOpen' => '<li class="hcomment">',
-                        'nodeDecorator' => function($node) use ($templating) {
+                        'nodeDecorator' => function ($node) use ($templating) {
                             return $templating->render('GovnokodCommentBundle:Thread:Code/comment.html.twig', array(
                                 'node' => $node
                             ));
@@ -100,7 +99,7 @@ class ThreadController extends Controller
                             'decorate' => false,
                             //'representationField' => 'path',
                             'html' => true,
-                            'nodeDecorator' => function($node) {
+                            'nodeDecorator' => function ($node) {
                                 return '<a href="/page/'.$node['id'].'">'.$node['body'].'</a>';
                             }
                         )
@@ -185,7 +184,7 @@ class ThreadController extends Controller
 
             if ($form->isValid()) {
                 /*
-                $is_spam = (bool)$form->get('subject')->getData();
+                $is_spam = (bool) $form->get('subject')->getData();
                 if ($is_spam) {
                     if ($request->isXmlHttpRequest()) {
                         $template_params['form'] = $form->createView();
@@ -262,11 +261,13 @@ class ThreadController extends Controller
                 switch ($route_name) {
                     case 'code_comments_list':
                         $template_params['form'] = $form->createView();
+
                         return $this->render('GovnokodCommentBundle:Thread:Code/form.html.twig', $template_params);
                         break;
 
                     default:
                         $template_params['form'] = $form->createView();
+
                         return $this->render('GovnokodCommentBundle:Thread:form.html.twig', $template_params);
                         break;
                 }

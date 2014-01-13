@@ -78,7 +78,7 @@ swiftmailer:
 sensio_framework_extra:
     view:    { annotations: false }
     router:  { annotations: true }
-   
+
 sonata_admin:
     title:      Говнокод.ru
     title_logo: /bundles/sonataadmin/logo_title.png
@@ -86,7 +86,7 @@ sonata_admin:
         blocks:
             # display a dashboard block
             - { position: left, type: sonata.admin.block.admin_list }
-            
+
         groups:
             default:
                 label: Базовые
@@ -106,7 +106,7 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Govnokod\UserBundle\Entity\User
-    
+
 hwi_oauth:
     firewall_name: main
     resource_owners:

@@ -22,3 +22,4 @@ app/SymfonyRequirements.php
 app/check.php
 /nbproject/private/
 .idea
+php-cs-fixer.phar
