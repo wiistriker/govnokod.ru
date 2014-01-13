@@ -1,9 +1,10 @@
         <form action="{{ path('code_comments_list', { 'code_id': code.id }) }}" method="POST" class="form-submit">
             {{ form_errors(form) }}
             <dl>
-                <dt><img class="avatar" src="{{ user_avatar_url(app.user) }}" alt="ava" title="Аватар" /> YOOOO</dt>
+                <dt><img class="avatar" src="{{ user_avatar_url(app.user) }}" alt="ava" title="Аватар" /> {{ app.user }}</dt>
                 <dd>
                     {{ form_widget(form.body, { 'attr': { 'class': 'ctrlenter span9', 'cols': 5, 'rows': 5} }) }}
+                    {#
                     <div class="field-info">
                         А не использовать ли нам <a href="#">bbcode</a>?
                         <div class="bbcodes">
@@ -19,6 +20,7 @@
                             </ul>
                         </div>
                     </div>
+                    #}
                 </dd>
                 {#
         <?php if ($showCaptcha): ?>
@@ -30,6 +32,6 @@
         
             <p>
                 {{ form_widget(form._token) }}
-                <input type="submit" name="commentSubmit" value="Отправить комментарий [Ctrl+Enter]" class="send" />
+                <input type="submit" value="Отправить комментарий [Ctrl+Enter]" class="send" />
             </p>
         </form>

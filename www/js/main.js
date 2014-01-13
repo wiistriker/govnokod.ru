@@ -22,7 +22,7 @@ new Image().src = '/images/commentvote.gif';
                 var formNode = commentsHolder.find('form');
                 
                 if (!$(this).hasClass('selected')) {
-                    formNode.show();
+                    newFormHolder.show();
                     
                     commentsHolder.find('a.selected').removeClass('selected');
                     $(this).addClass('selected');
@@ -36,7 +36,7 @@ new Image().src = '/images/commentvote.gif';
                     $.scrollTo(formNode, 500, { offset: -200 });
                 } else {
                     $(this).removeClass('selected');
-                    formNode.hide();
+                    newFormHolder.hide();
                 }
             }
             
@@ -44,6 +44,8 @@ new Image().src = '/images/commentvote.gif';
         });
         
         $('div.entry-comments').on('submit', 'form', function(e) {
+            var commentsHolder = $(this).closest('div.entry-comments');
+
             var form = $(this);
             var form_data = form.serialize();
             
@@ -59,25 +61,22 @@ new Image().src = '/images/commentvote.gif';
                     if (newNode.is('form')) {
                         formParent.html(newForm);
                     } else if (newNode.is('li.hcomment')) {
+                        var newCommentHolder;
                         if (formParent.is('div.root-comment-form-holder')) {
-                            var commentsRootNode = formParent.closest('div.entry-comments').find('ul.comments-list');
-                            commentsRootNode.append(newNode);
+                            newCommentHolder = commentsHolder.find('ul.comments-list');
                         } else {
-                            var parentCommentNode = formParent.closest('li.hcomment');
-                            var parentCommentAnswersList = parentCommentNode.find('ul.answers-list');
-                            if (parentCommentAnswersList.count == 0) {
-                                parentCommentAnswersList = $('<ul />').addClass('answers-list');
-                                parentCommentNode.append(parentCommentAnswersList);
-                            }
-
-                            parentCommentAnswersList.append(newNode);
+                            newCommentHolder = formParent.closest('li.hcomment').find('ul');
                         }
 
+                        newCommentHolder.append(newNode);
                         formParent.empty();
-                        
+
                         $.scrollTo(newNode, 500, { offset: -100 });
-                        
-                        var commentsCountHolder = formParent.closest('div.entry-comments').find('span.entry-comments-count');
+
+                        newCommentHolder.find('time.timeago').timeago();
+                        commentsHolder.find('a.post-comment.selected').removeClass('selected');
+
+                        var commentsCountHolder = commentsHolder.find('span.entry-comments-count');
                         if (commentsCountHolder.length) {
                             var comments_count = parseInt(commentsCountHolder.text());
                             if (comments_count != NaN) {
@@ -90,7 +89,13 @@ new Image().src = '/images/commentvote.gif';
                     alert('Ошибка при добавлении комментария. Пожалуйста, перезагрузите страницу и повторите попытку');
                 }
             });
+
             e.preventDefault();
+        }).on('keydown', 'textarea', function(e) {
+            if (e.ctrlKey && e.keyCode == 13) {
+                $(this).closest('form').trigger('submit');
+                e.preventDefault();
+            }
         });
         
         $('a.entry-comments-load').click(function(e) {

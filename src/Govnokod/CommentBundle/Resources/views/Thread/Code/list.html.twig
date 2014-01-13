@@ -1,6 +1,6 @@
 <div class="entry-comments">
     <h3 id="comments">Комментарии (<span class="entry-comments-count">{{ thread.commentsCount }}</span>){# <span class="rss"><a href="#" rel="alternative">RSS</a></span>#}</h3>
-    <ul id="comments_" class="comments-list">
+    <ul class="comments-list">
 {% for comment in comments %}
 {% if loop.index > 1 %}{{ ul_tree(comment.level, last_tree_level) }}{% endif %}
         <li class="hcomment">

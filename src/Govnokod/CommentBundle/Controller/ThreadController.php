@@ -3,17 +3,16 @@
 namespace Govnokod\CommentBundle\Controller;
 
 use Symfony\Component\Form\FormError;
-
 use Govnokod\CommentBundle\Entity\Comment;
 use Govnokod\CommentBundle\Entity\Thread;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ThreadController extends Controller
 {
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $request = $this->getRequest();
         $currentUser = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
@@ -162,7 +161,7 @@ class ThreadController extends Controller
         $template_params['sender'] = $comment->getSender();
 
         if ($request->isMethod('POST')) {
-            $form->bind($request);
+            $form->submit($request);
 
             if ($thread && $request->query->has('reply')) {
                 $parentComent = null;
@@ -230,6 +229,15 @@ class ThreadController extends Controller
                 $em->flush();
 
                 if ($request->isXmlHttpRequest()) {
+                    $form = $this->createFormBuilder(null, array(
+                        'cascade_validation' => true
+                    ))
+                        ->add('body', 'textarea', array(
+                            'label' => 'Текст сообщения:'
+                        ))
+                        ->getForm()
+                    ;
+
                     $template_params['form'] = $form->createView();
                     $template_params['comment'] = $comment;
 
