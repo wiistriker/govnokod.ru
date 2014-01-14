@@ -3,7 +3,6 @@ namespace Govnokod\CommentBundle\Twig;
 
 use Govnokod\UserBundle\Entity\User;
 use Twig_Extension;
-use Twig_Filter_Method;
 use Twig_Function_Method;
 
 class CommentExtension extends Twig_Extension
@@ -46,6 +45,7 @@ class CommentExtension extends Twig_Extension
     {
         if ($tree_level < $last_tree_level):
             $level_down = $last_tree_level - $tree_level;
+
             return str_repeat('</li></ul>', $level_down) . '</li>';
         elseif ($tree_level == $last_tree_level):
             return '</li>';

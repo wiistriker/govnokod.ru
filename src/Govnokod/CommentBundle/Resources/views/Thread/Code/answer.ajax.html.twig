@@ -1,14 +1,14 @@
                             <form id="product-{{ product.id }}-answer" action="{{ path(route_name, route_params) }}" method="post" class="form-submit">
                                 <div class="message-answer">
 	                                {{ form_errors(form) }}
-	                            
+
 	                                <div class="control-group">
 	                                    <div class="controls">
 	                                        {{ form_widget(form.answer, { 'attr': { 'class': 'span9 ctrlenter', 'rows': 4 } }) }}
 	                                        {{ form_errors(form.answer) }}
 	                                    </div>
 	                                </div>
-	                                
+
 	                                <div class="control-group">
 	                                    <div class="controls">
 	                                        {{ form_widget(form._token) }}

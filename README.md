@@ -60,3 +60,13 @@ $ php app/console server:run
 
 - Приложение будет доступно по адресу `http://localhost:8080` - этот адрес [можно изменить](http://docs.vagrantup.com/v2/networking/private_network.html)
 - Выполняя `vagrant destroy`, вы уничтожите все внесенные в БД изменения. Используйте `vagrant suspend`, если вам нужно на время выключить виртуальную машину.
+
+## Code ##
+
+### Style ###
+Код должен быть оформлен согласно стандартам [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+и [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
+Для автоматического приведения к стандарту рекомендуется использовать [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
+
+### Language version ###
+Минимальная версия php - 5.4 (traits, short array syntax, etc)

@@ -40,7 +40,7 @@ class Category
      *
      * @ORM\Column(name="cm_highlighter", type="string", length=255)
      */
-    
+
     protected $cmHighlighter;
     /**
      * @var string $cmMime
@@ -48,7 +48,6 @@ class Category
      * @ORM\Column(name="cm_mime", type="string", length=255)
      */
     protected $cmMime;
-
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -78,7 +77,7 @@ class Category
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return Category
      */
     public function setName($name)
@@ -101,7 +100,7 @@ class Category
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string   $title
      * @return Category
      */
     public function setTitle($title)
@@ -124,7 +123,7 @@ class Category
     /**
      * Add codes
      *
-     * @param \Govnokod\CodeBundle\Entity\Code $codes
+     * @param  \Govnokod\CodeBundle\Entity\Code $codes
      * @return Category
      */
     public function addCode(\Govnokod\CodeBundle\Entity\Code $codes)
@@ -157,28 +156,32 @@ class Category
     /**
      * @param string $cmHighlighter
      */
-    public function setCmHighlighter($cmHighlighter) {
+    public function setCmHighlighter($cmHighlighter)
+    {
         $this->cmHighlighter = $cmHighlighter;
     }
 
     /**
      * @return string
      */
-    public function getCmHighlighter() {
+    public function getCmHighlighter()
+    {
         return $this->cmHighlighter;
     }
 
     /**
      * @param string $cmMime
      */
-    public function setCmMime($cmMime) {
+    public function setCmMime($cmMime)
+    {
         $this->cmMime = $cmMime;
     }
 
     /**
      * @return string
      */
-    public function getCmMime() {
+    public function getCmMime()
+    {
         return $this->cmMime;
     }
 }

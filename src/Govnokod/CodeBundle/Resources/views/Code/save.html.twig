@@ -29,20 +29,20 @@
                     {{ form_widget(form.category) }}
                     {{ form_errors(form.category) }}
                 </dd>
-                
+
                 <dt>{{ form_label(form.body, 'Код:') }}</dt>
                 <dd>
                     {{ form_errors(form.body) }}
                     {{ form_widget(form.body) }}
                 </dd>
-                
+
                 <dt>{{ form_label(form.description, 'Описание:') }}</dt>
                 <dd>
                     {{ form_errors(form.description) }}
                     {{ form_widget(form.description) }}
                 </dd>
             </dl>
-            
+
             <p>
                 {{ form_widget(form._token) }}
                 <input type="submit" value="Накласть" class="send" />

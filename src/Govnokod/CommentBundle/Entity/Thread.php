@@ -69,7 +69,7 @@ class Thread
     /**
      * Set target_type
      *
-     * @param string $targetType
+     * @param  string $targetType
      * @return Thread
      */
     public function setTargetType($targetType)
@@ -92,7 +92,7 @@ class Thread
     /**
      * Set target_id
      *
-     * @param integer $targetId
+     * @param  integer $targetId
      * @return Thread
      */
     public function setTargetId($targetId)
@@ -115,7 +115,7 @@ class Thread
     /**
      * Add comments
      *
-     * @param \Govnokod\CommentBundle\Entity\Comment $comment
+     * @param  \Govnokod\CommentBundle\Entity\Comment $comment
      * @return Thread
      */
     public function addComment(\Govnokod\CommentBundle\Entity\Comment $comment)
@@ -150,7 +150,7 @@ class Thread
     /**
      * Set comments_count
      *
-     * @param integer $commentsCount
+     * @param  integer $commentsCount
      * @return Thread
      */
     public function setCommentsCount($commentsCount)

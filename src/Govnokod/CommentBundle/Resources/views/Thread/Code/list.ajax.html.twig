@@ -1,6 +1,6 @@
             <ul class="messages messages-salon"{% if can_answer %} data-answer-form="product-{{ product.id }}-answer"{% endif %}>
                 {% include 'JCCommentBundle:Thread:form.html.twig' %}
-                
+
                 {% for comment in comments %}
                 <li id="comment-{{ comment.id }}">
                     {% if comment.sender %}
@@ -28,7 +28,7 @@
                             {{ form_widget(answerForm.answer, { 'attr': { 'class': 'span9 ctrlenter', 'rows': 4 } }) }}
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
                         <div class="controls">
                             {{ form_widget(answerForm._token) }}

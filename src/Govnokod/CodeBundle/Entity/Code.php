@@ -117,7 +117,7 @@ class Code
     /**
      * Set created_at
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Code
      */
     public function setCreatedAt($createdAt)
@@ -140,12 +140,12 @@ class Code
     /**
      * Set body
      *
-     * @param string $body
+     * @param  string $body
      * @return Code
      */
     public function setBody($body)
     {
-        $this->body = (string)$body;
+        $this->body = (string) $body;
 
         return $this;
     }
@@ -163,12 +163,12 @@ class Code
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Code
      */
     public function setDescription($description)
     {
-        $this->description = (string)$description;
+        $this->description = (string) $description;
 
         return $this;
     }
@@ -186,7 +186,7 @@ class Code
     /**
      * Set category
      *
-     * @param \Govnokod\CodeBundle\Entity\Category $category
+     * @param  \Govnokod\CodeBundle\Entity\Category $category
      * @return Code
      */
     public function setCategory(\Govnokod\CodeBundle\Entity\Category $category = null)
@@ -209,7 +209,7 @@ class Code
     /**
      * Set user
      *
-     * @param \Wiistriker\UserBundle\Entity\User $user
+     * @param  \Wiistriker\UserBundle\Entity\User $user
      * @return Code
      */
     public function setUser(\Wiistriker\UserBundle\Entity\User $user = null)
@@ -232,12 +232,12 @@ class Code
     /**
      * Set comments_count
      *
-     * @param integer $commentsCount
+     * @param  integer $commentsCount
      * @return Code
      */
     public function setCommentsCount($commentsCount)
     {
-        $this->comments_count = (int)$commentsCount;
+        $this->comments_count = (int) $commentsCount;
 
         return $this;
     }
@@ -255,20 +255,20 @@ class Code
     /**
      * Set updated_at
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Code
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updated_at = $updatedAt;
-    
+
         return $this;
     }
 
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -278,20 +278,20 @@ class Code
     /**
      * Set rating
      *
-     * @param float $rating
+     * @param  float $rating
      * @return Code
      */
     public function setRating($rating)
     {
         $this->rating = $rating;
-    
+
         return $this;
     }
 
     /**
      * Get rating
      *
-     * @return float 
+     * @return float
      */
     public function getRating()
     {
@@ -301,20 +301,20 @@ class Code
     /**
      * Set votes_on
      *
-     * @param integer $votesOn
+     * @param  integer $votesOn
      * @return Code
      */
     public function setVotesOn($votesOn)
     {
         $this->votes_on = $votesOn;
-    
+
         return $this;
     }
 
     /**
      * Get votes_on
      *
-     * @return integer 
+     * @return integer
      */
     public function getVotesOn()
     {
@@ -324,20 +324,20 @@ class Code
     /**
      * Set votes_against
      *
-     * @param integer $votesAgainst
+     * @param  integer $votesAgainst
      * @return Code
      */
     public function setVotesAgainst($votesAgainst)
     {
         $this->votes_against = $votesAgainst;
-    
+
         return $this;
     }
 
     /**
      * Get votes_against
      *
-     * @return integer 
+     * @return integer
      */
     public function getVotesAgainst()
     {
