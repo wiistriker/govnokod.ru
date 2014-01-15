@@ -21,5 +21,7 @@ code_view_legacy:
         id: \d+
 
 code_list:
-    pattern: /{category}/
+    pattern: /{category}
     defaults: { _controller: GovnokodCodeBundle:Code:list }
+    requirements:
+        category: "[a-z]*"

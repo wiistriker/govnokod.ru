@@ -5,34 +5,40 @@ namespace Govnokod\CodeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Govnokod\CodeBundle\Entity\Code;
 use Govnokod\CommentBundle\Entity\Thread;
+use Symfony\Component\HttpFoundation\Request;
 
 class CodeController extends Controller
 {
-    public function listAction($category = null)
+    public function listAction(Request $request, $category = null)
     {
-        $em = $this->getDoctrine()->getManager();
+        /* var $codeService \Govnokod\CodeBundle\Service\CodeService */
+        $codeService = $this->container->get('code_service');
+        /* var $categoryService \Govnokod\CodeBundle\Service\CategoryService */
+        $categoryService = $this->container->get('category_service');
+        $categoryEntity = null;
 
-        $criteria = array();
-        if (!is_null($category)) {
-            $categoryRepository = $em->getRepository("GovnokodCodeBundle:Category");
-            $categoryEntity = $categoryRepository->findByName($category);
+        if ($category) {
+            $categoryEntity = $categoryService->getEntity($category);
             if (!$categoryEntity) {
                 throw $this->createNotFoundException("Category «{$category}» doesn't exists");
             }
-            $criteria['category'] = $categoryEntity;
         }
 
-        $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
-        $codes = $codeRepository->findBy($criteria, array('created_at' => 'DESC'));
+        $page = $request->query->get('page', 0);
+        $pageSize = $this->container->getParameter('code_controller.page_size');
 
-        return $this->render('GovnokodCodeBundle:Code:list.html.twig', array(
-            'codes' => $codes
-        ));
+        list($codes, $pageCount, $actualPage) = $codeService->paginate($page, $pageSize, $categoryEntity);
+
+        return $this->render('GovnokodCodeBundle:Code:list.html.twig', [
+            'codes' => $codes,
+            'currentPage' => $actualPage,
+            'pageCount' => $pageCount,
+            'current_filters' => ['category' => $category]
+        ]);
     }
 
-    public function viewAction($id)
+    public function viewAction(Request $request, $id)
     {
-        $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
 
         $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
@@ -64,9 +70,8 @@ class CodeController extends Controller
         ));
     }
 
-    public function saveAction($id = null)
+    public function saveAction(Request $request, $id = null)
     {
-        $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
 
         $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
