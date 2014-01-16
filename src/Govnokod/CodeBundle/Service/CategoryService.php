@@ -19,9 +19,9 @@ class CategoryService
     public function getEntity($category)
     {
         $categoryRepository = $this->entityManager->getRepository("GovnokodCodeBundle:Category");
-        $entities = $categoryRepository->findByName($category);
+        $entity = $categoryRepository->findOneByName($category);
 
-        return $entities ? $entities[0] : null;
+        return $entity;
     }
 
 }
