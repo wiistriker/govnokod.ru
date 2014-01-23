@@ -4,13 +4,22 @@
 
 Переписываем проект http://govnokod.ru на symfony2 (http://symfony.com)
 
+## Системные требования
+
+php >= 5.4 (traits, short array syntax, etc)
+php_pdo
+php_intl
+http://symfony.com/doc/current/reference/requirements.html
+
+mysql
+
 ## Установка и настройка
 
 Скачайте репозиторий и создайте файл `app/config/parameters.yml`. Заполните его конфигурационными параметрами. За основу нужно взять файл `app/config/parameters.yml.dist`
 
 ### Ручная установка
 
-Установите зависимости
+Установите зависимости (об установке composer читайте https://getcomposer.org/download/)
 
 ``` bash
 $ php composer.phar install
@@ -28,22 +37,12 @@ $ php app/console doctrine:schema:update --force
 $ php app/console doctrine:fixtures:load
 ```
 
-### make bootstrap
-
-Если ваша операционная система совместима с UNIX, то предыдущие шаги можно выполнить при помощи команды
-
-``` bash
-$ make bootstrap
-```
-
-Эта команда скачает composer (в локальный файл `composer.phar`) и выполнит все шаги, описанные выше.
-
 ### Запуск сервера
 
 Встроенный веб-сервер можно запустить через symfony-консоль:
 
 ``` bash
-$ php app/console server:run
+$ php app/console server:run --docroot=www/
 ```
 
 По умолчанию сервер будет запущен на порту 8000.
@@ -67,6 +66,3 @@ $ php app/console server:run
 Код должен быть оформлен согласно стандартам [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
 и [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 Для автоматического приведения к стандарту рекомендуется использовать [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
-
-### Language version ###
-Минимальная версия php - 5.4 (traits, short array syntax, etc)
