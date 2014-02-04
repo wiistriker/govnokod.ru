@@ -1,5 +1,7 @@
 parameters:
-#    govnokod_code.example.class: Govnokod\CodeBundle\Example
+    code_service.class: Govnokod\CodeBundle\Service\CodeService
+    category_service.class: Govnokod\CodeBundle\Service\CategoryService
+    code_controller.page_size: 20
 
 services:
     sonata.admin.govnokod:
@@ -7,3 +9,13 @@ services:
             arguments: [null, 'Govnokod\CodeBundle\Entity\Category', 'SonataAdminBundle:CRUD']
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Категории говнокода }
+
+    code_service:
+        class: %code_service.class%
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+
+    category_service:
+        class: %category_service.class%
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"

@@ -2,33 +2,85 @@
 
 {% block content %}
     <ol class="posts hatom">
-{% for code in codes %}
-        <li class="hentry">
-            <h2>
+        {% for code in codes %}
+            <li class="hentry">
+                <h2>
 				<a rel="chapter" href="{{ path('code_list', { 'category': code.category.name}) }}">{{ code.category.title }}</a>
-				/
+                    /
 				<a rel="bookmark" class="entry-title" href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}">Говнокод #{{ code.id }}</a>
-			</h2>
-            <p class="vote">
+                </h2>
+                <p class="vote">
                 <strong class="just-rating{% if code.rating < 0 %} bad{% endif %}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
-            </p>
-            <div class="entry-content">
-                <pre><code>{{ code.body }}</code></pre>
-            </div>
-            <p class="description">
-                {{ code.description|nl2br }}
-            </p>
-{#
-            <p class="author">
-                Запостил: <a href=""><img src="" alt="" class="avatar" /></a> <a href="">{{ code.user.username }}</a>,
-                <abbr title="{{ code.created|date('c') }}">{{ code.created|date('d F Y') }}</abbr>
-            </p>
-#}
-            <div class="entry-comments">
+                </p>
+                <div class="entry-content">
+                    <pre><code>{{ code.body }}</code></pre>
+                </div>
+                <p class="description">
+                    {{ code.description|nl2br }}
+                </p>
+
+                <div class="entry-comments">
                 <span class="comments-icon">&nbsp;</span><a href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}" data-load-url="{{ path('code_comments_list', { 'code_id': code.id }) }}" class="entry-comments-load" title="Показать комментарии">Комментарии</a> <span class="entry-comments-count">({{ code.commentsCount }})</span>
                 {#<span class="comments-icon<?php if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { echo ' comments-new" title="Есть новые комментарии!'; } ?>">&nbsp;</span><a href="<?php echo htmlspecialchars($url . '/' . $quote->getId()); ?>" class="entry-comments-load">Комментарии</a> <span class="entry-comments-count">(<?php echo $quote->getCommentsCount(); if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { ?>, <span title="Новые комментарии" class="entry-comments-new">+<?php echo $quote->getNewCommentsCount(); ?></span><?php } ?>)</span>#}
-            </div>
-        </li>
-{% endfor %}
+                </div>
+            </li>
+        {% endfor %}
     </ol>
+
+    {% set paginationPath = 'code_list' %}
+    {% set nearbyPagesLimit = 4 %}
+    {% set nearbyHigh = currentPage + nearbyPagesLimit %}
+    {% set nearbyLow = currentPage - nearbyPagesLimit %}
+
+    <ul class="pagination">
+        {% if currentPage < pageCount %}
+            <li>
+                <a href="{{ path(paginationPath, current_filters|merge({page: currentPage+1})) }}">← влево</a>
+            </li>
+        {% endif %}
+
+        {% if currentPage > 1 %}
+        <li>
+            <a href="{{ path(paginationPath, current_filters|merge({page: currentPage-1})) }}">вправо →</a>
+        <li>
+        {% endif %}
+    </ul>
+
+    <ul class="pagination numbered">
+        {% if pageCount > 1 %}
+            <li>
+                {% if currentPage < pageCount %}
+                    <a href="{{ path(paginationPath, current_filters|merge({page: pageCount})) }}">{{ pageCount }}</a>
+                {% else %}
+                    {{ pageCount }}
+                {% endif %}
+            </li>
+
+            {% if nearbyHigh < pageCount - 1 %}
+                <li>...</li>
+            {% endif %}
+
+            {% for i in range(nearbyHigh, nearbyLow) if (i < pageCount and i > 1) %}
+                <li>
+                    {% if i == currentPage %}
+                        {{ currentPage }}
+                    {% else %}
+                        <a href="{{ path(paginationPath, current_filters|merge({page: i})) }}">{{ i }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+            {% if nearbyLow > 2 %}
+                <li>...</li>
+            {% endif %}
+
+            <li>
+                {% if currentPage > 1 %}
+                    <a href="{{ path(paginationPath, current_filters|merge({page: 1})) }}">1</a>
+                {% else %}
+                    1
+                {% endif %}
+            </li>
+        {% endif %}
+    </ul>
 {% endblock %}
