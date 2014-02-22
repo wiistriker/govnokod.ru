@@ -23,5 +23,25 @@
                 }
             })
             .change();
+
+        var tagsHolder = $('#tags');
+
+        tagsHolder.data('index', tagsHolder.find(':input').length);
+
+        var newTagTrigger = $('<a href="#">add</a>');
+
+        newTagTrigger.click(function(e) {
+            var prototype = tagsHolder.data('prototype');
+            var index = tagsHolder.data('index');
+            var newTag = prototype.replace(/__name__/g, index);
+
+            tagsHolder.data('index', index + 1);
+
+            var newTagLi = $('<li></li>').append(newTag);
+            newTagTrigger.before(newTagLi);
+            e.preventDefault();
+        });
+
+        tagsHolder.append($('<li />').append(newTagTrigger));
     });
 })(jQuery);

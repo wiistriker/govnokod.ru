@@ -5,7 +5,7 @@ namespace Govnokod\CodeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Wiistriker\GovnokodBundle\Entity\Code
+ * Govnokod\CodeBundle\Entity\Code
  *
  * @ORM\Table(name="code")
  * @ORM\Entity
@@ -37,7 +37,7 @@ class Code
     private $updated_at;
 
     /**
-     * @var Govnokod\CodeBundle\Entity\Category $category
+     * @var \Govnokod\CodeBundle\Entity\Category $category
      *
      * @ORM\ManyToOne(targetEntity="Govnokod\CodeBundle\Entity\Category", inversedBy="codes")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -45,7 +45,7 @@ class Code
     protected $category;
 
     /**
-     * @var Symfony\Component\Security\Core\User\UserInterface
+     * @var \Govnokod\UserBundle\Entity\User
      *
      * @ORM\manyToOne(targetEntity="Govnokod\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -65,6 +65,13 @@ class Code
      * @ORM\Column(name="description", type="text")
      */
     protected $description = '';
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="tags", type="json_array")
+     */
+    protected $tags = array();
 
     /**
      * @var integer $comments_count
@@ -184,6 +191,22 @@ class Code
     }
 
     /**
+     * @param array $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
      * Set category
      *
      * @param  \Govnokod\CodeBundle\Entity\Category $category
@@ -209,10 +232,10 @@ class Code
     /**
      * Set user
      *
-     * @param  \Wiistriker\UserBundle\Entity\User $user
+     * @param  \Govnokod\UserBundle\Entity\User $user
      * @return Code
      */
-    public function setUser(\Wiistriker\UserBundle\Entity\User $user = null)
+    public function setUser(\Govnokod\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -222,7 +245,7 @@ class Code
     /**
      * Get user
      *
-     * @return \Wiistriker\UserBundle\Entity\User
+     * @return \Govnokod\UserBundle\Entity\User
      */
     public function getUser()
     {

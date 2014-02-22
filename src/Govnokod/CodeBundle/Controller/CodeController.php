@@ -5,6 +5,7 @@ namespace Govnokod\CodeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Govnokod\CodeBundle\Entity\Code;
 use Govnokod\CommentBundle\Entity\Thread;
+use Symfony\Component\HttpFoundation\Request;
 
 class CodeController extends Controller
 {
@@ -30,9 +31,8 @@ class CodeController extends Controller
         ));
     }
 
-    public function viewAction($id)
+    public function viewAction(Request $request, $id)
     {
-        $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
 
         $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
@@ -64,9 +64,8 @@ class CodeController extends Controller
         ));
     }
 
-    public function saveAction($id = null)
+    public function saveAction(Request $request, $id = null)
     {
-        $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
 
         $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
@@ -100,11 +99,16 @@ class CodeController extends Controller
             ->add('description', 'textarea', array(
                 'required' => false
             ))
+            ->add('tags', 'collection', array(
+                'type' => 'text',
+                'allow_add' => true,
+                'allow_delete' => true
+            ))
             ->getForm()
         ;
 
         if ($request->isMethod('POST')) {
-            $form->bind($request);
+            $form->submit($request);
 
             if ($form->isValid()) {
                 $em->persist($code);

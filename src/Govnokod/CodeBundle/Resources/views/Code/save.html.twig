@@ -36,6 +36,16 @@
                     {{ form_widget(form.body) }}
                 </dd>
 
+                <dt>{{ form_label(form.tags, 'Теги:') }}</dt>
+                <dd>
+                    <ul id="tags" data-prototype="{{ form_widget(form.tags.vars.prototype)|e }}">
+                    {% for tagForm in form.tags %}
+                        <li>{{ form_widget(tagForm) }}</li>
+                    {% endfor %}
+                    </ul>
+                    {{ form_errors(form.tags) }}
+                </dd>
+
                 <dt>{{ form_label(form.description, 'Описание:') }}</dt>
                 <dd>
                     {{ form_errors(form.description) }}
