@@ -6,10 +6,10 @@
 
 ## Системные требования
 
-php >= 5.4 (traits, short array syntax, etc)
-php_pdo
-php_intl
-http://symfony.com/doc/current/reference/requirements.html
+- php >= 5.4 (traits, short array syntax, etc)
+- php_pdo
+- php_intl
+- http://symfony.com/doc/current/reference/requirements.html
 
 mysql
 
