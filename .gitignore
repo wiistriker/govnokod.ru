@@ -23,3 +23,5 @@ app/check.php
 /nbproject/private/
 .idea
 php-cs-fixer.phar
+www/js/compiled
+www/css/compiled

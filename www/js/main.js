@@ -1,6 +1,6 @@
 new Image().src = '/images/commentsload.gif';
 new Image().src = '/images/codeload.gif';
-new Image().src = '/images/govnovote.gif';
+new Image().src = '/images/rating/codevote.gif';
 new Image().src = '/images/commentvote.gif';
 
 (function($) {
@@ -128,10 +128,62 @@ new Image().src = '/images/commentvote.gif';
             e.preventDefault();
         });
 
+        if (typeof ga != 'undefined') {
+            $('.ga-event').click(function(e) {
+                var ga_event_string = $(this).data('ga-event');
+                if (ga_event_string) {
+                    var gaEventDataList = ga_event_string.split(';');
+
+                    if (gaEventDataList && gaEventDataList.length > 0) {
+                        $.each(gaEventDataList, function(index, ga_event_data_string) {
+                            var gaData = ga_event_data_string.split('|');
+                            if (gaData && gaData.length) {
+                                gaData.unshift('event');
+                                gaData.unshift('send');
+
+                                console.log(gaData);
+
+                                ga.apply(this, gaData);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        $('p.vote a').click(function(e) {
+            var self = $(this);
+            var holder = self.closest('p.vote');
+            if (holder) {
+                var preloader = $('<img src="/images/rating/codevote.gif" class="preloader" alt="Загрузка" title="Идёт учет голоса…" />');
+                holder.html(preloader);
+
+                setTimeout(function() {
+                    preloader.remove();
+                }, 2000);
+
+                $.ajax({
+                    url: self.attr('href'),
+                    type: 'POST',
+                    success: function(msg) {
+                        holder.html(msg);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        preloader.remove();
+                        alert("Ошибка учета голоса!\nОбновите страницу и попытайтесь еще раз");
+                    }
+                });
+            }
+
+            e.preventDefault();
+        });
+
+        /*
         $('p.vote a').live('click', function() {
-            code.vote($(this));
+            //code.vote($(this));
             return false;
         });
+        */
 
         $('span.comment-vote a').live('click', function() {
             comments.vote($(this));

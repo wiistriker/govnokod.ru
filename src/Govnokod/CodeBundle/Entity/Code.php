@@ -322,6 +322,17 @@ class Code
     }
 
     /**
+     * @param float $by_value
+     * @return Code
+     */
+    public function changeRating($by_value)
+    {
+        $this->rating += $by_value;
+
+        return $this;
+    }
+
+    /**
      * Set votes_on
      *
      * @param  integer $votesOn

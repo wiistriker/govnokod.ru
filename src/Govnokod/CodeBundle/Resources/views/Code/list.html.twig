@@ -10,7 +10,14 @@
 				<a rel="bookmark" class="entry-title" href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}">Говнокод #{{ code.id }}</a>
 			</h2>
             <p class="vote">
+            {% if app.user %}
+                <a class="vote-against ga-event" data-ga-event="rating|voteAgainst|code-{{ code.id }}" rel="nofollow" href="{{ path('rating_code_vote', { 'code_id': code.id, 'rate': 'against' }) }}" title="Не говнокод :(">&darr;</a>
+                <strong{% if code.rating < 0 %} class="bad"{% endif %} data-rating-value="{{ code.rating }}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
+                <a class="vote-on ga-event" data-ga-event="rating|voteOn|code-{{ code.id }}" rel="nofollow" href="{{ path('rating_code_vote', { 'code_id': code.id, 'rate': 'on' }) }}" title="Годный говнокод!">&uarr;</a>
+            {% else %}
                 <strong class="just-rating{% if code.rating < 0 %} bad{% endif %}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
+
+            {% endif %}
             </p>
             <div class="entry-content">
                 <pre><code>{{ code.body }}</code></pre>
@@ -25,7 +32,7 @@
             </p>
 #}
             <div class="entry-comments">
-                <span class="comments-icon">&nbsp;</span><a href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}" data-load-url="{{ path('code_comments_list', { 'code_id': code.id }) }}" class="entry-comments-load" title="Показать комментарии">Комментарии</a> <span class="entry-comments-count">({{ code.commentsCount }})</span>
+                <span class="comments-icon">&nbsp;</span><a href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}" data-load-url="{{ path('code_comments_list', { 'code_id': code.id }) }}" class="entry-comments-load ga-event" data-ga-event="code|loadComments|code-{{ code.id }}" title="Показать комментарии">Комментарии</a> <span class="entry-comments-count">({{ code.commentsCount }})</span>
                 {#<span class="comments-icon<?php if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { echo ' comments-new" title="Есть новые комментарии!'; } ?>">&nbsp;</span><a href="<?php echo htmlspecialchars($url . '/' . $quote->getId()); ?>" class="entry-comments-load">Комментарии</a> <span class="entry-comments-count">(<?php echo $quote->getCommentsCount(); if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { ?>, <span title="Новые комментарии" class="entry-comments-new">+<?php echo $quote->getNewCommentsCount(); ?></span><?php } ?>)</span>#}
             </div>
         </li>

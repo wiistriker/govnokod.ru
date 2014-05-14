@@ -1,3 +1,5 @@
-govnokod_ratings_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: GovnokodRatingsBundle:Default:index }
+rating_code_vote:
+    pattern: /code/{code_id}/vote/{rate}/
+    defaults: { _controller: GovnokodRatingsBundle:Rate:codeVote }
+    requirements:
+        code_id: \d+
