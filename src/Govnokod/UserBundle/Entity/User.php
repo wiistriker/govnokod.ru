@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="user")
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
@@ -19,11 +20,18 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="rating", type="float")
      */
-    protected $rating;
+    protected $rating = 0;
 
     /**
      * Get id
@@ -36,6 +44,16 @@ class User extends BaseUser
     }
 
     /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        if (!$this->createdAt) {
+            $this->createdAt = new \DateTime();
+        }
+    }
+
+    /**
      * Set rating
      *
      * @param float $rating
@@ -43,7 +61,7 @@ class User extends BaseUser
      */
     public function setRating($rating)
     {
-        $this->rating = $rating;
+        $this->rating = (double)$rating;
 
         return $this;
     }
@@ -60,11 +78,22 @@ class User extends BaseUser
 
     /**
      * @param float $by_value
-     * @return RatingTarget
+     * @return User
      */
     public function changeRating($by_value)
     {
         $this->rating += $by_value;
+
+        return $this;
+    }
+
+    public function setEmailCanonical($emailCanonical)
+    {
+        if ($emailCanonical === '') {
+            $emailCanonical = null;
+        }
+
+        $this->emailCanonical = $emailCanonical;
 
         return $this;
     }

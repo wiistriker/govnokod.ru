@@ -129,7 +129,7 @@ new Image().src = '/images/commentvote.gif';
         });
 
         if (typeof ga != 'undefined') {
-            $('.ga-event').click(function(e) {
+            $('.ga-event').live('click', function(e) {
                 var ga_event_string = $(this).data('ga-event');
                 if (ga_event_string) {
                     var gaEventDataList = ga_event_string.split(';');
@@ -140,8 +140,6 @@ new Image().src = '/images/commentvote.gif';
                             if (gaData && gaData.length) {
                                 gaData.unshift('event');
                                 gaData.unshift('send');
-
-                                console.log(gaData);
 
                                 ga.apply(this, gaData);
                             }

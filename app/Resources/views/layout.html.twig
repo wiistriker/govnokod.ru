@@ -14,8 +14,10 @@
 		                    <li></li>
 		                    <li class="submit-holder"></li>
 		                </ul>
+                        {% for owner in hwi_oauth_resource_owners() %}
+                            <a href="{{ path('hwi_oauth_service_redirect', { 'service': owner }) }}" title="{{ owner }}">{{ owner }}</a>
+                        {% endfor %}
 
-		                <p><a href="#">Что это?</a> | <a href="#">Обычная форма входа</a></p>
 		            </form>
 		        </div>
 
@@ -23,7 +25,7 @@
 		            <li><a href="{{ path('_index') }}">Все</a></li>
 		            <li><a href="#">Газетка</a></li>
 		            <li><a href="#">Лучший</a></li>
-		            <li><a href="#">Глупый поиск</a></li>
+		            <li><a href="#">Умный поиск</a></li>
 		            <li class="add"><a href="{{ path('code_add') }}">Наговнокодить!</a></li>
 		        </ul>
 

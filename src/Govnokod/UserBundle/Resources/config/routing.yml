@@ -17,9 +17,20 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
+oauth_connect:
+    pattern: /login/oauth
+    defaults: { _controller: GovnokodUserBundle:OAuth:oauthLogin }
+
+oauth_registration:
+    pattern: /login/oauth/{key}
+    defaults: { _controller: GovnokodUserBundle:OAuth:registration }
+
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
 
 facebook_login:
-    pattern: /login/check-facebook
+    pattern: /login/oauth-check/facebook
+
+github_login:
+    pattern: /login/oauth-check/github

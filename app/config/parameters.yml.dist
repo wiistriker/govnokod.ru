@@ -15,6 +15,9 @@ parameters:
     
     locale:                 ru
     secret:                 ThisTokenIsNotSoSecretChangeIt
-    
+
+    github_client_id:       1
+    github_client_secret:   1
+
     facebook_app_id:        1
     facebook_app_secret:    1

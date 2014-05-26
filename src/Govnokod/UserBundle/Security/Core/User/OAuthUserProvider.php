@@ -4,6 +4,7 @@ namespace Govnokod\UserBundle\Security\Core\User;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 use Doctrine\ORM\EntityManager;
+use Govnokod\UserBundle\Entity\UserSignup;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
@@ -41,7 +42,7 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface
         $userSignupRepository = $this->em->getRepository('GovnokodUserBundle:UserSignup');
         $userSignup = $userSignupRepository->findOneBy(array(
             'service' => $resourceOwner->getName(),
-            'service_user_id' => $service_user_id
+            'serviceUserId' => $service_user_id
         ));
 
         if ($userSignup) {
@@ -63,7 +64,7 @@ class OAuthUserProvider implements OAuthAwareUserProviderInterface
         $userSignupRepository = $this->em->getRepository('GovnokodUserBundle:UserSignup');
         $userSignup = $userSignupRepository->findOneBy(array(
             'service' => $resourceOwner->getName(),
-            'service_user_id' => $service_user_id
+            'serviceUserId' => $service_user_id
         ));
 
         if (!$userSignup) {

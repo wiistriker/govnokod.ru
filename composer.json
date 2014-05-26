@@ -38,7 +38,7 @@
         "friendsofsymfony/rest-bundle": "*",
         "jms/serializer": "0.13.0",
         "jms/serializer-bundle": "*",
-        "hwi/oauth-bundle": "*@dev",
+        "hwi/oauth-bundle": "0.4.*@dev",
         "nelmio/solarium-bundle": "1.*",
         "liip/doctrine-cache-bundle": "*",
         "exercise/htmlpurifier-bundle": "*@dev",

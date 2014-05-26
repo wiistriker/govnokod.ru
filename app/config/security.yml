@@ -15,15 +15,21 @@ security:
 
             oauth:
                 resource_owners:
-                    facebook:           "/login/check-facebook"
+                    facebook:           "/login/oauth-check/facebook"
+                    github:             "/login/oauth-check/github"
 
                 login_path:        /login
-                failure_path:      /login
+                failure_path:      /login/oauth
 
                 oauth_user_provider:
                     service: govnokod.oauth.user_provider
 
-            logout:       true
+            remember_me:
+                key:      %secret%
+                lifetime: 31536000 # 365 days in seconds
+                #domain:   %cookie_domain%
+            logout:       ~
+            switch_user:  true
             anonymous:    true
 
     access_control:

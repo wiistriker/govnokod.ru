@@ -114,3 +114,9 @@ hwi_oauth:
             type:                facebook
             client_id:           %facebook_app_id%
             client_secret:       %facebook_app_secret%
+
+        github:
+            type:                github
+            client_id:           %github_client_id%
+            client_secret:       %github_client_secret%
+            scope:               "user:email"
