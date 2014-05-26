@@ -22,7 +22,7 @@
 	                #}
 	            </p>
 	            <div class="entry-comment">
-	                <span class="comment-text">{{ comment.body }}</span>
+	                <span class="comment-text">{{ comment.body|markdown }}</span>
 	            </div>
 
 	            <a href="{{ path('code_comments_list', { 'code_id': code.id, reply: comment.id }) }}" class="post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
