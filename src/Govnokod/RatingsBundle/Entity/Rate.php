@@ -30,7 +30,7 @@ class Rate
     private $createdAt;
 
     /**
-     * @var User $user
+     * @var \Govnokod\UserBundle\Entity\User $user
      *
      * @ORM\ManyToOne(targetEntity="Govnokod\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -39,10 +39,18 @@ class Rate
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Govnokod\RatingsBundle\Entity\RatingTarget")
-     * @ORM\JoinColumn(name="target_id", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="target_type", type="string", length=255)
      */
-    private $target;
+    private $targetType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="target_id", type="string", length=255)
+     */
+    private $targetId;
 
     /**
      * @var string
@@ -161,26 +169,49 @@ class Rate
     }
 
     /**
-     * Set target
+     * Set targetType
      *
-     * @param \Govnokod\RatingsBundle\Entity\RatingTarget $target
+     * @param string $targetType
      * @return Rate
      */
-    public function setTarget(\Govnokod\RatingsBundle\Entity\RatingTarget $target = null)
+    public function setTargetType($targetType)
     {
-        $this->target = $target;
+        $this->targetType = $targetType;
 
         return $this;
     }
 
     /**
-     * Get target
+     * Get targetType
      *
-     * @return \Govnokod\RatingsBundle\Entity\RatingTarget 
+     * @return string
      */
-    public function getTarget()
+    public function getTargetType()
     {
-        return $this->target;
+        return $this->targetType;
+    }
+
+    /**
+     * Set targetId
+     *
+     * @param string $targetId
+     * @return Rate
+     */
+    public function setTargetId($targetId)
+    {
+        $this->targetId = $targetId;
+
+        return $this;
+    }
+
+    /**
+     * Get targetId
+     *
+     * @return string
+     */
+    public function getTargetId()
+    {
+        return $this->targetId;
     }
 
     /** @ORM\PrePersist */

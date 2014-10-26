@@ -14,18 +14,19 @@
             <div class="entry-content">
                 <pre><code>{{ code.body }}</code></pre>
             </div>
+
             <p class="description">
                 {{ code.description|nl2br }}
             </p>
-            {#
+
             <p class="author">
-                Запостил: <a href="<?php echo htmlspecialchars($url . '/user/' . $quote->getUser()->getId()); ?>"><img src="<?php echo htmlspecialchars($quote->getUser()->getAvatarUrl(20)); ?>" alt="" class="avatar" /></a> <a href="<?php echo htmlspecialchars($url . '/user/' . $quote->getUser()->getId()); ?>"><?php echo htmlspecialchars($quote->getUser()->getLogin()); ?></a>,
-                <abbr title="<?php echo date('c', $quote->getCreated()); ?>"><?php echo i18n::date($quote->getCreated(), 'date2'); ?></abbr>
+                {% if code.user %}
+                    <a href="{{ path('user_view', { 'id': code.user.id }) }}"><img src="{{ user_avatar_url(code.user, 20) }}" title="Аватар {{ code.user.username }}" alt="" class="avatar" /></a> <a href="{{ path('user_view', { 'id': code.user.id }) }}">{{ code.user.username }}</a>,
+                {% else %}
+                    <img src="{{ asset('/files/avatars/guest_20.png') }}" title="Аватар guest" alt="" class="avatar" /> guest,
+                {% endif %}
+                <abbr title="{{ code.createdAt|date('c') }}">{{ code.createdAt|format_date('d MMMM Y') }}</abbr>
             </p>
-            <div class="entry-comments">
-                <span class="comments-icon<?php if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { echo ' comments-new" title="Есть новые комментарии!'; } ?>">&nbsp;</span><a href="<?php echo htmlspecialchars($url . '/' . $quote->getId()); ?>" class="entry-comments-load">Комментарии</a> <span class="entry-comments-count">(<?php echo $quote->getCommentsCount(); if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { ?>, <span title="Новые комментарии" class="entry-comments-new">+<?php echo $quote->getNewCommentsCount(); ?></span><?php } ?>)</span>
-            </div>
-            #}
 
             {% render(controller('GovnokodCommentBundle:Thread:list' ,{ '_route': 'code_comments_list', 'code_id': code.id })) %}
         </li>

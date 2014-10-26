@@ -66,12 +66,16 @@ class CodeController extends Controller
 
     public function saveAction(Request $request, $id = null)
     {
+        $currentUser = $this->getUser();
+
+        /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
         $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
 
         if ($id === null) {
             $code = new Code();
+            $code->setUser($currentUser);
         } else {
             $code = $codeRepository->find($id);
             if (!$code) {

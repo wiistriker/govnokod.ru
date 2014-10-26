@@ -1,5 +1,9 @@
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+security_login:
+    path:     /login
+    defaults: { _controller: GovnokodUserBundle:Security:login }
+
+security_login_check:
+    path: /login_check
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
@@ -16,6 +20,12 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+user_view:
+    pattern: /users/{id}/
+    defaults: { _controller: GovnokodUserBundle:User:view }
+    requirements:
+        id: \d+
 
 oauth_connect:
     pattern: /login/oauth

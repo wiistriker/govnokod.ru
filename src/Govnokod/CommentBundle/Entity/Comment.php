@@ -58,7 +58,7 @@ class Comment
     private $thread;
 
     /**
-     * @var User $sender
+     * @var \Govnodkoe\UserBundle\Entity\User $sender
      *
      * @ORM\ManyToOne(targetEntity="Govnokod\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="sender_id", referencedColumnName="id")
@@ -93,6 +93,27 @@ class Comment
      * @ORM\Column(name="body", type="text")
      */
     private $body = '';
+
+    /**
+     * @var float $rating
+     *
+     * @ORM\Column(name="rating", type="float", columnDefinition="FLOAT NOT NULL DEFAULT 0")
+     */
+    protected $rating = 0;
+
+    /**
+     * @var integer $votes_on
+     *
+     * @ORM\Column(name="votes_on", type="integer", columnDefinition="INT(11) UNSIGNED NOT NULL DEFAULT 0")
+     */
+    protected $votes_on = 0;
+
+    /**
+     * @var integer $votes_against
+     *
+     * @ORM\Column(name="votes_against", type="integer", columnDefinition="INT(11) UNSIGNED NOT NULL DEFAULT 0")
+     */
+    protected $votes_against = 0;
 
     /**
      * Get id
@@ -279,5 +300,85 @@ class Comment
         if (!$this->hash) {
             $this->hash = md5(microtime(true) . mt_rand(-10000, 10000));
         }
+    }
+
+    /**
+     * Set rating
+     *
+     * @param  float $rating
+     * @return Comment
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return float
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param float $by_value
+     * @return Comment
+     */
+    public function changeRating($by_value)
+    {
+        $this->rating += $by_value;
+
+        return $this;
+    }
+
+    /**
+     * Set votes_on
+     *
+     * @param  integer $votesOn
+     * @return Comment
+     */
+    public function setVotesOn($votesOn)
+    {
+        $this->votes_on = $votesOn;
+
+        return $this;
+    }
+
+    /**
+     * Get votes_on
+     *
+     * @return integer
+     */
+    public function getVotesOn()
+    {
+        return $this->votes_on;
+    }
+
+    /**
+     * Set votes_against
+     *
+     * @param  integer $votesAgainst
+     * @return Comment
+     */
+    public function setVotesAgainst($votesAgainst)
+    {
+        $this->votes_against = $votesAgainst;
+
+        return $this;
+    }
+
+    /**
+     * Get votes_against
+     *
+     * @return integer
+     */
+    public function getVotesAgainst()
+    {
+        return $this->votes_against;
     }
 }

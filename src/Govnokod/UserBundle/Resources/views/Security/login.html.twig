@@ -4,7 +4,7 @@
 <ol class="posts">
     <li class="hentry">
         <h2>Вход в говнокод тут</h2>
-        <form action="{{ path('fos_user_security_check') }}" method="POST" class="form-submit">
+        <form action="{{ path('security_login_check') }}" method="POST" class="form-submit">
 {% if error %}
             <dl class="errors">
                 <dt>Ошибка авторизации:</dt>
@@ -30,7 +30,7 @@
                 </dt>
             </dl>
             <p>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
                 {#{% if target_path %}<input type="hidden" name="_target_path" value="{{ target_path }}" />{% endif %}#}
                 <input type="submit" class="send" name="_submit" value="Вхожу!" />
             </p>

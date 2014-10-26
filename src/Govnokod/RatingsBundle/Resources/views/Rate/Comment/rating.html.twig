@@ -1,0 +1,3 @@
+                        <strong{% if comment.rating < 0 %} class="bad"{% elseif comment.rating > 0 %} class="good"{% endif %} title="{{ comment.votesOn }} за и {{ comment.votesAgainst }} против">{% if comment.rating > 0 %}+{% elseif comment.rating < 0 %}&minus;{% endif %}{{ comment.rating|abs }}</strong>
+                        {% if rate == "against" %}<span class="comment-vote-against my-vote" title="Мой голос, -1"> </span>{% else %}<span class="comment-vote-against"> </span>{% endif %}
+                        {% if rate == "on" %}<span class="comment-vote-on my-vote" title="Мой голос, +1"> </span>{% else %}<span class="comment-vote-on"> </span>{% endif %}

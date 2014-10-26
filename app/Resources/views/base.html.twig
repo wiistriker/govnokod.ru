@@ -13,6 +13,7 @@
 {% endstylesheets %}
 {% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" href="{{ asset('favicon.gif') }}" type="image/gif" />
     </head>
     <body>
 {% block body %}{% endblock %}
@@ -33,7 +34,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-6478594-1', '.govnokod.local');
+        ga('create', 'UA-6478594-1', '.govnokod.dev');
         ga('send', 'pageview');
     </script>
 {% endblock %}

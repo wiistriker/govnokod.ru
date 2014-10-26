@@ -8,24 +8,25 @@
 	            <p class="entry-info">
 	                {% if comment.sender %}
 	                <img class="avatar" src="{{ user_avatar_url(comment.sender, 28) }}" alt="ava" title="Аватар" />
-	                <strong class="entry-author"><a href="#">{{ comment.sender.username }}</a></strong>
+	                <strong class="entry-author"><a href="{{ path('user_view', { 'id': comment.sender.id }) }}">{{ comment.sender.username }}</a></strong>
 	                {% else %}
-	                <img class="avatar" src="{{ asset('/images/avatars/guest_28.png') }}" alt="ava" title="Аватар" />
-	                <strong class="entry-author"><a href="#">Гость</a></strong>
+	                <img class="avatar" src="{{ asset('/files/avatars/guest_28.png') }}" alt="ava" title="Аватар" />
+	                <strong class="entry-author">Гость/strong>
 	                {% endif %}
 	                <time class="published timeago" datetime="{{ comment.createdAt|date('c') }}" title="{{ comment.createdAt|date('c') }}">{{ comment.createdAt|date('r') }}</time>
 	                <a href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}#comment{{ comment.id }}" id="comment{{ comment.id }}" title="Ссылка на комментарий" class="comment-link">#</a>
-	                {#
+
 	                <span class="comment-vote">
-	                    <?php //echo $this->render('comments/rating.tpl', array('comment' => $comment)); ?>
+	                    <strong{% if comment.rating < 0 %} class="bad"{% elseif comment.rating > 0 %} class="good"{% endif %} title="{{ comment.votesOn }} за и {{ comment.votesAgainst }} против">{% if comment.rating > 0 %}+{% elseif comment.rating < 0 %}&minus;{% endif %}{{ comment.rating|abs }}</strong>
+                        <a rel="nofollow" class="comment-vote-against" href="{{ path('rating_comment_vote', { 'comment_id': comment.id, 'rate': 'against' }) }}" title="-1"> </a>
+                        <a rel="nofollow" class="comment-vote-on" href="{{ path('rating_comment_vote', { 'comment_id': comment.id, 'rate': 'on' }) }}" title="+1"> </a>
 	                </span>
-	                #}
 	            </p>
 	            <div class="entry-comment">
-	                <span class="comment-text">{{ comment.body|markdown }}</span>
+	                <span class="comment-text">{{ comment.body|nl2br }}</span>
 	            </div>
 
-	            <a href="{{ path('code_comments_list', { 'code_id': code.id, reply: comment.id }) }}" class="post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
+                <a href="{{ path('code_comments_list', { 'code_id': code.id, reply: comment.id }) }}" class="answer post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
             </div>
             <ul><li id="reply_form_holder_{{ comment.id }}"></li></ul>
 {% set last_tree_level = comment.level %}

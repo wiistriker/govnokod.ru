@@ -1,0 +1,10 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+    <ol class="posts">
+        <li class="hentry">
+            <h2>{{ user.username }}</h2>
+
+        </li>
+    </ol>
+{% endblock fos_user_content %}

@@ -22,20 +22,20 @@ class CommentExtension extends Twig_Extension
         $avatar_url = null;
 
         if ($user) {
-            $user_avatar_string = ''; //$user->getAvatarString();
+            $user_avatar_string = null; //$user->getAvatarString();
 
-            if ($user_avatar_string) {
-                if ($user_avatar_string == 'gravatar') {
+            switch ($user_avatar_string) {
+                case 'gravatar':
                     if ($user->getEmail()) {
                         $gravatar_hash = md5(strtolower(trim($user->getEmail())));
                         $avatar_url = 'http://www.gravatar.com/avatar/' . $gravatar_hash . '?s=' . $width;
                     }
-                }
+                    break;
             }
         }
 
         if (!$avatar_url) {
-            $avatar_url = '/images/avatars/noavatar_' . $width . '.png';
+            $avatar_url = '/files/avatars/noavatar_' . $width . '.png';
         }
 
         return $avatar_url;

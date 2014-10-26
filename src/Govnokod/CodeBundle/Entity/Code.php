@@ -5,7 +5,7 @@ namespace Govnokod\CodeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Govnokod\CodeBundle\Entity\Code
+ * \Govnokod\CodeBundle\Entity\Code
  *
  * @ORM\Table(name="code")
  * @ORM\Entity
@@ -23,14 +23,14 @@ class Code
     protected $id;
 
     /**
-     * @var datetime $created_at
+     * @var \DateTime $created_at
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $created_at;
 
     /**
-     * @var string $updated_at
+     * @var \DateTime $updated_at
      *
      * @ORM\Column(name="dateupd", type="datetime", columnDefinition="TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP")
      */
@@ -53,14 +53,14 @@ class Code
     protected $user;
 
     /**
-     * @var text $text
+     * @var string $text
      *
      * @ORM\Column(name="body", type="text")
      */
     protected $body = '';
 
     /**
-     * @var text $description
+     * @var string $description
      *
      * @ORM\Column(name="description", type="text")
      */
@@ -195,6 +195,10 @@ class Code
      */
     public function setTags($tags)
     {
+        if (is_array($tags)) {
+            $tags = array_unique($tags);
+        }
+
         $this->tags = $tags;
     }
 
@@ -278,7 +282,7 @@ class Code
     /**
      * Set updated_at
      *
-     * @param  \DateTime $updatedAt
+     * @param \DateTime $updatedAt
      * @return Code
      */
     public function setUpdatedAt($updatedAt)

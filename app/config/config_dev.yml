@@ -9,18 +9,15 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
-monolog:
-    handlers:
-        main:
-            type:  stream
-            path:  %kernel.logs_dir%/%kernel.environment%.log
-            level: debug
-        firephp:
-            type:  firephp
-            level: info
-
-assetic:
-    use_controller: true
+#monolog:
+#    handlers:
+#        main:
+#            type:  stream
+#            path:  %kernel.logs_dir%/%kernel.environment%.log
+#            level: debug
+#        firephp:
+#            type:  firephp
+#            level: info
 
 hwi_oauth:
     http_client:

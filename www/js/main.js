@@ -6,8 +6,10 @@ new Image().src = '/images/commentvote.gif';
 (function($) {
     $(function() {
         $('time.timeago').timeago();
-        
-        $('div.entry-comments').on('click', 'a.post-comment', function(e) {
+
+        var comments = $('div.entry-comments');
+
+        comments.on('click', 'a.post-comment', function(e) {
             var commentsHolder = $(this).closest('div.entry-comments');
             var newFormHolder;
             
@@ -42,8 +44,8 @@ new Image().src = '/images/commentvote.gif';
             
             e.preventDefault();
         });
-        
-        $('div.entry-comments').on('submit', 'form', function(e) {
+
+        comments.on('submit', 'form', function(e) {
             var commentsHolder = $(this).closest('div.entry-comments');
 
             var form = $(this);
@@ -176,20 +178,35 @@ new Image().src = '/images/commentvote.gif';
             e.preventDefault();
         });
 
-        /*
-        $('p.vote a').live('click', function() {
-            //code.vote($(this));
-            return false;
-        });
-        */
+        comments.on('click', 'span.comment-vote a', function(e) {
+            var self = $(this);
+            var holder = self.closest('span.comment-vote');
+            if (holder) {
+                var preloader = $('<img src="/images/rating/commentvote.gif" class="preloader" alt="Загрузка" title="Идёт учет голоса…" />');
+                holder.html(preloader);
 
-        $('span.comment-vote a').live('click', function() {
-            comments.vote($(this));
-            return false;
+                setTimeout(function() {
+                    preloader.remove();
+                }, 2000);
+
+                $.ajax({
+                    url: self.attr('href'),
+                    type: 'POST',
+                    success: function(msg) {
+                        holder.html(msg);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        preloader.remove();
+                        alert("Ошибка учета голоса!\nОбновите страницу и попытайтесь еще раз");
+                    }
+                });
+            }
+
+            e.preventDefault();
         });
 
         $('div.entry-content a.trigger').click(function(){
-            code.unfold($(this));
+            //code.unfold($(this));
             return false;
         });
 
@@ -246,10 +263,5 @@ new Image().src = '/images/commentvote.gif';
 
             return false;
         });
-
-        //Если вдруг подключили js highlight драйвер
-        if (typeof(hljs) == 'object') {
-            hljs.initHighlighting();
-        }
     });
 })(jQuery);

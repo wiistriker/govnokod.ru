@@ -4,7 +4,7 @@
                 {% for comment in comments %}
                 <li id="comment-{{ comment.id }}">
                     {% if comment.sender %}
-                    <a href="{{ path('fos_user_profile_view', { 'id': comment.sender.id }) }}"><img src="{{ user_avatar_url(comment.sender, 40) }}" width="40" height="40" alt=""> <strong>{{ comment.sender }}</strong></a>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
+                    <a href="{{ path('user_view', { 'id': comment.sender.id }) }}"><img src="{{ user_avatar_url(comment.sender, 40) }}" width="40" height="40" alt=""> <strong>{{ comment.sender }}</strong></a>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
                     {% else %}
                     <img src="{{ user_avatar_url(null, 40) }}" width="40" height="40" alt=""> <strong>Гость</strong>, <small class="muted">{{ comment.createdAt|date('d F Y H:i') }}</small>
                     {% endif %}

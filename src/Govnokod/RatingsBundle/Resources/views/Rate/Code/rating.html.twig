@@ -1,0 +1,3 @@
+                {% if rate == 'against' %}<span class="vote-against my-vote" title="Мой голос">{% else %}<span class="vote-against">{% endif %}&darr;</span>
+                <strong class="{% if code.rating < 0 %} bad{% endif %}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
+                {% if rate == 'on' %}<span class="vote-on my-vote" title="Мой голос">{% else %}<span class="vote-on">{% endif %}&uarr;</span>

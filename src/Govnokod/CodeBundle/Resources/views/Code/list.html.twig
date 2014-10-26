@@ -7,7 +7,7 @@
             <h2>
 				<a rel="chapter" href="{{ path('code_list', { 'category': code.category.name}) }}">{{ code.category.title }}</a>
 				/
-				<a rel="bookmark" class="entry-title" href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}">Говнокод #{{ code.id }}</a>
+				<a rel="bookmark" class="entry-title" href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}">Код #{{ code.id }}</a>
 			</h2>
             <p class="vote">
             {% if app.user %}
@@ -16,21 +16,25 @@
                 <a class="vote-on ga-event" data-ga-event="rating|voteOn|code-{{ code.id }}" rel="nofollow" href="{{ path('rating_code_vote', { 'code_id': code.id, 'rate': 'on' }) }}" title="Годный говнокод!">&uarr;</a>
             {% else %}
                 <strong class="just-rating{% if code.rating < 0 %} bad{% endif %}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
-
             {% endif %}
             </p>
+            {% for tag in code.tags %}{{ tag }}{% endfor %}
             <div class="entry-content">
                 <pre><code>{{ code.body }}</code></pre>
             </div>
             <p class="description">
                 {{ code.description|nl2br }}
             </p>
-{#
+
             <p class="author">
-                Запостил: <a href=""><img src="" alt="" class="avatar" /></a> <a href="">{{ code.user.username }}</a>,
-                <abbr title="{{ code.created|date('c') }}">{{ code.created|date('d F Y') }}</abbr>
+                {% if code.user %}
+                <a href="{{ path('user_view', { 'id': code.user.id }) }}"><img src="{{ user_avatar_url(code.user, 20) }}" title="Аватар {{ code.user.username }}" alt="" class="avatar" /></a> <a href="{{ path('user_view', { 'id': code.user.id }) }}">{{ code.user.username }}</a>,
+                {% else %}
+                <img src="{{ asset('/files/avatars/guest_20.png') }}" title="Аватар guest" alt="" class="avatar" /> guest,
+                {% endif %}
+                <abbr title="{{ code.createdAt|date('c') }}">{{ code.createdAt|format_date('d MMMM Y') }}</abbr>
             </p>
-#}
+
             <div class="entry-comments">
                 <span class="comments-icon">&nbsp;</span><a href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}" data-load-url="{{ path('code_comments_list', { 'code_id': code.id }) }}" class="entry-comments-load ga-event" data-ga-event="code|loadComments|code-{{ code.id }}" title="Показать комментарии">Комментарии</a> <span class="entry-comments-count">({{ code.commentsCount }})</span>
                 {#<span class="comments-icon<?php if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { echo ' comments-new" title="Есть новые комментарии!'; } ?>">&nbsp;</span><a href="<?php echo htmlspecialchars($url . '/' . $quote->getId()); ?>" class="entry-comments-load">Комментарии</a> <span class="entry-comments-count">(<?php echo $quote->getCommentsCount(); if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { ?>, <span title="Новые комментарии" class="entry-comments-new">+<?php echo $quote->getNewCommentsCount(); ?></span><?php } ?>)</span>#}

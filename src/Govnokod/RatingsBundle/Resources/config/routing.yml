@@ -3,3 +3,9 @@ rating_code_vote:
     defaults: { _controller: GovnokodRatingsBundle:Rate:codeVote }
     requirements:
         code_id: \d+
+
+rating_comment_vote:
+    pattern: /comments/{comment_id}/vote/{rate}/
+    defaults: { _controller: GovnokodRatingsBundle:Rate:commentVote }
+    requirements:
+        comment_id: \d+
