@@ -1,7 +1,7 @@
 new Image().src = '/images/commentsload.gif';
 new Image().src = '/images/codeload.gif';
 new Image().src = '/images/rating/codevote.gif';
-new Image().src = '/images/commentvote.gif';
+new Image().src = '/images/rating/commentvote.gif';
 
 (function($) {
     $(function() {
@@ -114,12 +114,7 @@ new Image().src = '/images/commentvote.gif';
                     commentsHolder.html(response);
                     commentsHolder.fadeIn(300);
 
-                    //Если подключен jshighlight, то ищем все [code] теги в комментариях и пробуем их подсветить
-                    if (typeof(hljs) == 'object') {
-                        commentsHolder.find('pre code').each(function() {
-                            hljs.highlightBlock(this);
-                        });
-                    }
+                    commentsHolder.find('time.timeago').timeago();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown){
                     preloader.remove();
