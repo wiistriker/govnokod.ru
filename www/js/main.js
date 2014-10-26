@@ -200,10 +200,15 @@ new Image().src = '/images/rating/commentvote.gif';
             e.preventDefault();
         });
 
-        $('div.entry-content a.trigger').click(function(){
-            //code.unfold($(this));
-            return false;
-        });
+        if (typeof document.location.hash != 'undefined') {
+            var commentAnchorMatch = document.location.hash.match(/^#comment(\d+)$/);
+            if (commentAnchorMatch) {
+                var commentNode = $('#comment-' + commentAnchorMatch[1]);
+                if (commentNode.length) {
+                    commentNode.css('background-color', '#EAF2B8');
+                }
+            }
+        }
 
         $('#expand-trigger').click(function() {
             $('#userpane').toggleClass('expanded');

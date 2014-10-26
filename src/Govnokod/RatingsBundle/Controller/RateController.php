@@ -64,7 +64,9 @@ class RateController extends Controller
                 $em->persist($code);
 
                 if ($codeAuthor) {
-                    $codeAuthor->changeRating($rate_value);
+                    $author_rating = $rate_value;
+
+                    $codeAuthor->changeRating($author_rating);
                     $em->persist($codeAuthor);
                 }
 
@@ -129,7 +131,9 @@ class RateController extends Controller
                 $em->persist($comment);
 
                 if ($commentAuthor) {
-                    $commentAuthor->changeRating($rate_value);
+                    $author_rating = $rate_value > 0 ? 0.75 : -0.75;
+
+                    $commentAuthor->changeRating($author_rating);
                     $em->persist($commentAuthor);
                 }
 

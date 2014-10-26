@@ -22,7 +22,7 @@ class CommentExtension extends Twig_Extension
         $avatar_url = null;
 
         if ($user) {
-            $user_avatar_string = null; //$user->getAvatarString();
+            $user_avatar_string = 'gravatar'; //$user->getAvatarString();
 
             switch ($user_avatar_string) {
                 case 'gravatar':

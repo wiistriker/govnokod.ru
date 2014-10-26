@@ -7,7 +7,7 @@
             <h2>
 				<a rel="chapter" href="{{ path('code_list', { 'category': code.category.name}) }}">{{ code.category.title }}</a>
 				/
-				<a rel="bookmark" class="entry-title" href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}">Код #{{ code.id }}</a>
+				<a rel="bookmark" class="entry-title" href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}">Говнокод #{{ code.id }}</a>
 			</h2>
             <p class="vote">
             {% if app.user %}
@@ -18,13 +18,18 @@
                 <strong class="just-rating{% if code.rating < 0 %} bad{% endif %}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
             {% endif %}
             </p>
-            {% for tag in code.tags %}{{ tag }}{% endfor %}
-            <div class="entry-content">
-                <pre><code>{{ code.body }}</code></pre>
-            </div>
+
+            {#
+            {% for tag in code.tags %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}
+            #}
+
             <p class="description">
                 {{ code.description|nl2br }}
             </p>
+
+            <div class="entry-content">
+                <pre><code>{{ code.body }}</code></pre>
+            </div>
 
             <p class="author">
                 {% if code.user %}

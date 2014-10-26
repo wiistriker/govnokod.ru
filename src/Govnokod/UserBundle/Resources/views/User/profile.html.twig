@@ -1,0 +1,20 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <ol class="posts">
+        <li class="hentry">
+            <h2>Моя личная кабинка</h2>
+            <p><img src="{{ user_avatar_url(user, 100) }}" alt="Аватар" title="Аватар пользователя {{ user.username }}" /></p>
+            <p>Рейтинг: {{ user.rating }}</p>
+
+            <ul>
+                <li><a href="#">Мои говнокоды</a></li>
+                <li><a href="#" title="Лента RSS, собранная на основе предпочитаемых языков">Моя RSS лента</a></li>
+                <li><a href="#">Настройки</a></li>
+                <li style="list-style: none;">&nbsp;</li>
+                <li><a href="#">Выйти</a></li>
+            </ul>
+
+        </li>
+    </ol>
+{% endblock content %}

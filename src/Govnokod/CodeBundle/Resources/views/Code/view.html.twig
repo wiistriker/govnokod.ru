@@ -11,13 +11,14 @@
             <p class="vote">
                 <strong class="just-rating{% if code.rating < 0 %} bad{% endif %}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
             </p>
-            <div class="entry-content">
-                <pre><code>{{ code.body }}</code></pre>
-            </div>
 
             <p class="description">
                 {{ code.description|nl2br }}
             </p>
+
+            <div class="entry-content">
+                <pre><code>{{ code.body }}</code></pre>
+            </div>
 
             <p class="author">
                 {% if code.user %}
