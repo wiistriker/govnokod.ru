@@ -1,9 +1,21 @@
 security_login:
-    path:     /login
+    path:     /login/
     defaults: { _controller: GovnokodUserBundle:Security:login }
 
 security_login_check:
     path: /login_check
+
+security_logout:
+    path: /logout
+    defaults: { _controller: GovnokodUserBundle:Security:logout }
+
+user_register:
+    path: /register/
+    defaults: { _controller: GovnokodUserBundle:Registration:register }
+
+user_register_check_email:
+    path: /register/check-email/
+    defaults: { _controller: GovnokodUserBundle:Registration:checkEmail }
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"

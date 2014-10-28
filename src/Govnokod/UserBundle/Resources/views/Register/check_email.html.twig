@@ -1,0 +1,10 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <ol class="posts">
+        <li class="hentry">
+            <h2>Регистрация завершена успешно</h2>
+            <p>Вы успешно зарегистрировались и на адрес электронной почты <b>{{ user.email }}</b> было отправлено письмо с кодом подтверждения.</p>
+        </li>
+    </ol>
+{% endblock content %}

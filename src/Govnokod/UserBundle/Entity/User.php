@@ -77,6 +77,8 @@ class User extends BaseUser
     }
 
     /**
+     * Change rating by value
+     *
      * @param float $by_value
      * @return User
      */
@@ -96,5 +98,13 @@ class User extends BaseUser
         $this->emailCanonical = $emailCanonical;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPremiumMember()
+    {
+        return $this->hasRole('ROLE_PREMIUM');
     }
 }

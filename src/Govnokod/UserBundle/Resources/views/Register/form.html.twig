@@ -1,0 +1,36 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title %}Регистрация нового пользователя на сайте Говнокод.ру{% endblock %}
+
+{% block content %}
+    <ol class="posts">
+        <li class="hentry">
+            <h2>Регистрация нового пользователя</h2>
+
+            {{ form_errors(form) }}
+
+            <form action="{{ path('user_register') }}" method="POST">
+                <dl>
+                    <dt>{{ form_label(form.username, 'Логин') }}</dt>
+                    <dd>{{ form_widget(form.username) }} {{ form_errors(form.username) }}</dd>
+
+                    <dt>{{ form_label(form.email, 'Email') }}</dt>
+                    <dd>{{ form_widget(form.email) }} {{ form_errors(form.email) }}</dd>
+
+                    <dt>{{ form_label(form.plainPassword.first, 'Пароль') }}</dt>
+                    <dd>{{ form_widget(form.plainPassword.first) }} {{ form_errors(form.plainPassword.first) }}</dd>
+
+                    <dt>{{ form_label(form.plainPassword.second, 'Повтор пароля') }}</dt>
+                    <dd>{{ form_widget(form.plainPassword.second) }} {{ form_errors(form.plainPassword.second) }}</dd>
+                </dl>
+
+                <p>
+                    {{ form_widget(form._token) }}
+                    <input type="submit" class="send" value="Зарегистрироваться">
+                </p>
+            </form>
+
+
+        </li>
+    </ol>
+{% endblock content %}

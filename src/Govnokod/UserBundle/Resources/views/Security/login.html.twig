@@ -26,7 +26,7 @@
             <dl>
                 <dt>
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on" checked="checked" />
-                    {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                    <label for="remember_me">Запомнить меня</label>
                 </dt>
             </dl>
             <p>
@@ -36,7 +36,7 @@
             </p>
         </form>
         <p>&nbsp;</p>
-        <p><a href="{{ path('fos_user_registration_register') }}">Регистрация</a> | <a href="{{ path('fos_user_resetting_request') }}">Забыли пароль?</a>{# | <a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'injustice'))); ?>">Не пришло письмо подтверждения регистрации?</a> | <a href="<?php echo htmlspecialchars($this->url('openIDLogin')); ?>">Вход через OpenID</a>#}</p>
+        <p><a href="{{ path('user_register') }}">Регистрация</a> | <a href="{{ path('fos_user_resetting_request') }}">Забыли пароль?</a>{# | <a href="<?php echo htmlspecialchars($this->url('pageActions', array('name' => 'injustice'))); ?>">Не пришло письмо подтверждения регистрации?</a> | <a href="<?php echo htmlspecialchars($this->url('openIDLogin')); ?>">Вход через OpenID</a>#}</p>
     </li>
 </ol>
 {% endblock fos_user_content %}
