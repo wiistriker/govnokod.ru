@@ -1,0 +1,53 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <ol class="posts hatom">
+{% for post in posts %}
+        <li class="hentry">
+            <h2>
+                {#
+				<a rel="chapter" href="{{ path('posts_list', { 'category': code.category.name}) }}">{{ code.category.title }}</a>
+				/
+				#}
+                <a rel="bookmark" class="entry-title" href="{{ path('post_view', { 'category': post.category.name, 'id': post.id }) }}">Говнокод #{{ post.id }}</a>
+			</h2>
+            <p class="vote">
+            {% if app.user %}
+                <a class="vote-against ga-event" data-ga-event="rating|voteAgainst|post-{{ post.id }}" rel="nofollow" href="{{ path('rating_code_vote', { 'code_id': code.id, 'rate': 'against' }) }}" title="Не говнокод :(">&darr;</a>
+                <strong{% if code.rating < 0 %} class="bad"{% endif %} data-rating-value="{{ code.rating }}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
+                <a class="vote-on ga-event" data-ga-event="rating|voteOn|code-{{ code.id }}" rel="nofollow" href="{{ path('rating_code_vote', { 'code_id': code.id, 'rate': 'on' }) }}" title="Годный говнокод!">&uarr;</a>
+            {% else %}
+                <strong class="just-rating{% if post.rating < 0 %} bad{% endif %}" title="{{ post.votesOn }} за и {{ post.votesAgainst }} против">{% if post.rating > 0 %}+{% elseif post.rating < 0 %}&minus;{% endif %}{{ post.rating|abs }}</strong>
+            {% endif %}
+            </p>
+
+            {#
+            {% for tag in code.tags %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}
+            #}
+
+            <p class="description">
+                {{ post.description|nl2br }}
+            </p>
+
+            <div class="entry-content">
+                <ol>{% for line in post.generateLines %}<li>{{ line }}</li>{% endfor %}</ol>
+                <pre><code class="php">{{ post.body }}</code></pre>
+            </div>
+
+            <p class="author">
+                {% if post.user %}
+                <a href="{{ path('user_view', { 'id': post.user.id }) }}"><img src="{{ user_avatar_url(post.user, 20) }}" title="Аватар {{ post.user.username }}" alt="" class="avatar" /></a> <a href="{{ path('user_view', { 'id': post.user.id }) }}">{{ post.user.username }}</a>,
+                {% else %}
+                <img src="{{ asset('/files/avatars/guest_20.png') }}" title="Аватар guest" alt="" class="avatar" /> Гость,
+                {% endif %}
+                <abbr title="{{ post.createdAt|date('c') }}">{{ post.createdAt|format_date('d MMMM Y') }}</abbr>
+            </p>
+
+            <div class="entry-comments">
+                <span class="comments-icon">&nbsp;</span><a href="{{ path('post_view', { 'category': post.category.name, 'id': post.id }) }}" data-load-url="{{ path('post_comments_list', { 'post_id': post.id }) }}" class="entry-comments-load ga-event" data-ga-event="code|loadComments|code-{{ post.id }}" title="Показать комментарии">Комментарии</a> <span class="entry-comments-count">({{ post.commentsCount }})</span>
+                {#<span class="comments-icon<?php if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { echo ' comments-new" title="Есть новые комментарии!'; } ?>">&nbsp;</span><a href="<?php echo htmlspecialchars($url . '/' . $quote->getId()); ?>" class="entry-comments-load">Комментарии</a> <span class="entry-comments-count">(<?php echo $quote->getCommentsCount(); if ($toolkit->getUser()->isLoggedIn() && $quote->getNewCommentsCount() > 0) { ?>, <span title="Новые комментарии" class="entry-comments-new">+<?php echo $quote->getNewCommentsCount(); ?></span><?php } ?>)</span>#}
+            </div>
+        </li>
+{% endfor %}
+    </ol>
+{% endblock %}

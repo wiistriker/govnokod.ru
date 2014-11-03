@@ -1,0 +1,66 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+{% javascripts
+        'codemirror-3.11/lib/codemirror.js'
+        'codemirror-3.11/addon/edit/matchbrackets.js'
+        'codemirror-3.11/addon/mode/loadmode.js'
+        'js/select2-3.5.2/select2.min.js'
+        'js/posts/save.js'
+        output='js/compiled/posts-save.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+        <link rel="stylesheet" type="text/css" href="{{ asset('codemirror-3.11/lib/codemirror.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('js/select2-3.5.2/select2.css') }}" />
+{% endblock %}
+
+{% block content %}
+
+<ol class="posts hatom">
+    <li class="hentry">
+        <form action="{% if post.id %}{{ path('post_edit', { 'id': post.id }) }}{% else %}{{ path('posts_new') }}{% endif %}" method="POST" class="form-submit">
+            <dl>
+                <dt>{{ form_label(form.category, 'Раздел:') }}</dt>
+                <dd>
+                    {{ form_widget(form.category) }}
+                    {{ form_errors(form.category) }}
+                </dd>
+
+                <dt>{{ form_label(form.body, 'Код:') }}</dt>
+                <dd>
+                    {{ form_errors(form.body) }}
+                    {{ form_widget(form.body) }}
+                </dd>
+
+                <dt>{{ form_label(form.tags, 'Теги:') }}</dt>
+                <dd>
+                    {{ form_widget(form.tags) }}
+                    {{ form_errors(form.tags) }}
+                </dd>
+
+                <dt>{{ form_label(form.description, 'Описание:') }}</dt>
+                <dd>
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description) }}
+                </dd>
+            </dl>
+
+            <p>
+                {{ form_widget(form._token) }}
+                <input type="submit" value="Накласть" class="send" />
+            </p>
+        </form>
+    </li>
+</ol>
+
+<script type="text/javascript">
+    var govnokod = govnokod || {};
+    govnokod.highlighters = {{ highlighters | json_encode() | raw }};
+</script>
+{% endblock %}

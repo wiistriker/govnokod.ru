@@ -6,6 +6,7 @@ new Image().src = '/images/rating/commentvote.gif';
 (function($) {
     $(function() {
         $('time.timeago').timeago();
+        //hljs.initHighlighting();
 
         var comments = $('div.entry-comments');
 

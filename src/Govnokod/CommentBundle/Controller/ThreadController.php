@@ -31,27 +31,25 @@ class ThreadController extends Controller
         $comments = array();
 
         switch ($route_name) {
-            case 'code_comments_list':
-                /**
-                 * @var \Govnokod\CodeBundle\Entity\Code $code
-                 */
-                $code = null;
-                $code_id = $request->attributes->getInt('code_id');
-                if ($code_id > 0) {
-                    $codeRepository = $em->getRepository('GovnokodCodeBundle:Code');
-                    $code = $codeRepository->find($code_id);
+            case 'post_comments_list':
+                /** @var \Govnokod\PostsBundle\Entity\Post $post */
+                $post = null;
+                $post_id = $request->attributes->getInt('post_id');
+                if ($post_id > 0) {
+                    $codeRepository = $em->getRepository('GovnokodPostsBundle:Post');
+                    $post = $codeRepository->find($post_id);
                 }
 
-                if (!$code) {
-                    throw $this->createNotFoundException('Code not found for id ' . $code_id);
+                if (!$post) {
+                    throw $this->createNotFoundException('Post not found for id ' . $post_id);
                 }
 
-                $template_params['code_id'] = $code_id;
-                $template_params['code'] = $code;
+                $template_params['post_id'] = $post_id;
+                $template_params['post'] = $post;
 
                 $thread = $commentThreadRepository->findOneBy(array(
-                    'target_type' => 'code',
-                    'target_id' => $code->getId()
+                    'target_type' => 'post',
+                    'target_id' => $post->getId()
                 ));
 
                 if ($thread) {
@@ -118,9 +116,9 @@ class ThreadController extends Controller
                         $need_flush = true;
                     }
 
-                    if ($code->getCommentsCount() != $comments_count) {
-                        $code->setCommentsCount($comments_count);
-                        $em->persist($code);
+                    if ($post->getCommentsCount() != $comments_count) {
+                        $post->setCommentsCount($comments_count);
+                        $em->persist($post);
                         $need_flush = true;
                     }
 
@@ -129,14 +127,14 @@ class ThreadController extends Controller
                     }
                 } else {
                     $thread = new Thread();
-                    $thread->setTargetType('code');
-                    $thread->setTargetId($code->getId());
+                    $thread->setTargetType('post');
+                    $thread->setTargetId($post->getId());
                 }
 
                 //if ($request->isXmlHttpRequest()) {
                     //$template = 'GovnokodCommentBundle:Thread:Code/list.ajax.html.twig';
                 //} else {
-                    $template = 'GovnokodCommentBundle:Thread:Code/list.html.twig';
+                    $template = 'GovnokodCommentBundle:Thread:Post/list.html.twig';
                 //}
                 break;
         }
@@ -217,10 +215,10 @@ class ThreadController extends Controller
                 $thread->addComment($comment);
 
                 switch ($route_name) {
-                    case 'code_comments_list':
+                    case 'post_comments_list':
                         //$product->setLastCommentId($comment->getId());
-                        $code->setCommentsCount($thread->getCommentsCount());
-                        $em->persist($code);
+                        $post->setCommentsCount($thread->getCommentsCount());
+                        $em->persist($post);
                         break;
                 }
 
@@ -240,7 +238,7 @@ class ThreadController extends Controller
                     $template_params['form'] = $form->createView();
                     $template_params['comment'] = $comment;
 
-                    $successResponse = $this->render('GovnokodCommentBundle:Thread:Code/new_success.ajax.html.twig', $template_params);
+                    $successResponse = $this->render('GovnokodCommentBundle:Thread:Post/new_success.ajax.html.twig', $template_params);
                 } else {
                     $successResponse = $this->redirect($this->generateUrl($route_name, $route_params));
                 }
@@ -262,7 +260,7 @@ class ThreadController extends Controller
                     case 'code_comments_list':
                         $template_params['form'] = $form->createView();
 
-                        return $this->render('GovnokodCommentBundle:Thread:Code/form.html.twig', $template_params);
+                        return $this->render('GovnokodCommentBundle:Thread:Post/form.html.twig', $template_params);
                         break;
 
                     default:

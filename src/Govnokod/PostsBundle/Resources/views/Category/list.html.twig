@@ -1,0 +1,5 @@
+    <ol id="language">
+	{% for category in categories %}
+		<li><a href="{{ path('posts_list', { 'category': category.name }) }}">{{ category.title }}</a> <span>({{ category.codes }})</span></li>
+	{% endfor %}
+    </ol>

@@ -26,7 +26,7 @@
 		            <li><a href="#">Газетка</a></li>
 		            <li><a href="#">Лучший</a></li>
 		            <li><a href="#">Умный поиск</a></li>
-		            <li class="add"><a href="{{ path('code_add') }}">Наговнокодить!</a></li>
+		            <li class="add"><a href="{{ path('posts_new') }}">Наговнокодить!</a></li>
 		        </ul>
 
 		        <p id="entrance">
@@ -35,7 +35,7 @@
 		            Не торопитесь его удалять или рефакторить, &mdash; запостите его на
 		            говнокод.ру, посмеёмся вместе!
 		        </p>
-				{% render controller("GovnokodCodeBundle:Category:list") %}
+                {#{% render controller("GovnokodCodeBundle:Category:list") %}#}
             </div>
 
 		    <div id="content">

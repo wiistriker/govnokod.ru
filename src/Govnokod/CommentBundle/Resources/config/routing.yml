@@ -1,3 +1,3 @@
-code_comments_list:
-    pattern: /code/{code_id}/comments/
+post_comments_list:
+    pattern: /post/{post_id}/comments/
     defaults: { _controller: GovnokodCommentBundle:Thread:list }

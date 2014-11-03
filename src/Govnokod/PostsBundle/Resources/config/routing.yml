@@ -1,0 +1,25 @@
+posts_new:
+    pattern: /add/
+    defaults: { _controller: GovnokodPostsBundle:Posts:save }
+
+post_edit:
+    pattern: /posts/{id}/edit/
+    defaults: { _controller: GovnokodPostsBundle:Posts:save }
+    requirements:
+        id: \d+
+
+post_view:
+    pattern: /{category}/{id}/
+    defaults: { _controller: GovnokodPostsBundle:Posts:view }
+    requirements:
+        id: \d+
+
+code_view_legacy:
+    pattern: /{id}
+    defaults: { _controller: GovnokodPostsBundle:Posts:view }
+    requirements:
+        id: \d+
+
+posts_list:
+    pattern: /{category}/
+    defaults: { _controller: GovnokodPostsBundle:Posts:list }

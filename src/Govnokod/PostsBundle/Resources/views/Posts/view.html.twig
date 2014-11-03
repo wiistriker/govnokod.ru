@@ -1,0 +1,38 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <ol class="posts hatom">
+        <li class="hentry">
+            <h2>
+                {#
+				<a rel="chapter" href="{{ path('code_list', { 'category': code.category.name}) }}">{{ code.category.title }}</a>
+				/
+                #}
+				<a rel="bookmark" class="entry-title" href="{{ path('post_view', { 'category': post.category.name, 'id': post.id }) }}">Говнокод #{{ post.id }}</a>
+			</h2>
+            <p class="vote">
+                <strong class="just-rating{% if post.rating < 0 %} bad{% endif %}" title="{{ post.votesOn }} за и {{ post.votesAgainst }} против">{% if post.rating > 0 %}+{% elseif post.rating < 0 %}&minus;{% endif %}{{ post.rating|abs }}</strong>
+            </p>
+
+            <p class="description">
+                {{ post.description|nl2br }}
+            </p>
+
+            <div class="entry-content">
+                <ol>{% for line in post.generateLines %}<li>{{ line }}</li>{% endfor %}</ol>
+                <pre><code>{{ post.body }}</code></pre>
+            </div>
+
+            <p class="author">
+                {% if post.user %}
+                    <a href="{{ path('user_view', { 'id': post.user.id }) }}"><img src="{{ user_avatar_url(post.user, 20) }}" title="Аватар {{ post.user.username }}" alt="" class="avatar" /></a> <a href="{{ path('user_view', { 'id': post.user.id }) }}">{{ post.user.username }}</a>,
+                {% else %}
+                    <img src="{{ asset('/files/avatars/guest_20.png') }}" title="Аватар guest" alt="" class="avatar" /> guest,
+                {% endif %}
+                <abbr title="{{ post.createdAt|date('c') }}">{{ post.createdAt|format_date('d MMMM Y') }}</abbr>
+            </p>
+
+            {% render(controller('GovnokodCommentBundle:Thread:list' ,{ '_route': 'post_comments_list', 'post_id': post.id })) %}
+        </li>
+    </ol>
+{% endblock %}

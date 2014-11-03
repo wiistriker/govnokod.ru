@@ -5,7 +5,7 @@
 
 _index:
     pattern:  /
-    defaults: { _controller: GovnokodCodeBundle:Code:list }
+    defaults: { _controller: GovnokodPostsBundle:Posts:list }
 
 govnokod_user:
     resource: "@GovnokodUserBundle/Resources/config/routing.yml"
@@ -13,8 +13,8 @@ govnokod_user:
 govnokod_comments:
     resource: "@GovnokodCommentBundle/Resources/config/routing.yml"
 
-govnokod_code:
-    resource: "@GovnokodCodeBundle/Resources/config/routing.yml"
+govnokod_posts:
+    resource: "@GovnokodPostsBundle/Resources/config/routing.yml"
 
 govnokod_ratings:
     resource: "@GovnokodRatingsBundle/Resources/config/routing.yml"

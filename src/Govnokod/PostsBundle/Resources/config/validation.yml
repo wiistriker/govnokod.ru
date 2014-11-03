@@ -1,0 +1,4 @@
+Govnokod\PostsBundle\Entity\Code:
+    properties:
+        body:
+            - NotBlank: ~

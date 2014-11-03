@@ -1,9 +1,0 @@
-parameters:
-#    govnokod_code.example.class: Govnokod\CodeBundle\Example
-
-services:
-    sonata.admin.govnokod:
-            class: Govnokod\CodeBundle\Admin\CodeCategoryAdmin
-            arguments: [null, 'Govnokod\CodeBundle\Entity\Category', 'SonataAdminBundle:CRUD']
-            tags:
-                - { name: sonata.admin, manager_type: orm, label: Категории говнокода }

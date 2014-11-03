@@ -19,7 +19,6 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
-            new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
@@ -28,7 +27,7 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Govnokod\UserBundle\GovnokodUserBundle(),
-            new Govnokod\CodeBundle\GovnokodCodeBundle(),
+            new Govnokod\PostsBundle\GovnokodPostsBundle(),
             new Govnokod\CommentBundle\GovnokodCommentBundle(),
             new Govnokod\RatingsBundle\GovnokodRatingsBundle(),
         );
