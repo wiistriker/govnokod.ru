@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadCodeData extends AbstractFixture implements OrderedFixtureInterface
+class LoadPostsData extends AbstractFixture implements OrderedFixtureInterface
 {
     /* @var $categories \Govnokod\PostsBundle\Entity\Category[] */
     private $categories = array(
@@ -55,18 +55,18 @@ class LoadCodeData extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($category);
         }
 
-        $code1 = new Post();
-        $code1->setCategory($categories[0]);
-        $code1->setDescription('lol');
-        $code1->setBody('<?php echo date(\'c\'); ?>');
+        $post1 = new Post();
+        $post1->setCategory($categories[0]);
+        $post1->setDescription('lol');
+        $post1->setBody('<?php echo date(\'c\'); ?>');
 
-        $code2 = new Post();
-        $code2->setCategory($categories[1]);
-        $code2->setDescription('lol');
-        $code2->setBody('alert(\'lol\');');
+        $post2 = new Post();
+        $post2->setCategory($categories[1]);
+        $post2->setDescription('lol');
+        $post2->setBody('alert(\'lol\');');
 
-        $manager->persist($code1);
-        $manager->persist($code2);
+        $manager->persist($post1);
+        $manager->persist($post2);
 
         $manager->flush();
     }

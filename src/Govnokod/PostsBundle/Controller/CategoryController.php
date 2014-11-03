@@ -1,5 +1,4 @@
 <?php
-
 namespace Govnokod\PostsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

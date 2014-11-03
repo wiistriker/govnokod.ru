@@ -69,7 +69,7 @@ class Post
     /**
      * @var array
      *
-     * @ORM\Column(name="tags", type="string", length=4096)
+     * @ORM\Column(name="tags", type="string", length=4096, nullable=true)
      */
     protected $tags_string;
 
