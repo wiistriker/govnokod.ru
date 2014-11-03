@@ -9,13 +9,13 @@
 	                <strong class="entry-author"><a href="#">Гость</a></strong>
 	                {% endif %}
 	                <time class="published timeago" datetime="{{ comment.createdAt|date('c') }}" title="{{ comment.createdAt|date('c') }}">{{ comment.createdAt|date('r') }}</time>
-	                <a href="{{ path('code_view', { 'category': code.category.name, 'id': code.id }) }}#comment{{ comment.id }}" id="comment{{ comment.id }}" title="Ссылка на комментарий" class="comment-link">#</a>
+	                <a href="{{ path('post_view', { 'category': post.category.name, 'id': post.id }) }}#comment{{ comment.id }}" id="comment{{ comment.id }}" title="Ссылка на комментарий" class="comment-link">#</a>
 	            </p>
 	            <div class="entry-comment">
 	                <span class="comment-text">{{ comment.body|markdown }}</span>
 	            </div>
 
-	            <a href="{{ path('code_comments_list', { 'code_id': code.id, reply: comment.id }) }}" class="post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
+	            <a href="{{ path('post_comments_list', { 'post_id': post.id, reply: comment.id }) }}" class="post-comment" data-reply-to="{{ comment.id }}">Ответить</a>
             </div>
-            <ul><li id="reply_form_holder_{{ comment.id }}" style="display:none;">{% include 'GovnokodCommentBundle:Thread:Code/form.html.twig' %}</li></ul>
+            <ul><li id="reply_form_holder_{{ comment.id }}" style="display:none;">{% include 'GovnokodCommentBundle:Thread:Post/form.html.twig' %}</li></ul>
         </li>

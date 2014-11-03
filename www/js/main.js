@@ -127,7 +127,7 @@ new Image().src = '/images/rating/commentvote.gif';
         });
 
         if (typeof ga != 'undefined') {
-            $('.ga-event').live('click', function(e) {
+            $(document).on('click', '.ga-event', function(e) {
                 var ga_event_string = $(this).data('ga-event');
                 if (ga_event_string) {
                     var gaEventDataList = ga_event_string.split(';');
@@ -216,6 +216,7 @@ new Image().src = '/images/rating/commentvote.gif';
             return false;
         });
 
+        /*
         $('span.hidden-text a.ajax').live('click', function() {
             $(this).closest('div.entry-comment-hidden').removeClass('entry-comment-hidden');
             return false;
@@ -264,5 +265,6 @@ new Image().src = '/images/rating/commentvote.gif';
 
             return false;
         });
+        */
     });
 })(jQuery);

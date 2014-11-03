@@ -1,15 +1,14 @@
 <?php
-namespace Govnokod\PostsBundle\DataFixtures\ORM;
+namespace Govnokod\CodeBundle\DataFixtures\ORM;
 
-use Govnokod\PostsBundle\Entity\Post;
-use Govnokod\PostsBundle\Entity\Category;
+use Govnokod\CodeBundle\Entity\Language;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadPostsData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCodeData extends AbstractFixture implements OrderedFixtureInterface
 {
-    /* @var $categories \Govnokod\PostsBundle\Entity\Category[] */
+    /* @var $categories \Govnokod\CodeBundle\Entity\Language[] */
     private $categories = array(
         array(
             'name' => 'php',
@@ -42,31 +41,15 @@ class LoadPostsData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $categories = array();
         foreach ($this->categories as $c) {
-            $category = new Category();
+            $category = new Language();
             $category->setName($c['name']);
             $category->setTitle($c['title']);
             $category->setCmHighlighter($c['highlighter']);
             $category->setCmMime($c['mime']);
 
-            $categories[] = $category;
-
             $manager->persist($category);
         }
-
-        $post1 = new Post();
-        $post1->setCategory($categories[0]);
-        $post1->setDescription('lol');
-        $post1->setBody('<?php echo date(\'c\'); ?>');
-
-        $post2 = new Post();
-        $post2->setCategory($categories[1]);
-        $post2->setDescription('lol');
-        $post2->setBody('alert(\'lol\');');
-
-        $manager->persist($post1);
-        $manager->persist($post2);
 
         $manager->flush();
     }
@@ -76,6 +59,6 @@ class LoadPostsData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 10;
+        return 5;
     }
 }

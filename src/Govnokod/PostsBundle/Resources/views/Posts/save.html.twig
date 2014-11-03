@@ -32,6 +32,12 @@
                     {{ form_errors(form.category) }}
                 </dd>
 
+                <dt>{{ form_label(form.description, 'Описание:') }}</dt>
+                <dd>
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description) }}
+                </dd>
+
                 <dt>{{ form_label(form.body, 'Код:') }}</dt>
                 <dd>
                     {{ form_errors(form.body) }}
@@ -43,17 +49,11 @@
                     {{ form_widget(form.tags) }}
                     {{ form_errors(form.tags) }}
                 </dd>
-
-                <dt>{{ form_label(form.description, 'Описание:') }}</dt>
-                <dd>
-                    {{ form_errors(form.description) }}
-                    {{ form_widget(form.description) }}
-                </dd>
             </dl>
 
             <p>
                 {{ form_widget(form._token) }}
-                <input type="submit" value="Накласть" class="send" />
+                {% if post.id %}<input type="submit" value="Внести изменения" class="send" />{% else %}<input type="submit" value="Накласть" class="send" />{% endif %}
             </p>
         </form>
     </li>
@@ -62,5 +62,6 @@
 <script type="text/javascript">
     var govnokod = govnokod || {};
     govnokod.highlighters = {{ highlighters | json_encode() | raw }};
+    govnokod.languageTags = {{ language_tags | json_encode() | raw }};
 </script>
 {% endblock %}

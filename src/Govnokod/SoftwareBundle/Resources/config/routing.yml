@@ -1,0 +1,3 @@
+software_list:
+    pattern: /software/{category}/
+    defaults: { _controller: GovnokodSoftwareBundle:Software:list }

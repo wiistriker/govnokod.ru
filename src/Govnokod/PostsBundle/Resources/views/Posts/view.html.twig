@@ -14,6 +14,8 @@
                 <strong class="just-rating{% if post.rating < 0 %} bad{% endif %}" title="{{ post.votesOn }} за и {{ post.votesAgainst }} против">{% if post.rating > 0 %}+{% elseif post.rating < 0 %}&minus;{% endif %}{{ post.rating|abs }}</strong>
             </p>
 
+            <p></p>
+
             <p class="description">
                 {{ post.description|nl2br }}
             </p>
@@ -27,7 +29,7 @@
                 {% if post.user %}
                     <a href="{{ path('user_view', { 'id': post.user.id }) }}"><img src="{{ user_avatar_url(post.user, 20) }}" title="Аватар {{ post.user.username }}" alt="" class="avatar" /></a> <a href="{{ path('user_view', { 'id': post.user.id }) }}">{{ post.user.username }}</a>,
                 {% else %}
-                    <img src="{{ asset('/files/avatars/guest_20.png') }}" title="Аватар guest" alt="" class="avatar" /> guest,
+                    <img src="{{ asset('/files/avatars/guest_20.png') }}" title="Аватар guest" alt="" class="avatar" /> Гость,
                 {% endif %}
                 <abbr title="{{ post.createdAt|date('c') }}">{{ post.createdAt|format_date('d MMMM Y') }}</abbr>
             </p>

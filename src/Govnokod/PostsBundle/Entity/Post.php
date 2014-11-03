@@ -403,4 +403,14 @@ class Post
     {
         return $this->tags_string;
     }
+
+    /**
+     * Get tags array
+     *
+     * @return array
+     */
+    public function getTags()
+    {
+        return explode(',', $this->getTagsString());
+    }
 }

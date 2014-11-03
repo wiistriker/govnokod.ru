@@ -27,9 +27,11 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Govnokod\UserBundle\GovnokodUserBundle(),
+            new Govnokod\CodeBundle\GovnokodCodeBundle(),
             new Govnokod\PostsBundle\GovnokodPostsBundle(),
             new Govnokod\CommentBundle\GovnokodCommentBundle(),
             new Govnokod\RatingsBundle\GovnokodRatingsBundle(),
+            new Govnokod\SoftwareBundle\GovnokodSoftwareBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

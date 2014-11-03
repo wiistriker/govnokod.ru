@@ -70,21 +70,21 @@ class PostsController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $codeRepository = $em->getRepository('GovnokodPostsBundle:Post');
+        $postRepository = $em->getRepository('GovnokodPostsBundle:Post');
 
         if ($id === null) {
             $post = new Post();
             $post->setUser($currentUser);
         } else {
-            $post = $codeRepository->find($id);
+            $post = $postRepository->find($id);
             if (!$post) {
-                throw $this->createNotFoundException('Code not found');
+                throw $this->createNotFoundException('Post not found');
             }
         }
 
-        $categoryRepository = $em->getRepository('GovnokodPostsBundle:Category');
+        $categoryRepository = $em->getRepository('GovnokodCodeBundle:Language');
 
-        /* @var $categories \Govnokod\PostsBundle\Entity\Category[] */
+        /* @var $categories \Govnokod\CodeBundle\Entity\Language[] */
         $categories = $categoryRepository->createQueryBuilder('c')
             ->orderBy('c.title', 'ASC')
             ->getQuery()
@@ -92,7 +92,8 @@ class PostsController extends Controller
 
         $form = $this->createFormBuilder($post)
             ->add('category', 'entity', array(
-                'class' => 'GovnokodPostsBundle:Category',
+                'mapped' => false,
+                'class' => 'GovnokodCodeBundle:Language',
                 'choices' => $categories,
                 'property' => 'title'
             ))
@@ -123,6 +124,7 @@ class PostsController extends Controller
             }
         }
 
+        $language_tags = array();
         $highlighters = array();
 
         foreach ($categories as $category) {
@@ -130,11 +132,14 @@ class PostsController extends Controller
                 'mode' => $category->getCmHighlighter(),
                 'mime' => $category->getCmMime()
             );
+
+            $language_tags[$category->getId()] = $category->getTags();
         }
 
         return $this->render('GovnokodPostsBundle:Posts:save.html.twig', array(
             'post' => $post,
             'highlighters' => $highlighters,
+            'language_tags' => $language_tags,
             'form' => $form->createView()
         ));
     }

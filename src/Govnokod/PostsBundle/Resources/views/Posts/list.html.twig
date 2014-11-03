@@ -6,24 +6,24 @@
         <li class="hentry">
             <h2>
                 {#
-				<a rel="chapter" href="{{ path('posts_list', { 'category': code.category.name}) }}">{{ code.category.title }}</a>
+				<a rel="chapter" href="{{ path('posts_list', { 'category': post.category.name}) }}">{{ post.category.title }}</a>
 				/
 				#}
                 <a rel="bookmark" class="entry-title" href="{{ path('post_view', { 'category': post.category.name, 'id': post.id }) }}">Говнокод #{{ post.id }}</a>
 			</h2>
             <p class="vote">
             {% if app.user %}
-                <a class="vote-against ga-event" data-ga-event="rating|voteAgainst|post-{{ post.id }}" rel="nofollow" href="{{ path('rating_code_vote', { 'code_id': code.id, 'rate': 'against' }) }}" title="Не говнокод :(">&darr;</a>
-                <strong{% if code.rating < 0 %} class="bad"{% endif %} data-rating-value="{{ code.rating }}" title="{{ code.votesOn }} за и {{ code.votesAgainst }} против">{% if code.rating > 0 %}+{% elseif code.rating < 0 %}&minus;{% endif %}{{ code.rating|abs }}</strong>
-                <a class="vote-on ga-event" data-ga-event="rating|voteOn|code-{{ code.id }}" rel="nofollow" href="{{ path('rating_code_vote', { 'code_id': code.id, 'rate': 'on' }) }}" title="Годный говнокод!">&uarr;</a>
+                <a class="vote-against ga-event" data-ga-event="rating|voteAgainst|post-{{ post.id }}" rel="nofollow" href="{{ path('rating_post_vote', { 'post_id': post.id, 'rate': 'against' }) }}" title="Не говнокод :(">&darr;</a>
+                <strong{% if post.rating < 0 %} class="bad"{% endif %} data-rating-value="{{ post.rating }}" title="{{ post.votesOn }} за и {{ post.votesAgainst }} против">{% if post.rating > 0 %}+{% elseif post.rating < 0 %}&minus;{% endif %}{{ post.rating|abs }}</strong>
+                <a class="vote-on ga-event" data-ga-event="rating|voteOn|code-{{ post.id }}" rel="nofollow" href="{{ path('rating_post_vote', { 'post_id': post.id, 'rate': 'on' }) }}" title="Годный говнокод!">&uarr;</a>
             {% else %}
                 <strong class="just-rating{% if post.rating < 0 %} bad{% endif %}" title="{{ post.votesOn }} за и {{ post.votesAgainst }} против">{% if post.rating > 0 %}+{% elseif post.rating < 0 %}&minus;{% endif %}{{ post.rating|abs }}</strong>
             {% endif %}
             </p>
 
-            {#
-            {% for tag in code.tags %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}
-            #}
+            <p>
+                {% for tag in post.tags %}<a href="#">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+            </p>
 
             <p class="description">
                 {{ post.description|nl2br }}

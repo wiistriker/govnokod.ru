@@ -1,15 +1,15 @@
 <?php
-namespace Govnokod\PostsBundle\Entity;
+namespace Govnokod\CodeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Govnokod\PostsBundle\Entity\CodeCategory
+ * Language
  *
- * @ORM\Table(name="posts_category")
+ * @ORM\Table(name="code_language")
  * @ORM\Entity
  */
-class Category
+class Language
 {
     /**
      * @var integer $id
@@ -49,21 +49,6 @@ class Category
     protected $cmMime;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\OneToMany(targetEntity="Govnokod\PostsBundle\Entity\Post", mappedBy="category")
-     */
-    protected $posts;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -77,7 +62,7 @@ class Category
      * Set name
      *
      * @param  string   $name
-     * @return Category
+     * @return Language
      */
     public function setName($name)
     {
@@ -100,7 +85,7 @@ class Category
      * Set title
      *
      * @param  string   $title
-     * @return Category
+     * @return Language
      */
     public function setTitle($title)
     {
@@ -117,39 +102,6 @@ class Category
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Add post
-     *
-     * @param  \Govnokod\PostsBundle\Entity\Post $post
-     * @return Category
-     */
-    public function addPost(\Govnokod\PostsBundle\Entity\Post $post)
-    {
-        $this->posts[] = $post;
-
-        return $this;
-    }
-
-    /**
-     * Remove post
-     *
-     * @param \Govnokod\PostsBundle\Entity\Post $post
-     */
-    public function removeCode(\Govnokod\PostsBundle\Entity\Post $post)
-    {
-        $this->posts->removeElement($post);
-    }
-
-    /**
-     * Get codes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPosts()
-    {
-        return $this->posts;
     }
 
     /**
@@ -182,5 +134,16 @@ class Category
     public function getCmMime()
     {
         return $this->cmMime;
+    }
+
+    public function getTags()
+    {
+        switch ($this->getName()) {
+            case 'php':
+                return array('php');
+                break;
+        }
+
+        return array();
     }
 }

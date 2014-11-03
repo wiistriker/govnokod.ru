@@ -10,21 +10,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RateController extends Controller
 {
-    public function codeVoteAction(Request $request, $code_id, $rate)
+    public function postVoteAction(Request $request, $post_id, $rate)
     {
         $currentUser = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
 
-        /** @var \Govnokod\PostsBundle\Entity\Post $code */
-        $code = $em->find('GovnokodPostsBundle:Code', $code_id);
+        /** @var \Govnokod\PostsBundle\Entity\Post $post */
+        $post = $em->find('GovnokodPostsBundle:Post', $post_id);
 
-        if (!$code) {
+        if (!$post) {
             throw $this->createNotFoundException();
         }
 
         if ($currentUser) {
-            $codeAuthor = $code->getUser();
+            $codeAuthor = $post->getUser();
 
             $rateObject = null;
 
@@ -32,15 +32,15 @@ class RateController extends Controller
             $rateRepository = $em->getRepository('GovnokodRatingsBundle:Rate');
 
             $rateObject = $rateRepository->findOneBy(array(
-                'targetType' => 'code',
-                'targetId' => $code->getId(),
+                'targetType' => 'post',
+                'targetId' => $post->getId(),
                 'user' => $currentUser
             ));
 
             if (!$rateObject) {
                 $rateObject = new Rate();
-                $rateObject->setTargetType('code');
-                $rateObject->setTargetId($code->getId());
+                $rateObject->setTargetType('post');
+                $rateObject->setTargetId($post->getId());
                 $rateObject->setUser($currentUser);
                 $rateObject->setIpAddress(implode(';', $request->getClientIps()));
 
@@ -58,9 +58,9 @@ class RateController extends Controller
 
                 if ($rate_value) {
                     $rateObject->setValue($rate_value);
-                    $code->changeRating($rate_value);
+                    $post->changeRating($rate_value);
 
-                    $em->persist($code);
+                    $em->persist($post);
 
                     if ($codeAuthor) {
                         $author_rating = $rate_value;
@@ -75,8 +75,8 @@ class RateController extends Controller
             }
         }
 
-        return $this->render('GovnokodRatingsBundle:Rate/Code:rating.html.twig', array(
-            'code' => $code,
+        return $this->render('GovnokodRatingsBundle:Rate/Post:rating.html.twig', array(
+            'post' => $post,
             'rate' => $rate
         ));
     }

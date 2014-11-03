@@ -1,8 +1,8 @@
-rating_code_vote:
-    pattern: /code/{code_id}/vote/{rate}/
-    defaults: { _controller: GovnokodRatingsBundle:Rate:codeVote }
+rating_post_vote:
+    pattern: /posts/{post_id}/vote/{rate}/
+    defaults: { _controller: GovnokodRatingsBundle:Rate:postVote }
     requirements:
-        code_id: \d+
+        post_id: \d+
 
 rating_comment_vote:
     pattern: /comments/{comment_id}/vote/{rate}/
