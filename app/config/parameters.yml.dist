@@ -16,6 +16,14 @@ parameters:
     locale:                         ru
     secret:                         ThisTokenIsNotSoSecretChangeIt
 
+    solr_dsn:                       http://localhost:8983/solr/govnokod_codes
+
+    rabbitmq_host:                  127.0.0.1
+    rabbitmq_port:                  5672
+    rabbitmq_user:                  guest
+    rabbitmq_password:              guest
+    rabbitmq_vhost:                 /
+
     github_client_id:               1
     github_client_secret:           1
 

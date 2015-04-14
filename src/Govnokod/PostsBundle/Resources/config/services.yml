@@ -1,9 +1,15 @@
-parameters:
-#    govnokod_code.example.class: Govnokod\PostsBundle\Example
-
 services:
     sonata.admin.govnokod:
-            class: Govnokod\PostsBundle\Admin\CodeCategoryAdmin
-            arguments: [null, 'Govnokod\PostsBundle\Entity\Category', 'SonataAdminBundle:CRUD']
-            tags:
-                - { name: sonata.admin, manager_type: orm, label: Категории говнокода }
+        class: Govnokod\PostsBundle\Admin\CodeCategoryAdmin
+        arguments: [null, 'Govnokod\PostsBundle\Entity\Category', 'SonataAdminBundle:CRUD']
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Категории говнокода }
+
+
+    outofbox_product.product.listener:
+        class: Govnokod\PostsBundle\Listener\DoctrineEventListener
+        arguments: [ @old_sound_rabbit_mq.index_producer ]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: preRemove }

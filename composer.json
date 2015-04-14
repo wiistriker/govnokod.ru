@@ -12,16 +12,17 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "~2.4",
-        "doctrine/orm": "~2.2,>=2.2.3",
+
+        "symfony/symfony": "2.6.*",
+        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
+        "doctrine/dbal": "<2.5",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~2.3",
-        "sensio/framework-extra-bundle": "~2.3",
-        "sensio/generator-bundle": "~2.3",
+        "sensio/distribution-bundle": "~3.0,>=3.0.12",
+        "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "doctrine/doctrine-fixtures-bundle": "*@dev",
         "doctrine/data-fixtures": "*@dev",
         "stof/doctrine-extensions-bundle": "*@dev",
@@ -30,41 +31,54 @@
         "knplabs/knp-menu": "1.*@dev",
         "knplabs/knp-menu-bundle": "1.*@dev",
         "knplabs/knp-markdown-bundle": "~1.3",
-        "sonata-project/block-bundle": "*",
         "sonata-project/admin-bundle": "*",
         "sonata-project/doctrine-orm-admin-bundle": "*",
         "sonata-project/intl-bundle": "*",
-        "friendsofsymfony/user-bundle": "*",
         "friendsofsymfony/rest-bundle": "*",
+        "friendsofsymfony/user-bundle": "*",
         "jms/serializer": "0.13.0",
         "jms/serializer-bundle": "*",
+        "guzzle/guzzle": "*",
         "hwi/oauth-bundle": "0.4.*@dev",
-        "nelmio/solarium-bundle": "1.*",
+        "oldsound/rabbitmq-bundle": "1.*",
+        "nelmio/solarium-bundle": "2.*",
         "liip/doctrine-cache-bundle": "*",
         "exercise/htmlpurifier-bundle": "*@dev",
         "escapestudios/wsse-authentication-bundle": "*@dev",
+        "mtdowling/cron-expression": "dev-master"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3",
         "nelmio/api-doc-bundle" : "*@dev"
     },
     "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
     "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "www",
+        "symfony-assets-install": "relative",
         "branch-alias": {
-            "dev-master": "2.4-dev"
+            "dev-master": "2.6-dev"
         }
     }
 }

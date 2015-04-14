@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="outofbox_products" version="1.5">
+    <fields>
+        <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+        
+        <!-- points to the root document of a block of nested documents -->
+        <field name="_root_" type="string" indexed="true" stored="false" multiValued="false" />
+        <field name="_version_" type="long" indexed="true" stored="true" multiValued="false" />
+        
+        <field name="type" type="string" indexed="true" stored="false" multiValued="false" />
+
+        <field name="createdAt" type="tdate" indexed="true" stored="false" multiValued="false" />
+        <field name="updatedAt" type="tdate" indexed="true" stored="false" multiValued="false" />
+        
+        <field name="common" type="text_exact" indexed="true" stored="false" multiValued="false" omitNorms="false" omitTermFreqAndPositions="true" />
+
+        <dynamicField name="*_i" type="int" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_s" type="string" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_l" type="long" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_b" type="boolean" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_f" type="float" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_d" type="double" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_dt" type="date" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_i_m" type="int" indexed="true" stored="false" multiValued="true" />
+        <dynamicField name="*_s_m" type="string" indexed="true" stored="false" multiValued="true" />
+        <dynamicField name="*_slc" type="string_lc" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_slc_m" type="string_lc" indexed="true" stored="false" multiValued="true" />
+        <dynamicField name="*_te" type="text_exact" indexed="true" stored="false" multiValued="false" />
+        <dynamicField name="*_te_m" type="text_exact" indexed="true" stored="false" multiValued="true" />
+        
+        <dynamicField name="*_coordinate" type="tdouble" indexed="true" stored="false" />
+        <dynamicField name="random*" type="random" />
+    </fields>
+
+    <uniqueKey>id</uniqueKey>
+    <defaultSearchField>common</defaultSearchField>
+
+    <solrQueryParser defaultOperator="AND"/>
+    
+    <types>
+        <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+        <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+        
+        <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+        
+        <fieldType name="tint" class="solr.TrieIntField" precisionStep="8" positionIncrementGap="0"/>
+        <fieldType name="tfloat" class="solr.TrieFloatField" precisionStep="8" positionIncrementGap="0"/>
+        <fieldType name="tlong" class="solr.TrieLongField" precisionStep="8" positionIncrementGap="0"/>
+        <fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" positionIncrementGap="0"/>
+        
+        <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
+        
+        <fieldType name="random" class="solr.RandomSortField" indexed="true" />
+        <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+        
+        <fieldtype name="string_lc" class="solr.TextField" sortMissingLast="true" omitNorms="true">
+            <analyzer>
+                <tokenizer class="solr.KeywordTokenizerFactory"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+                <filter class="solr.PatternReplaceFilterFactory" pattern="ё" replacement="е" replace="all" />
+            </analyzer>
+        </fieldtype>
+        
+        <fieldType name="text_exact" class="solr.TextField" positionIncrementGap="100">
+            <analyzer>
+                <!--charFilter class="solr.HTMLStripCharFilterFactory"/-->
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+                <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ru.txt"/>
+                <filter class="solr.PatternReplaceFilterFactory" pattern="ё" replacement="е" replace="all" />
+            </analyzer>
+        </fieldType>
+    </types>
+</schema>

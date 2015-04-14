@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Nelmio\SolariumBundle\NelmioSolariumBundle(),
+            new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Govnokod\UserBundle\GovnokodUserBundle(),
@@ -35,6 +37,7 @@ class AppKernel extends Kernel
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

@@ -110,18 +110,17 @@ class PostsController extends Controller
             ->getForm()
         ;
 
-        if ($request->isMethod('POST')) {
-            $form->submit($request);
+        $form->handleRequest($request);
 
-            if ($form->isValid()) {
-                $em->persist($post);
-                $em->flush();
 
-                return $this->redirect($this->generateUrl('post_view', array(
-                    'category' => $post->getCategory()->getName(),
-                    'id' => $post->getId()
-                )));
-            }
+        if ($form->isValid()) {
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('post_view', array(
+                'category' => $post->getCategory()->getName(),
+                'id' => $post->getId()
+            )));
         }
 
         $language_tags = array();

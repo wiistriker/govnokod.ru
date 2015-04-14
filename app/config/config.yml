@@ -4,17 +4,25 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      { fallback: ru }
-    secret:          %secret%
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: %kernel.debug%
-    form:            true
-    csrf_protection: true
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:  %locale%
-    session: ~
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
 
 # Twig Configuration
 twig:
@@ -107,6 +115,38 @@ fos_user:
     firewall_name: main
     user_class: Govnokod\UserBundle\Entity\User
 
+nelmio_solarium:
+    endpoints:
+        default:
+            dsn: %solr_dsn%
+            timeout: 10
+
+    clients:
+        default:
+            endpoints: [ default ]
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     %rabbitmq_host%
+            port:     %rabbitmq_port%
+            user:     %rabbitmq_user%
+            password: %rabbitmq_password%
+            vhost:    %rabbitmq_vhost%
+            lazy:     true
+
+    producers:
+        index:
+            connection: default
+            exchange_options: {name: 'govnokod-index', type: direct}
+
+    consumers:
+        index:
+            connection:       default
+            exchange_options: {name: 'govnokod-index', type: direct}
+            queue_options:    {name: 'govnokod-index'}
+            callback:         app.message_consumer.index
+
 hwi_oauth:
     firewall_name: main
     resource_owners:
@@ -120,3 +160,8 @@ hwi_oauth:
             client_id:           %github_client_id%
             client_secret:       %github_client_secret%
             scope:               'user:email'
+
+services:
+    app.message_consumer.index:
+        class: App\Consumer\Index
+        arguments: [ @service_container ]

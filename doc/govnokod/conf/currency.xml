@@ -1,0 +1,9 @@
+<currencyConfig version="1.0">
+    <rates>
+        <rate from="USD" to="EUR" rate="0.7371" />
+        <rate from="USD" to="RUR" rate="35.751" />
+        <rate from="USD" to="JPY" rate="103.971" />
+        <rate from="EUR" to="RUR" rate="45.787" />
+        <rate from="RUR" to="JPY" rate="3.08" />
+    </rates>
+</currencyConfig>
