@@ -5,8 +5,7 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Категории говнокода }
 
-
-    outofbox_product.product.listener:
+    posts.doctrine_listener:
         class: Govnokod\PostsBundle\Listener\DoctrineEventListener
         arguments: [ @old_sound_rabbit_mq.index_producer ]
         tags:

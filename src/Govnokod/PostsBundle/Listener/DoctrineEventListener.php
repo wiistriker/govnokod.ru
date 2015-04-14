@@ -48,7 +48,6 @@ class DoctrineEventListener
         try {
             $this->indexProducer->publish('post:' . $action . ':' . $post->getId());
         } catch (\Exception $e) {
-            throw $e;
         }
     }
 }
