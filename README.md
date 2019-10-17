@@ -36,6 +36,12 @@ $ php app/console doctrine:schema:update --force
 $ php app/console doctrine:fixtures:load
 ```
 
+### Загрузка ассетов
+
+```
+$ app/console assetic:dump
+```
+
 ### Запуск сервера
 
 Встроенный веб-сервер можно запустить через symfony-консоль:
@@ -65,3 +71,6 @@ $ php app/console server:run --docroot=www/
 Код должен быть оформлен согласно стандартам [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
 и [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
 Для автоматического приведения к стандарту рекомендуется использовать [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
+
+## Docker ##
+Пока только БД
