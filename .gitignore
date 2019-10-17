@@ -17,7 +17,6 @@ Vagrantfile
 
 # other
 composer.phar
-composer.lock
 app/SymfonyRequirements.php
 app/check.php
 /nbproject/private/
