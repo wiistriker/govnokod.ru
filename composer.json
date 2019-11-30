@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.3.3 <7.0",
 
         "symfony/symfony": "2.6.*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
@@ -45,7 +45,7 @@
         "liip/doctrine-cache-bundle": "*",
         "exercise/htmlpurifier-bundle": "*@dev",
         "escapestudios/wsse-authentication-bundle": "*@dev",
-        "mtdowling/cron-expression": "dev-master"
+        "mtdowling/cron-expression": "1.2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
